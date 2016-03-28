@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp45"
+        android:background="@color/main_orange">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="@dimen/dp35"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="@dimen/dp10"
+            android:scaleType="centerInside"
+            android:src="@mipmap/default_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/cooperative_title"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp18" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/dp15"
+                android:background="@color/lightgray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="@dimen/dp5"
+                    android:layout_height="match_parent"
+                    android:background="@color/main_orange" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp15"
+                    android:paddingLeft="@dimen/dp15"
+                    android:paddingTop="@dimen/dp15"
+                    android:text="@string/company_title"
+                    android:textColor="@color/darkgray"
+                    android:textSize="@dimen/sp15" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/lightgray" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/dp5"
+                android:background="@color/lightgray" />
+
+            <EditText
+                android:id="@+id/et_company"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:hint="@string/company_register_name"
+                android:paddingBottom="@dimen/dp15"
+                android:paddingLeft="@dimen/dp25"
+                android:paddingTop="@dimen/dp15"
+                android:textColor="@color/darkgray"
+                android:textColorHint="@color/lightgray"
+                android:textSize="@dimen/sp15"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/lightgray" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/dp5"
+                android:background="@color/lightgray" />
+
+            <EditText
+                android:id="@+id/et_company_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:hint="@string/company_number"
+                android:paddingBottom="@dimen/dp15"
+                android:paddingLeft="@dimen/dp25"
+                android:paddingTop="@dimen/dp15"
+                android:textColor="@color/darkgray"
+                android:textColorHint="@color/lightgray"
+                android:textSize="@dimen/sp15"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/lightgray" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/dp5"
+                android:background="@color/lightgray" />
+
+            <EditText
+                android:id="@+id/et_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:hint="@string/name_text"
+                android:paddingBottom="@dimen/dp15"
+                android:paddingLeft="@dimen/dp25"
+                android:paddingTop="@dimen/dp15"
+                android:textColor="@color/darkgray"
+                android:textColorHint="@color/lightgray"
+                android:textSize="@dimen/sp15"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/lightgray" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/dp5"
+                android:background="@color/lightgray" />
+
+            <EditText
+                android:id="@+id/et_card_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:hint="@string/card_number_text"
+                android:paddingBottom="@dimen/dp15"
+                android:paddingLeft="@dimen/dp25"
+                android:paddingTop="@dimen/dp15"
+                android:textColor="@color/darkgray"
+                android:textColorHint="@color/lightgray"
+                android:textSize="@dimen/sp15"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/lightgray" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/dp15"
+                android:background="@color/lightgray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="@dimen/dp5"
+                    android:layout_height="match_parent"
+                    android:background="@color/main_orange" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp15"
+                    android:paddingLeft="@dimen/dp15"
+                    android:paddingTop="@dimen/dp15"
+                    android:text="@string/upload_company_photo"
+                    android:textColor="@color/darkgray"
+                    android:textSize="@dimen/sp15" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/lightgray" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                android:paddingTop="@dimen/dp10"
+                android:paddingBottom="@dimen/dp10">
+                <ImageView
+                    android:id="@+id/iv_pic_one"
+                    android:layout_width="@dimen/dp190"
+                    android:layout_height="@dimen/dp120"
+                    android:background="@color/lightgray"
+                    android:layout_centerInParent="true"/>
+                <ImageView
+                    android:layout_width="@dimen/dp30"
+                    android:layout_height="@dimen/dp30"
+                    android:src="@mipmap/camera_pic"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/dp50"
+                    android:layout_below="@id/iv_pic_one"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/card_photo"
+                    android:layout_centerInParent="true"
+                    android:textSize="@dimen/sp15"
+                    android:textColor="@color/line_color"/>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/dp5"
+                android:background="@color/lightgray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="@dimen/dp5"
+                    android:layout_height="match_parent"
+                    android:background="@color/main_orange" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp15"
+                    android:paddingLeft="@dimen/dp15"
+                    android:paddingTop="@dimen/dp15"
+                    android:text="@string/card_photo_text"
+                    android:textColor="@color/darkgray"
+                    android:textSize="@dimen/sp15" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/lightgray" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/lightgray" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                android:paddingTop="@dimen/dp10"
+                android:paddingBottom="@dimen/dp10">
+                <ImageView
+                    android:id="@+id/iv_pic_two"
+                    android:layout_width="@dimen/dp190"
+                    android:layout_height="@dimen/dp120"
+                    android:background="@color/lightgray"
+                    android:layout_centerInParent="true"/>
+                <ImageView
+                    android:layout_width="@dimen/dp30"
+                    android:layout_height="@dimen/dp30"
+                    android:src="@mipmap/camera_pic"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/dp50"
+                    android:layout_below="@id/iv_pic_two"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/card_photo"
+                    android:layout_centerInParent="true"
+                    android:textSize="@dimen/sp15"
+                    android:textColor="@color/line_color"/>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/dp5"
+                android:background="@color/lightgray" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft ="@dimen/dp35"
+                android:layout_marginRight="@dimen/dp35"
+                android:paddingTop="@dimen/dp12"
+                android:paddingBottom="@dimen/dp12"
+                android:gravity="center"
+                android:textSize="@dimen/sp18"
+                android:background="@drawable/login_btn_selector"
+                android:textColor="@android:color/white"
+                android:layout_marginTop="@dimen/dp20"
+                android:text="@string/next_btn_text"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
