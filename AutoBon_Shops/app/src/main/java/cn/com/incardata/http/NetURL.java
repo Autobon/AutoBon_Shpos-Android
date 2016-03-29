@@ -10,4 +10,10 @@ public class NetURL {
 	public static final String VERIFY_SMS = PUB + "verifySms";
 	/** 同步个推CID到后台 */
 	public static final String PUSH_ID = "";
+
+	/** 注册 */
+	public static final String REGISTER_URL = BASE_URL + "coop/register";
+
+	/** 登录 */
+	public static final String LOGIN_URL = BASE_URL + "coop/login";
 }

@@ -36,6 +36,20 @@
     <string name="pwd_confirm_text">确认密码</string>
     <string name="register_bottom_tips">点击“注册”代表本人已阅读并同意</string>
     <string name="text_protocal">《车邻邦技师服务协议》</string>
+    <string name="phone_not_empty_tips">手机号不能为空</string>
+    <string name="error_phone_number_tips">手机号为11位数字</string>
+    <string name="send_code_success">验证码已发送</string>
+    <string name="btn_text_send_code_repeat">再次获取</string>
+    <string name="time_tips">秒</string>
+    <string name="company_empty_tips">企业简称不能为空</string>
+    <string name="empty_phone">手机号不能为空</string>
+    <string name="empty_password">密码不能为空</string>
+    <string name="empty_code">验证码不能为空</string>
+    <string name="different_pwd_tips">两次密码不一致</string>
+    <string name="code_length_tips">验证码长度为6位</string>
+    <string name="password_length_tips">密码长度至少为8位</string>
+    <string name="error_password">密码为字母和数字的组合</string>
+    <string name="register_success_tips">注册成功</string>
 
     <!--找回密码-->
     <string name="find_pwd_text">找回密码</string>

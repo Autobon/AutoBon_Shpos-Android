@@ -58,7 +58,8 @@
         android:paddingLeft="@dimen/dp25"
         android:maxLength="11"
         android:textColor="@color/darkgray"
-        android:textSize="@dimen/sp15"/>
+        android:textSize="@dimen/sp15"
+        android:inputType="number"/>
     <View
         android:id="@+id/line_four_view"
         android:layout_width="match_parent"
@@ -120,6 +121,7 @@
             android:text="@string/forget_pwd_text"
             android:textSize="@dimen/sp15"/>
         <TextView
+            android:id="@+id/tv_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/register_text"
