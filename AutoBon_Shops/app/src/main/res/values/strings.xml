@@ -69,4 +69,16 @@
     <string name="card_photo_text">法人身份证正面照</string>
     <string name="card_photo">示例图</string>
     <string name="next_btn_text">下一步</string>
+    <string name="uninstalled_sdcard">尚未安装SD卡</string>
+    <string name="upload_failed_tips">上传失败</string>
+    <string name="company_not_empty_tips">注册名称不能为空</string>
+    <string name="company_number_empty_tips">营业执照号不能为空</string>
+    <string name="name_empty_tips">姓名不能为空</string>
+    <string name="card_number_tips">身份证号不能为空</string>
+    <string name="bussiness_pic_no_upload">营业执照图片尚未上传</string>
+    <string name="card_number_pic_no_upload">身份证图片尚未上传</string>
+    <string name="shop_address_text">商户位置</string>
+    <string name="hint_text_address_name">请输入地名</string>
+    <string name="search_text">搜索</string>
+    <string name="sure_btn_text">确认</string>
 </resources>

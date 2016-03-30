@@ -124,7 +124,9 @@
         android:textColorHint="@color/lightgray"
         android:paddingLeft="@dimen/dp25"
         android:textSize="@dimen/sp15"
-        android:textColor="@color/darkgray"/>
+        android:textColor="@color/darkgray"
+        android:inputType="textPassword"
+        android:maxLength="18"/>
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -145,7 +147,9 @@
         android:textColorHint="@color/lightgray"
         android:paddingLeft="@dimen/dp25"
         android:textSize="@dimen/sp15"
-        android:textColor="@color/darkgray"/>
+        android:textColor="@color/darkgray"
+        android:inputType="textPassword"
+        android:maxLength="18"/>
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"

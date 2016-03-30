@@ -225,7 +225,7 @@ public class BaiduMapUtil {
                 final double longitude = result.getLongitude();
                 latLng = new LatLng(latitude, longitude);
                 if(markOverlay[0]!=null){
-                    View pop = BaiduMapUtil.initPop(context,null,false);
+                    View pop = initPop(context,null,false);
                     TextView tv = (TextView) pop.findViewById(R.id.title);
                     tv.setText(result.getAddrStr());
                 }else{

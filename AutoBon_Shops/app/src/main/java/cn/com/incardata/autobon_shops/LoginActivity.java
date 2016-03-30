@@ -128,7 +128,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                 SharedPre.setSharedPreferences(context,AutoCon.FLAG_PHONE,this.phone);
                 SharedPre.setSharedPreferences(context, AutoCon.FLAG_PASSWORD,this.password);  //保存信息
                 //TODO 跳转主页
-                T.show(context,"jump to main page...");
+                startActivity(CooperativeOneActivity.class);
                 finish();
             }else{  //失败
                 T.show(context,loginEntity.getMessage());

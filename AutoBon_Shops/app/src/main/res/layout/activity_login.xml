@@ -86,7 +86,8 @@
         android:paddingLeft="@dimen/dp25"
         android:maxLength="18"
         android:textColor="@color/darkgray"
-        android:textSize="@dimen/sp15"/>
+        android:textSize="@dimen/sp15"
+        android:inputType="textPassword"/>
     <View
         android:id="@+id/line_six_view"
         android:layout_width="match_parent"
