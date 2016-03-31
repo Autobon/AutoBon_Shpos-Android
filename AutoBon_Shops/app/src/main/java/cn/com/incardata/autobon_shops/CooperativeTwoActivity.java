@@ -1,6 +1,10 @@
 package cn.com.incardata.autobon_shops;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,7 +18,6 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
-import com.baidu.mapapi.map.MapStatusUpdate;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MyLocationConfiguration;
@@ -23,6 +26,7 @@ import com.baidu.mapapi.model.LatLng;
 
 import cn.com.incardata.http.NetWorkHelper;
 import cn.com.incardata.utils.BaiduMapUtil;
+import cn.com.incardata.utils.T;
 
 /**
  * Created by zhangming on 2016/3/30.
@@ -50,17 +54,15 @@ public class CooperativeTwoActivity extends BaseActivity implements View.OnClick
         initBaiduMapView();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        initNetManager();
+    }
+
     protected void initBaiduMapView(){
         mMapView = (MapView) findViewById(R.id.bmapView);  	// 获取地图控件引用
         baiduMap = mMapView.getMap();  //管理具体的某一个MapView对象,缩放,旋转,平移
-        MapStatusUpdate mapStatusUpdate = MapStatusUpdateFactory.zoomTo(BaiduMapUtil.defaultLevel);  //默认级别12
-        baiduMap.setMapStatus(mapStatusUpdate);  //设置缩放级别
-        mLocationClient = new LocationClient(this);
-
-        BaiduMapUtil.hiddenBaiduLogo(mMapView);  //隐藏百度广告图标
-        mMapView.showZoomControls(false);
-        mMapView.showScaleControl(true);  //默认是true,显示标尺
-
         /**
          * 百度地图加载完毕后回调此方法(传参入口)
          */
@@ -68,11 +70,17 @@ public class CooperativeTwoActivity extends BaseActivity implements View.OnClick
             @Override
             public void onMapLoaded() {
                 registerMyLocation();
-                Bundle bundle = getIntent().getExtras();
-                Log.i("test",bundle.getString("company")+"===>"+bundle.getString("card_number")
-                        +"===>"+bundle.getString("business_pic_url")+"===>"+bundle.getString("corporation_pic_url"));
             }
         });
+        BaiduMapUtil.hiddenBaiduLogo(mMapView);  //隐藏百度广告图标
+        mMapView.showZoomControls(false);
+        mMapView.showScaleControl(true);  //默认是true,显示标尺
+    }
+
+    private void initNetManager(){
+        IntentFilter mFilter = new IntentFilter();
+        mFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(mReceiver, mFilter);
     }
 
     private void init(){
@@ -98,7 +106,9 @@ public class CooperativeTwoActivity extends BaseActivity implements View.OnClick
 
     public void registerMyLocation(){
         myBDLocationListener = new MyBDLocationListener();
+        mLocationClient = new LocationClient(context);
         mLocationClient.registerLocationListener(myBDLocationListener);
+        baiduMap.setMyLocationEnabled(true);// 打开定位图层
 
         LocationClientOption option = new LocationClientOption();
         option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);// 设置定位模式
@@ -110,7 +120,6 @@ public class CooperativeTwoActivity extends BaseActivity implements View.OnClick
         mLocationClient.setLocOption(option);
         mLocationClient.start();
 
-        baiduMap.setMyLocationEnabled(true);// 打开定位图层
         baiduMap.getUiSettings().setCompassEnabled(false);  //不显示指南针
         MyLocationConfiguration configuration = new MyLocationConfiguration(
                 MyLocationConfiguration.LocationMode.FOLLOWING, true,
@@ -136,10 +145,10 @@ public class CooperativeTwoActivity extends BaseActivity implements View.OnClick
     @Override
     protected void onStop() {
         super.onStop();
-        if(mLocationClient!=null){
-            mLocationClient.stop();
-            baiduMap.setMyLocationEnabled(false); //关闭定位图层
+        if(mReceiver!=null){
+            unregisterReceiver(mReceiver);
         }
+        BaiduMapUtil.closeLocationClient(baiduMap,mLocationClient);
     }
 
     @Override
@@ -150,6 +159,7 @@ public class CooperativeTwoActivity extends BaseActivity implements View.OnClick
             myBDLocationListener = null;
         }
         mLocationClient = null;
+        mMapView.onDestroy();
     }
 
     /**
@@ -179,4 +189,19 @@ public class CooperativeTwoActivity extends BaseActivity implements View.OnClick
             }
         }
     }
+
+    private BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if (action.equals(ConnectivityManager.CONNECTIVITY_ACTION)) {
+                Log.d("test", "网络状态已经改变");
+                if(NetWorkHelper.isNetworkAvailable(context)){
+                    BaiduMapUtil.locate(baiduMap);
+                }else{
+                    T.show(context,context.getString(R.string.network_exception));
+                }
+            }
+        }
+    };
 }
