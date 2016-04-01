@@ -25,4 +25,6 @@ public class NetURL {
 
 	/** 商户资料提交认证 */
 	public static final String CORPORATION_CHECK_URL = BASE_URL + "coop/check";
+
+	public static final String CORPORATION_INFO_URL = BASE_URL + "coop/getCoop";
 }

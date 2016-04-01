@@ -8,31 +8,33 @@ import android.widget.BaseAdapter;
 import android.widget.CheckedTextView;
 import android.widget.TextView;
 
+import java.util.List;
+
 import cn.com.incardata.autobon_shops.R;
 
 /**
- * Created by zhangming on 2016/3/31.
+ * Created by zhangming on 2016/4/1.
  */
-public class AddressSpinnerAdapter extends BaseAdapter {
-    private String[] mEngineType;
+public class CommonSpinnerAdapter extends BaseAdapter{
+    private List<String> mList;
     private Context context;
 
-    public AddressSpinnerAdapter(Context context, String[] mEngineType) {
+    public CommonSpinnerAdapter(Context context, List<String> mList) {
         this.context = context;
-        this.mEngineType = mEngineType;
+        this.mList = mList;
     }
 
     @Override
     public int getCount() {
-        if (mEngineType != null && mEngineType.length > 0) {
-            return mEngineType.length;
+        if (mList != null && mList.size() > 0) {
+            return mList.size();
         }
         return 0;
     }
 
     @Override
     public Object getItem(int position) {
-        return mEngineType[position];
+        return mList.get(position);
     }
 
     @Override
@@ -45,11 +47,11 @@ public class AddressSpinnerAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.spinner_indicator, parent, false);
             TextView text = (TextView) convertView.findViewById(R.id.spinner_indicator);
-            text.setText(mEngineType[position]);
+            text.setText(mList.get(position));
 
             convertView.setTag(text);
         }else {
-            ((TextView)convertView.getTag()).setText(mEngineType[position]);
+            ((TextView)convertView.getTag()).setText(mList.get(position));
         }
         return convertView;
     }
@@ -59,11 +61,11 @@ public class AddressSpinnerAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.spinner_item, parent, false);
             CheckedTextView textView = (CheckedTextView) convertView.findViewById(R.id.spinner_drop_item_text);
-            textView.setText(mEngineType[position]);
+            textView.setText(mList.get(position));
 
             convertView.setTag(textView);
         } else {
-            ((CheckedTextView) convertView.getTag()).setText(mEngineType[position]);
+            ((CheckedTextView) convertView.getTag()).setText(mList.get(position));
         }
         return convertView;
     }

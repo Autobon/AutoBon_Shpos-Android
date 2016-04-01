@@ -86,4 +86,10 @@
     <string name="tax_number_text">纳税识别号</string>
     <string name="mail_code_text">邮政编码</string>
     <string name="address_info">地址</string>
+    <string name="mail_address_tips">请填写发票邮寄地址</string>
+    <string name="contact_name_text">联系人姓名</string>
+    <string name="contact_phone_text">联系人电话</string>
+    <string name="join_text">加盟</string>
+    <string name="no_result_tips">未搜索到结果</string>
+
 </resources>

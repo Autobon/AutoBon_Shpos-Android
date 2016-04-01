@@ -26,6 +26,7 @@ import cn.com.incardata.http.HttpClientInCar;
 import cn.com.incardata.http.NetURL;
 import cn.com.incardata.http.response.UploadPicEntity;
 import cn.com.incardata.utils.SDCardUtils;
+import cn.com.incardata.utils.StringUtil;
 import cn.com.incardata.utils.T;
 
 /**
@@ -230,7 +231,6 @@ public class CooperativeOneActivity extends BaseActivity implements View.OnClick
     }
 
     private void checkInfo(){
-        /**
         String company = et_company.getText().toString().trim();
         String company_number = et_company_number.getText().toString().trim();
         String name = et_name.getText().toString().trim();
@@ -269,7 +269,5 @@ public class CooperativeOneActivity extends BaseActivity implements View.OnClick
         bundle.putString("business_pic_url",picMap.get(BUSINESS_KEY));
         bundle.putString("corporation_pic_url",picMap.get(CORPORATION_KEY));
         startActivity(CooperativeTwoActivity.class,bundle);
-         **/
-        startActivity(CooperativeTwoActivity.class);
     }
 }
