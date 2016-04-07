@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/pop_shape">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp50"
+        android:text="@string/check_tips_title"
+        android:textColor="@color/darkgray"
+        android:gravity="center"
+        android:textSize="@dimen/sp15"
+        android:layout_gravity="center_horizontal"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/lightgray"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp10"
+        android:text="@string/check_tips_content"
+        android:textSize="@dimen/sp15"
+        android:textColor="@color/line_color" />
+    <Button
+        android:id="@+id/btn_ok"
+        android:layout_width="@dimen/dp60"
+        android:layout_height="@dimen/dp35"
+        android:layout_gravity="center_horizontal"
+        android:textSize="@dimen/sp18"
+        android:background="@drawable/login_btn_selector"
+        android:textColor="@android:color/white"
+        android:layout_below="@id/line_six_view"
+        android:text="OK"
+        android:layout_marginTop="@dimen/dp15"
+        android:layout_marginBottom="@dimen/dp15"/>
+</LinearLayout>

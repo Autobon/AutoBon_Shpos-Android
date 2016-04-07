@@ -91,5 +91,15 @@
     <string name="contact_phone_text">联系人电话</string>
     <string name="join_text">加盟</string>
     <string name="no_result_tips">未搜索到结果</string>
-
+    <string name="check_tips_title">提交成功</string>
+    <string name="check_tips_content">恭喜您资料提交成功，我们将会在一个工作日内审核信息并以短信的形式告知结果，请注意查收！</string>
+    <string name="invoice_header_content">发票抬头内容不能为空</string>
+    <string name="taxIdNo_tips">纳税识别号不能为空</string>
+    <string name="postcode_tips">邮政编码不能为空</string>
+    <string name="mail_address_empty_tips">邮寄地址不能为空</string>
+    <string name="contact_name_tips">联系人姓名不能为空</string>
+    <string name="contact_phone_tips">联系人电话不能为空</string>
+    <string name="choose_province">请选省份</string>
+    <string name="choose_city">请选择市</string>
+    <string name="choose_area">请选择区</string>
 </resources>

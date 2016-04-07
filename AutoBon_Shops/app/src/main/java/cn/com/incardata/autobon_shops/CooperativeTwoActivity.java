@@ -49,10 +49,10 @@ public class CooperativeTwoActivity extends BaseActivity implements View.OnClick
     protected ImageView iv_back,iv_clear;
     protected TextView tv_search;
     protected Button sure_btn;
+    protected Overlay markOverlay; //标志物图层
+    protected Overlay popOverlay;  //信息框图层
 
     protected static Bundle bundle;
-    protected static Overlay markOverlay; //标志物图层
-    protected static Overlay popOverlay;  //信息框图层
     protected static int defaultLevel = 15;
     protected static int scanTime = 5000;
 
@@ -68,6 +68,7 @@ public class CooperativeTwoActivity extends BaseActivity implements View.OnClick
     protected void onStart() {
         super.onStart();
         initNetManager();
+        Log.i("test","business_pic_url===>"+bundle.getString("business_pic_url")+" corporation_pic_url===>"+bundle.getString("corporation_pic_url"));
     }
 
     protected void initBaiduMapView(){
@@ -206,6 +207,12 @@ public class CooperativeTwoActivity extends BaseActivity implements View.OnClick
         if(myBDLocationListener!=null){
             mLocationClient.unRegisterLocationListener(myBDLocationListener);
             myBDLocationListener = null;
+        }
+        if(markOverlay!=null){  //每次退出时销毁地点标记
+            markOverlay = null;
+        }
+        if(popOverlay!=null){
+            popOverlay = null;
         }
         mLocationClient = null;
         mMapView.onDestroy();

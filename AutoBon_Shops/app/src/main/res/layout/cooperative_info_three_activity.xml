@@ -140,7 +140,9 @@
                 android:paddingTop="@dimen/dp15"
                 android:textColor="@color/darkgray"
                 android:textColorHint="@color/lightgray"
-                android:textSize="@dimen/sp15" />
+                android:textSize="@dimen/sp15"
+                android:inputType="number"
+                android:maxLength="6"/>
 
             <View
                 android:layout_width="match_parent"
@@ -255,7 +257,9 @@
                 android:paddingTop="@dimen/dp15"
                 android:textColor="@color/darkgray"
                 android:textColorHint="@color/lightgray"
-                android:textSize="@dimen/sp15" />
+                android:textSize="@dimen/sp15"
+                android:maxLength="11"
+                android:inputType="phone"/>
 
             <View
                 android:layout_width="match_parent"
