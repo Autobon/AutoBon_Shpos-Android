@@ -102,4 +102,33 @@
     <string name="choose_province">请选省份</string>
     <string name="choose_city">请选择市</string>
     <string name="choose_area">请选择区</string>
+
+    <!--合作商信息-->
+    <string name="cooperative_info_title">合作商</string>
+    <string name="order_num_text">订单数</string>
+    <string name="logout_text">退出登录</string>
+    <string name="my_order_text">我的订单</string>
+    <string name="salesman_text">业务员管理</string>
+    <string name="modify_pwd_text">修改密码</string>
+    <string name="autobon_telphone_text">车邻邦专职客服电话</string>
+    <string name="no_commit_info_tips">还未提交加盟信息</string>
+    <string name="league_btn_text">我要加盟</string>
+    <string name="league_status_text">加盟状态: </string>
+    <string name="failed_reason_text">失败原因: </string>
+    <string name="failed_status_tips">失败</string>
+    <string name="check_status_text">正在审核</string>
+    <string name="success_status_text">审核成功</string>
+
+    <!--合作商加盟状态-->
+    <string name="league_info_title">加盟信息</string>
+    <string name="tv_license_str">营业执照名:</string>
+    <string name="tv_license_num_str">营业执照号:</string>
+    <string name="tv_person_name_str">法人的姓名:</string>
+    <string name="tv_card_number_str">法人身份证:</string>
+    <string name="tv_license_copy_str">营业执照副本</string>
+    <string name="tv_card_photo_str">法人身份证正面照</string>
+    <string name="receipt_str">发票信息</string>
+    <string name="receipt_head_name">发票抬头名:</string>
+    <string name="tax_number">纳税识别号:</string>
+    <string name="mail_name">邮政编码名:</string>
 </resources>
