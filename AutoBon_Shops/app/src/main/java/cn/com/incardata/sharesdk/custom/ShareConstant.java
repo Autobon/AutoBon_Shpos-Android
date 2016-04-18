@@ -1,0 +1,15 @@
+package cn.com.incardata.sharesdk.custom;
+
+import cn.com.incardata.http.NetURL;
+
+/**
+ * @author wanghao
+ */
+public class ShareConstant {
+	/** 分享标题 */
+	public final static String TITLE = "车邻邦商户";
+	/**	分享web链接 */
+	public final static String URL = "http://hpecar.com:12345/shareB.html";
+	/**	分享图片URL */
+	public final static String IMAGE_URL = NetURL.IP_PORT + "/images/icon-B.png";
+}
