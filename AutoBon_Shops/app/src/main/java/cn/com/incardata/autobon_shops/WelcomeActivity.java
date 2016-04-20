@@ -6,7 +6,7 @@ import android.os.CountDownTimer;
 import cn.com.incardata.application.MyApplication;
 
 public class WelcomeActivity extends BaseActivity {
-    private static final int DURATION = 8000;//持续时长（秒）
+    private static final int DURATION = 2000;//持续时长（秒）
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

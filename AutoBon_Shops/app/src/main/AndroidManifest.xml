@@ -25,53 +25,52 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/NoTitleBarStyle">
+        <activity
+            android:name=".BaseActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoTitleBarStyle" />
         <activity
             android:name=".WelcomeActivity"
             android:label="@string/app_name"
+            android:screenOrientation="portrait"
             android:theme="@style/NoTitleBarStyle">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".LoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:windowSoftInputMode="stateHidden|adjustPan">
-
-        </activity>
+            android:theme="@style/NoTitleBarStyle"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".RegisterActivity"
-            android:theme="@android:style/Theme.NoTitleBar"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan">
-        </activity>
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".FindPwdActivity"
-            android:theme="@android:style/Theme.NoTitleBar"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan">
-        </activity>
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".CooperativeOneActivity"
-            android:theme="@android:style/Theme.NoTitleBar"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan">
-        </activity>
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".CooperativeTwoActivity"
-            android:theme="@android:style/Theme.NoTitleBar"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan">
-        </activity>
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".CooperativeThreeActivity"
-            android:theme="@style/SpinnerTheme"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan">
-        </activity>
+            android:theme="@style/SpinnerTheme"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
 
         <!-- 百度地图的定位服务 -->
         <service
@@ -83,6 +82,19 @@
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="rnEtGH9GhoCvmTiOyGs0U6C3sBQrLfXP" />
+
+        <activity
+            android:name=".MainActivity"
+            android:parentActivityName=".BaseActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoTitleBarStyle"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".MainReviewActivity"
+            android:parentActivityName=".BaseActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoTitleBarStyle"></activity>
+        <activity android:name=".UnfinishOrderActivity"></activity>
     </application>
 
 </manifest>

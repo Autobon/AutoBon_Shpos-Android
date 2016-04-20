@@ -9,6 +9,8 @@ public class AutoCon {
     public static final String LANGUAGE = "language";
     /** autoken */
     public static final String AUTOKEN = "autoken";
+    /** 公司简称 */
+    public static final String COMPANY_NAME = "companyName";
     /** 账号 */
     public static final String FLAG_PHONE = "phone";
     /** 密码 */

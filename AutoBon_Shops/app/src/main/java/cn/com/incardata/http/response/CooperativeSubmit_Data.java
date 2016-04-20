@@ -1,6 +1,7 @@
 package cn.com.incardata.http.response;
 
 /**
+ * 合作商户信息
  * Created by zhangming on 2016/4/7.
  */
 public class CooperativeSubmit_Data {
