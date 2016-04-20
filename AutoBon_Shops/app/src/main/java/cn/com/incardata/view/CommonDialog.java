@@ -10,7 +10,8 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import cn.com.incardata.autobon.R;
+import cn.com.incardata.autobon_shops.R;
+
 
 /**
  * Created by zhangming on 2016/3/23.

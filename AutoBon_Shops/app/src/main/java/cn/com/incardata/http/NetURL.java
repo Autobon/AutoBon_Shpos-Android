@@ -27,4 +27,11 @@ public class NetURL {
 	public static final String CORPORATION_CHECK_URL = BASE_URL + "coop/check";
 
 	public static final String CORPORATION_INFO_URL = BASE_URL + "coop/getCoop";
+
+	/** 创建订单 */
+	public static final String CREATE_ORDER = BASE_URL + "coop/order/createOrder";
+	/** 未完成订单列表 */
+	public static final String LIST_UNFINISHED = BASE_URL + "coop/order/listUnfinished";
+	/** 上传订单照片 */
+	public static final String UPLOAD_PHOTO = BASE_URL + "coop/order/uploadPhoto";
 }

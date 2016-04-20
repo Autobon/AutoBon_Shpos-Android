@@ -15,6 +15,7 @@ import org.apache.http.message.BasicNameValuePair;
 import cn.com.incardata.http.HttpClientInCar;
 import cn.com.incardata.http.NetURL;
 import cn.com.incardata.http.NetWorkHelper;
+import cn.com.incardata.http.StatusCode;
 import cn.com.incardata.http.response.LoginEntity;
 import cn.com.incardata.utils.AutoCon;
 import cn.com.incardata.utils.SharedPre;
@@ -44,6 +45,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
         tv_register.setOnClickListener(this);
         login_btn.setOnClickListener(this);
+
+        et_company.setText(SharedPre.getString(context, AutoCon.COMPANY_NAME, ""));
+        et_phone.setText(SharedPre.getString(context, AutoCon.FLAG_PHONE, ""));
+        et_pwd.setText(SharedPre.getString(context, AutoCon.FLAG_PASSWORD, ""));
     }
 
     @Override
@@ -124,11 +129,17 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                 return;
             }
             if(loginEntity.isResult()){  //成功
-                SharedPre.setSharedPreferences(context,AutoCon.FLAG_PHONE,this.shortName);
+                SharedPre.setSharedPreferences(context,AutoCon.COMPANY_NAME,this.shortName);
                 SharedPre.setSharedPreferences(context,AutoCon.FLAG_PHONE,this.phone);
                 SharedPre.setSharedPreferences(context, AutoCon.FLAG_PASSWORD,this.password);  //保存信息
                 //TODO 跳转主页
-                startActivity(CooperativeOneActivity.class);
+                if (loginEntity.getData().getCooperator() == null){
+                    startActivity(CooperativeOneActivity.class);//未提交资料
+                }else if(loginEntity.getData().getCooperator().getStatusCode() == StatusCode.COOPERATIVE_REVIEW_SUCCESSFUL){
+                    startActivity(MainActivity.class);//审核通过
+                }else {
+                    startActivity(MainReviewActivity.class);
+                }
                 finish();
             }else{  //失败
                 T.show(context,loginEntity.getMessage());

@@ -1,7 +1,16 @@
 <resources>
     <!--<string name="app_name">AutoBon</string>-->
     <string name="app_name">车邻邦商户</string>
+    <string name="app_name_alias">车邻邦</string>
     <string name="digits_indentify_number">0123456789X</string>
+    <string name="uploading_image">上传中…</string>
+    <string name="upload_image_failed">上传失败，请重试一次</string>
+
+    <string name="year">年</string>
+    <string name="month">月</string>
+    <string name="day">日</string>
+    <string name="hours">:</string>
+    <string name="minutes"></string>
 
     <string name="get_info_failed">获取信息失败</string>
     <string name="request_failed">请求失败</string>
@@ -9,6 +18,7 @@
     <string name="operate_failed_agen">操作失败，请重试一次</string>
     <string name="network_exception">网络异常</string>
     <string name="RMB">￥</string>
+    <string name="load_progress_tips">正在加载…</string>
 
     <!--上拉加载,下拉刷新字段-->
     <string name="pull_to_refresh_pull_label">下拉刷新</string>
@@ -102,4 +112,26 @@
     <string name="choose_province">请选省份</string>
     <string name="choose_city">请选择市</string>
     <string name="choose_area">请选择区</string>
+
+    <!-- 下单主页 -->
+    <string name="unfinished_order_tips">有%1$d个未完成订单</string>
+    <string name="order_info">订单信息</string>
+    <string name="sample_image">订单图片</string>
+    <string name="please_edit_remark">请填写备注(最多200字)</string>
+    <string name="work_time">施工时间</string>
+    <string name="work_item">施工项目</string>
+    <string name="skill_item_1">隔热层</string>
+    <string name="skill_item_2">隐型车衣</string>
+    <string name="skill_item_3">车身改色</string>
+    <string name="skill_item_4">美容清洁</string>
+    <string name="release_order">一键下单</string>
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
+    <string name="not_later_current_time">不能晚于当前时间</string>
+    <string name="please_upload_order_photo">请上传订单照片</string>
+    <string name="required_work_time">施工时间不能为空</string>
+    <string name="please_order_type">请选择订单类型</string>
+    <string name="submiting">正在处理…</string>
+    <string name="release_order_failed_again">下单失败，请重试一次</string>
+    <string name="release_order_done">下单成功！</string>
 </resources>

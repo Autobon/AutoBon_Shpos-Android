@@ -22,18 +22,29 @@ public class DateCompute {
 	/** 输入某年某月某日，判断相差几天 yyyy年MM月dd日 HH:mm */
 	public int getDateDays (String pattern, String fresh, String old)
 	{       
-		SimpleDateFormat sdf = new SimpleDateFormat(pattern, Locale.CHINA); 
 		long betweenTime = 0;
 		try { 
-			Date date = sdf.parse(fresh);//通过日期格式的parse（）方法将字符串转成日期              
-			Date dateBegin = sdf.parse(old);
-			betweenTime = date.getTime() - dateBegin.getTime(); 
+			betweenTime = twoDayBetweenTime(pattern, fresh, old);
 			betweenTime  = betweenTime  / 1000 / 60 / 60 / 24; 
 		} catch(Exception e){
 			e.printStackTrace();
 			Log.e(Tag, "date format wrong");
 		}
 		return (int)betweenTime; 
+	}
+
+	public static long twoDayBetweenTime(String pattern, String fresh, String old){
+		SimpleDateFormat sdf = new SimpleDateFormat(pattern, Locale.CHINA);
+		long betweenTime = 0;
+		try {
+			Date date = sdf.parse(fresh);//通过日期格式的parse（）方法将字符串转成日期
+			Date dateBegin = sdf.parse(old);
+			betweenTime = date.getTime() - dateBegin.getTime();
+		} catch(Exception e){
+			e.printStackTrace();
+			Log.e(Tag, "date format wrong");
+		}
+		return betweenTime;
 	}
 
 	/**
