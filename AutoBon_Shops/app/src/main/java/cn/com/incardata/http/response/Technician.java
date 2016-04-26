@@ -234,7 +234,7 @@ public class Technician implements Parcelable {
         this.status = in.readString();
     }
 
-    public static final Parcelable.Creator<Technician> CREATOR = new Parcelable.Creator<Technician>() {
+    public static final Creator<Technician> CREATOR = new Creator<Technician>() {
         @Override
         public Technician createFromParcel(Parcel source) {
             return new Technician(source);

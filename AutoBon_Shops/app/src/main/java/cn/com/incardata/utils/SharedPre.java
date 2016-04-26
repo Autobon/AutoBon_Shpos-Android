@@ -3,6 +3,9 @@ package cn.com.incardata.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+/**
+ * @author wanghao
+ */
 public class SharedPre {
 	private final static String SHARED_PRE_NAME = "AutoBon";
 

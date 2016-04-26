@@ -2,10 +2,10 @@ package cn.com.incardata.http.response;
 
 import java.util.List;
 
-/**未完成订单
+/**未/已完成订单
  * Created by wanghao on 16/4/20.
  */
-public class ListUnfinished_Data {
+public class ListOrder_Data {
     private int page;
     private int totalElements;
     private int totalPages;

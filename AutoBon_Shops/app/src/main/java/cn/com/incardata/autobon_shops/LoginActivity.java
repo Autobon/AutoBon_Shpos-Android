@@ -12,6 +12,7 @@ import com.alibaba.fastjson.JSON;
 
 import org.apache.http.message.BasicNameValuePair;
 
+import cn.com.incardata.application.MyApplication;
 import cn.com.incardata.http.HttpClientInCar;
 import cn.com.incardata.http.NetURL;
 import cn.com.incardata.http.NetWorkHelper;
@@ -136,6 +137,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                 if (loginEntity.getData().getCooperator() == null){
                     startActivity(CooperativeOneActivity.class);//未提交资料
                 }else if(loginEntity.getData().getCooperator().getStatusCode() == StatusCode.COOPERATIVE_REVIEW_SUCCESSFUL){
+                    MyApplication.getInstance().setUser(loginEntity.getData().getCooperator());
                     startActivity(MainActivity.class);//审核通过
                 }else {
                     startActivity(MainReviewActivity.class);

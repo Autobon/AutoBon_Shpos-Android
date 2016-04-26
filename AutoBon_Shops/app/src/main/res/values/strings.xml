@@ -11,7 +11,6 @@
     <string name="day">日</string>
     <string name="hours">:</string>
     <string name="minutes"></string>
-
     <string name="get_info_failed">获取信息失败</string>
     <string name="request_failed">请求失败</string>
     <string name="loading_data_failed">数据加载失败</string>
@@ -134,4 +133,53 @@
     <string name="submiting">正在处理…</string>
     <string name="release_order_failed_again">下单失败，请重试一次</string>
     <string name="release_order_done">下单成功！</string>
+
+    <!-- 未完成订单 -->
+    <string name="unfinish_order">未完成订单</string>
+    <string name="order_num">订单编号%1$s</string>
+    <string name="no_receive">未接单</string>
+    <string name="received">已接单</string>
+    <string name="order_time">预约时间 %1$s</string>
+    <string name="remark">备注： %1$s</string>
+    <string name="create_time">下单时间： %1$s</string>
+    <string name="order_number_text">订单数</string>
+
+    <!-- 合作商 -->
+    <string name="cooperater">合作商</string>
+    <string name="my_order">我的订单</string>
+    <string name="cooperative_shops">合作商加盟</string>
+    <string name="salseman_manage">业务员管理</string>
+    <string name="modify_password">修改密码</string>
+    <string name="service_phone_number">车邻邦专职客服电话</string>
+    <string name="logout">退出登录</string>
+    <string name="uncomment_order">待评价</string>
+    <string name="all_order">全部</string>
+    <string name="order_count">订单数 %1$s</string>
+    <string name="phone_4001871500">4001871500</string>
+    <string name="call">呼叫</string>
+    <string name="cancel_call">取消</string>
+
+    <!-- 我的订单 -->
+    <string name="commented">已评价</string>
+    <string name="uncomment">去评价</string>
+    <string name="timeouted">已超时</string>
+    <string name="timeouted_order">该订单已超时</string>
+    <string name="comment_order">该订单已评价</string>
+    <string name="order_infomation">订单详情</string>
+    <string name="order_remark">备注： </string>
+    <string name="order_create_time">下单时间： </string>
+    <string name="tech_info">技师信息</string>
+    <!-- 评价 -->
+    <string name="comment">评价</string>
+    <string name="comment_technician">评价技师</string>
+    <string name="comment_item1">准时到达</string>
+    <string name="comment_item2">准时完工</string>
+    <string name="comment_item3">技术专业</string>
+    <string name="comment_item4">着装整洁</string>
+    <string name="comment_item5">车辆保护超级棒</string>
+    <string name="comment_item6">态度好</string>
+    <string name="other_comment_tips">其他意见和建议（最多200字）</string>
+    <string name="submiting_comment">正在提交评价...</string>
+    <string name="submit_comment_failed_please_again">提交失败，请重试一次</string>
+
 </resources>

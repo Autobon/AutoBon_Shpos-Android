@@ -34,4 +34,14 @@ public class NetURL {
 	public static final String LIST_UNFINISHED = BASE_URL + "coop/order/listUnfinished";
 	/** 上传订单照片 */
 	public static final String UPLOAD_PHOTO = BASE_URL + "coop/order/uploadPhoto";
+	/** 查看技师详情 */
+	public static final String GET_TECHNICIAN = BASE_URL + "coop/technician/getTechnician";
+	/** 商户订单总数 */
+	public static final String ORDER_COUNT = BASE_URL + "coop/order/orderCount";
+	/** 已完成订单列表 */
+	public static final String LIST_FINISHED = BASE_URL + "coop/order/listFinished";
+	/** 未评论列表 */
+	public static final String LIST_UNCOMMENT = BASE_URL + "coop/order/listUncomment";
+	/** 评价 */
+	public static final String COMMENT = BASE_URL + "coop/order/comment";
 }
