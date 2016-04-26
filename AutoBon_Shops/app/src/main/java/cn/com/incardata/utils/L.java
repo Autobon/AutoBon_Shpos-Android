@@ -3,9 +3,9 @@ package cn.com.incardata.utils;
 import android.util.Log;
 
 /**
- * Log统一管理�?
+ * Log统一管理
  * 
- * @author way
+ * @author wanghao
  * 
  */
 public class L {

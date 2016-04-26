@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="未完成订单"
+            android:text="@string/unfinish_order"
             android:textColor="@android:color/white"
             android:textSize="@dimen/sp18" />
     </RelativeLayout>
@@ -36,6 +36,7 @@
         android:layout_below="@id/r1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/main_white"
         android:orientation="vertical">
 
         <ListView
@@ -43,10 +44,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbarStyle="outsideOverlay"
-            android:paddingLeft="@dimen/dp10"
-            android:paddingRight="@dimen/dp10"
-            android:divider="#F0F0F0"
-            android:dividerHeight="1dp"/>
+            android:background="@color/main_white"
+            android:divider="@color/main_white"
+            android:dividerHeight="@dimen/dp5"/>
 
     </cn.com.incardata.view.PullToRefreshView>
 

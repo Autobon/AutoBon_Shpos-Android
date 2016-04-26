@@ -3,6 +3,10 @@ package cn.com.incardata.utils;
 import android.content.Context;
 import android.widget.Toast;
 
+/**
+ * Toast
+ * @author wanghao
+ */
 public class T{
 
 	public static void show(Context context, String content){

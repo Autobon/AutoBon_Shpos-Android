@@ -59,15 +59,8 @@ public class BaseActivity extends Activity{
      * @param message 进度条提示文字
      */
     public void showDialog(String message){
-        if (dialog == null) {
-            dialog = new CommonDialog(this);
-            dialog.setDisplay(Gravity.CENTER);
-            return;
-        }
+        showDialog();
         dialog.setMsg(message);
-        if (!dialog.isShowing()) {
-            dialog.show();
-        }
     }
 
     public void cancelDialog(){

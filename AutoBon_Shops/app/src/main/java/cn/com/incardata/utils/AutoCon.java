@@ -17,4 +17,6 @@ public class AutoCon {
     public static final String FLAG_PASSWORD = "password";
     /** 缓存账号是否已认证 */
     public static final String IS_AUTHORIZED = "isAuthorized";
+    /** 订单信息 */
+    public static final String ORDER_INFO = "orderInfo";
 }

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_white"
+    tools:context="cn.com.incardata.autobon_shops.MyOrderActivity">
+
+    <RelativeLayout
+        android:id="@+id/r1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp45"
+        android:layout_alignParentTop="true"
+        android:background="@color/main_orange">
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="@dimen/dp35"
+            android:layout_height="match_parent"
+            android:padding="@dimen/dp10"
+            android:src="@mipmap/default_back"
+            android:scaleType="centerInside"
+            android:clickable="true"
+            android:focusable="true"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="我的订单"
+            android:textSize="@dimen/sp18"
+            android:textColor="@android:color/white" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/r2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/r1">
+
+        <View
+            android:id="@+id/v_center"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:id="@+id/all_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="@dimen/dp80"
+            android:gravity="center"
+            android:layout_marginRight="@dimen/dp25"
+            android:padding="@dimen/dp10"
+            android:layout_toLeftOf="@id/v_center"
+            android:textSize="@dimen/sp13"
+            android:textColor="@color/main_orange"
+            android:text="@string/all_order"/>
+
+        <TextView
+            android:id="@+id/uncomment_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="@dimen/dp80"
+            android:gravity="center"
+            android:layout_marginLeft="@dimen/dp25"
+            android:padding="@dimen/dp10"
+            android:layout_toRightOf="@id/v_center"
+            android:textColor="@color/darkgray"
+            android:textSize="@dimen/sp13"
+            android:text="@string/uncomment_order"/>
+
+        <View
+            android:id="@+id/line1"
+            android:layout_width="match_parent"
+            android:layout_below="@id/all_order"
+            android:layout_height="1dp"
+            android:background="#F0F0F0"/>
+
+        <View
+            android:id="@+id/main_baseline"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="@color/main_orange"
+            android:layout_alignLeft="@id/all_order"
+            android:layout_alignRight="@id/all_order"
+            android:layout_alignBottom="@id/line1"></View>
+
+        <View
+            android:id="@+id/second_baseline"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="@color/main_orange"
+            android:layout_alignLeft="@id/uncomment_order"
+            android:layout_alignRight="@id/uncomment_order"
+            android:layout_alignBottom="@id/line1"
+            android:visibility="invisible"></View>
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/order_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/r2"/>
+
+</RelativeLayout>

@@ -14,6 +14,7 @@
         android:id="@+id/iv_progress"
         android:layout_width="@dimen/dp50"
         android:layout_height="@dimen/dp50"
+        android:layout_centerHorizontal="true"
         android:background="@drawable/common_dialog_anim"
         android:enabled="false"
         tools:ignore="ContentDescription" />

@@ -13,6 +13,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import cn.com.incardata.http.ImageLoaderCache;
+import cn.com.incardata.http.response.CooperativeSubmit_Data;
 import cn.com.incardata.utils.AutoCon;
 import cn.com.incardata.utils.SharedPre;
 
@@ -23,32 +24,8 @@ public class MyApplication extends Application{
 
     private static MyApplication instance;
     private String cookie;
-    private static HashMap<Integer, String> skillMap;
-    private int userId;
-    /**
-     * 主页是否在前台运行（表示是否可以接收广播）
-     */
-    private static boolean isMainForego;
-    /**
-     * 跳过通知新订单
-     */
-    private static boolean isSkipNewOrder;
-
-    public static boolean isSkipNewOrder() {
-        return isSkipNewOrder;
-    }
-
-    public static void setIsSkipNewOrder(boolean isSkipNewOrder) {
-        MyApplication.isSkipNewOrder = isSkipNewOrder;
-    }
-
-    public static boolean isMainForego() {
-        return isMainForego;
-    }
-
-    public static void setMainForego(boolean mainForego) {
-        isMainForego = mainForego;
-    }
+    public static HashMap<Integer, String> skillMap;
+    private CooperativeSubmit_Data user;
 
     public static synchronized MyApplication getInstance(){
         return instance;
@@ -131,12 +108,12 @@ public class MyApplication extends Application{
         return this.cookie;
     }
 
-    public int getUserId() {
-        return userId;
+    public CooperativeSubmit_Data getUser() {
+        return user;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUser(CooperativeSubmit_Data user) {
+        this.user = user;
     }
 
     public void switchLanguage(int language){

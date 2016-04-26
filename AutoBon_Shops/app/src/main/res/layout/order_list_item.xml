@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability="blocksDescendants"
+    android:background="@android:color/white">
+
+    <View
+        android:id="@+id/l1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="@dimen/dp10"
+        android:background="#F0F0F0"/>
+
+    <Button
+        android:id="@+id/order_operate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/main_orange"
+        android:gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="@dimen/dp15"
+        android:textSize="@dimen/sp13"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:paddingLeft="@dimen/dp10"
+        android:paddingRight="@dimen/dp10"
+        android:layout_below="@id/l1"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/check_btn"
+        android:text="@string/commented"/>
+
+    <TextView
+        android:id="@+id/order_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/order_operate"
+        android:layout_marginLeft="@dimen/dp15"
+        android:layout_below="@id/l1"
+        android:textColor="@color/darkgray"
+        android:textSize="@dimen/sp13"
+        android:maxLines="1"
+        android:ellipsize="end" />
+
+    <TextView
+        android:id="@+id/order_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/main_orange"
+        android:layout_toLeftOf="@id/order_operate"
+        android:layout_marginLeft="@dimen/dp15"
+        android:layout_below="@id/order_number"
+        android:textSize="@dimen/sp13"
+        android:maxLines="1"
+        android:ellipsize="end" />
+
+    <View
+        android:id="@+id/l2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/order_type"
+        android:layout_marginTop="@dimen/dp5"
+        android:layout_marginBottom="@dimen/dp5"
+        android:layout_marginLeft="@dimen/dp15"
+        android:layout_marginRight="@dimen/dp15"
+        android:background="#F0F0F0"/>
+
+    <ImageView
+        android:id="@+id/order_image"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp120"
+        android:layout_below="@id/l2"
+        android:layout_marginTop="@dimen/dp5"
+        android:layout_marginBottom="@dimen/dp5"
+        android:layout_marginLeft="@dimen/dp15"
+        android:layout_marginRight="@dimen/dp15" />
+
+    <View
+        android:id="@+id/l3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/order_image"
+        android:layout_marginTop="@dimen/dp5"
+        android:background="#F0F0F0"/>
+
+</RelativeLayout>

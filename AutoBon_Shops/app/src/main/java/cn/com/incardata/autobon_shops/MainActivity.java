@@ -45,7 +45,7 @@ import cn.com.incardata.utils.T;
 import cn.com.incardata.view.selftimeview.TimePopupWindow;
 import cn.com.incardata.view.selftimeview.TimePopupWindow.Type;
 
-/**
+/**下单
  * @author wanghao
  */
 public class MainActivity extends BaseActivity implements View.OnClickListener{
@@ -133,6 +133,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.main_personal:
+                startActivity(PersonalActivity.class);
                 break;
             case R.id.unfinished_order_tips:
                 startActivity(UnfinishOrderActivity.class);
@@ -193,11 +194,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                             tipsDialog.setOnDismissListener(new ReleaseOrderSuccessDialogFragment.OnDismissListener() {
                                 @Override
                                 public void onDismiss() {
-                                    orderPhotoUrl = null;
-                                    sampleImage_text.setVisibility(View.VISIBLE);
-                                    remarkEdit.setText(null);
-                                    remarkEdit.clearFocus();
-                                    skillRadioGroup.clearCheck();
+                                    revert();
                                 }
                             });
                         }
@@ -208,6 +205,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 }
             }
         }, (NameValuePair[]) params.toArray(new NameValuePair[params.size()]));
+    }
+
+    /**
+     * 界面恢复
+     */
+    private void revert(){
+        orderPhotoUrl = null;
+        sampleImage_text.setVisibility(View.VISIBLE);
+        remarkEdit.setText(null);
+        remarkEdit.clearFocus();
+        skillRadioGroup.clearCheck();
+        workTime_str = DateCompute.getInstance().getNewTime("yyyy-MM-dd HH:mm");
+        workTime.setText(workTime_str);
     }
 
     private void onClickOrderPhoto() {

@@ -1,10 +1,9 @@
 package cn.com.incardata.http.response;
 
-/**
- * 未完成订单
- * Created by wanghao on 16/4/20.
+/**已完成订单
+ * Created by wanghao on 16/4/25.
  */
-public class ListUnfinishedEntity extends BaseEntity{
+public class ListFinishedEntity extends BaseEntity{
     private ListOrder_Data data;
 
     public ListOrder_Data getData() {
