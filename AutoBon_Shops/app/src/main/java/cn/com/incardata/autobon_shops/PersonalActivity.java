@@ -21,7 +21,7 @@ import cn.com.incardata.utils.SpannableStringUtil;
 public class PersonalActivity extends BaseForBroadcastActivity implements View.OnClickListener {
     private TextView companyName;
     private TextView orderCount;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +62,7 @@ public class PersonalActivity extends BaseForBroadcastActivity implements View.O
             case R.id.salesman_layout:
                 break;
             case R.id.modify_password_layout:
+                startActivity(ModifyPasswordActivity.class);
                 break;
             case R.id.phone_number:
                 callPhone(getString(R.string.phone_4001871500));

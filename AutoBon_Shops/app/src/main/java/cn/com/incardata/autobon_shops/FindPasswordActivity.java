@@ -221,7 +221,7 @@ public class FindPasswordActivity extends BaseActivity implements View.OnClickLi
             T.show(context,context.getString(R.string.password_length_tips));
             return;
         }
-        if(!password.matches(".*[a-zA-Z].*[0-9]|.*[0-9].*[a-zA-Z]")){  //密码长度至少为8位,且为数字或字母组合
+        if(!password.matches("^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,18}$")){  //密码长度至少为8位,且为数字或字母组合
             T.show(context,context.getString(R.string.error_password));
             return;
         }

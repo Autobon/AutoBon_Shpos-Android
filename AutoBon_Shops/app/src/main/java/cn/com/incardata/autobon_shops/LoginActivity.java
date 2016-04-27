@@ -60,7 +60,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                 startActivity(RegisterActivity.class);
                 break;
             case R.id.login_btn:
-//                startActivity(ShareActivity.class);
                 login();
                 break;
             case R.id.find_pwd:

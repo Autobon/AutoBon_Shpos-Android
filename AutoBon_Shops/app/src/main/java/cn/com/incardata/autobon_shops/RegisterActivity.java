@@ -166,7 +166,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             T.show(context,context.getString(R.string.password_length_tips));
             return;
         }
-        if(!one_pwd.matches(".*[a-zA-Z].*[0-9]|.*[0-9].*[a-zA-Z]")){  //密码长度至少为8位,且为数字或字母组合
+        if(!one_pwd.matches("^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,18}$")){  //密码长度至少为8位,且为数字或字母组合
             T.show(context,context.getString(R.string.error_password));
             return;
         }

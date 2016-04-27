@@ -59,6 +59,11 @@
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
+            android:name=".ModifyPasswordActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
             android:name=".ServiceProtocalActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar"
