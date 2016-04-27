@@ -43,4 +43,10 @@ public class NetURL {
 	public static final String RESET_PASSWORD = BASE_URL + "coop/resetPassword";
 	/** 修改密码 */
 	public static final String CHANGE_PASSWORD = BASE_URL + "coop/changePassword";
+	/** 所有业务员 */
+	public static final String GET_SALE_LIST = BASE_URL + "coop/getSaleList";
+	/** 业务员离职 */
+	public static final String SALE_FIRED = BASE_URL + "coop/saleFired";
+	/** 增加业务员 */
+	public static final String ADD_ACCOUNT = BASE_URL + "coop/addAccount";
 }

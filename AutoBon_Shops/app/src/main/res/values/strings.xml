@@ -60,6 +60,7 @@
     <string name="password_length_tips">密码长度至少为8位</string>
     <string name="error_password">密码为字母和数字的组合</string>
     <string name="register_success_tips">注册成功</string>
+    <string name="service_protocol">服务协议</string>
 
     <!--找回密码界面-->
     <string name="find_password">找回密码</string>
@@ -207,6 +208,17 @@
     <string name="submiting_comment">正在提交评价...</string>
     <string name="submit_comment_failed_please_again">提交失败，请重试一次</string>
     <string name="share_tips">感谢您对本次技师提交的评价，赶快\n分享赢现金红包吧！</string>
-    <string name="service_protocol">服务协议</string>
+
+    <!-- 业务员管理 -->
+    <string name="add_salseman">新增</string>
+    <string name="dimission">离职</string>
+    <string name="fired">已离职</string>
+    <string name="manager">管理员</string>
+    <string name="saleman">销售员</string>
+    <string name="input_name">请输入姓名</string>
+    <string name="male">男</string>
+    <string name="female">女</string>
+    <string name="add_saleman_tips">业务员初始密码为123456</string>
+    <string name="add_saleman_success">添加成功</string>
 
 </resources>

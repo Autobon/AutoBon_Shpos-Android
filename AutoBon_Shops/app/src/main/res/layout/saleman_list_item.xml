@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp50"
+    android:background="@android:color/white">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/lightgray"
+        android:layout_alignParentTop="true"/>
+
+    <Button
+        android:id="@+id/saleman_operate"
+        android:layout_width="@dimen/dp70"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/dp10"
+        android:textSize="@dimen/sp15"
+        android:textColor="@color/main_orange"
+        android:background="@drawable/check_btn"
+        android:layout_centerVertical="true"
+        android:text="@string/dimission"
+        android:paddingTop="@dimen/dp5"
+        android:paddingBottom="@dimen/dp5"
+        android:layout_alignParentRight="true"/>
+
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/sp15"
+        android:textColor="@color/darkgray"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/saleman_operate"
+        android:layout_marginRight="@dimen/dp30"
+        android:text="@string/manager"/>
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp15"
+        android:textSize="@dimen/sp15"
+        android:textColor="@color/darkgray"
+        android:layout_centerVertical="true"
+        android:text="nino"
+        android:layout_toLeftOf="@id/status"
+        android:layout_marginRight="@dimen/dp10" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/lightgray"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

@@ -60,6 +60,7 @@ public class PersonalActivity extends BaseForBroadcastActivity implements View.O
             case R.id.cooperater_layout:
                 break;
             case R.id.salesman_layout:
+                startActivity(SalesmanManageActivity.class);
                 break;
             case R.id.modify_password_layout:
                 startActivity(ModifyPasswordActivity.class);
