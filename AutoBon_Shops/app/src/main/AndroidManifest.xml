@@ -52,11 +52,18 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="stateHidden|adjustPan" />
+
         <activity
-            android:name=".FindPwdActivity"
+            android:name=".FindPasswordActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".ServiceProtocalActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
         <activity
             android:name=".CooperativeOneActivity"
             android:screenOrientation="portrait"
@@ -110,12 +117,40 @@
         <activity
             android:name=".OrderInfoActivity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar"/>
+            android:theme="@android:style/Theme.NoTitleBar" />
         <activity
             android:name=".GoCommentActivity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar">
+            android:theme="@android:style/Theme.NoTitleBar"></activity>
+        <activity
+            android:name=".ShareActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
+
+        <activity
+            android:name="com.mob.tools.MobUIShell"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <data android:scheme="tencent1105262817" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <!-- 调用新浪原生SDK，需要注册的回调activity -->
+            <intent-filter>
+                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

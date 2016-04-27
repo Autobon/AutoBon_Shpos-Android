@@ -118,6 +118,7 @@
         android:background="@android:color/white"
         android:gravity="center">
         <TextView
+            android:id="@+id/find_pwd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/forget_pwd_text"

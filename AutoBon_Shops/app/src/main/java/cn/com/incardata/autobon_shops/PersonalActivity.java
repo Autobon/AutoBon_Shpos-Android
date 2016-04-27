@@ -18,7 +18,7 @@ import cn.com.incardata.utils.SpannableStringUtil;
 /**
  * 商户中心
  */
-public class PersonalActivity extends BaseActivity implements View.OnClickListener {
+public class PersonalActivity extends BaseForBroadcastActivity implements View.OnClickListener {
     private TextView companyName;
     private TextView orderCount;
     

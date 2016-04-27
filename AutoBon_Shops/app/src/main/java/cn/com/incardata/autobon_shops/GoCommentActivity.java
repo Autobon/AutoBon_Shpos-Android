@@ -1,11 +1,7 @@
 package cn.com.incardata.autobon_shops;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RatingBar;
@@ -25,12 +21,11 @@ import cn.com.incardata.http.response.CommentEntity;
 import cn.com.incardata.http.response.GetTechnicianEntity;
 import cn.com.incardata.utils.T;
 import cn.com.incardata.view.CircleImageView;
-import cn.com.incardata.view.CommonDialog;
 
 /**评价
  * @author wanghao
  */
-public class GoCommentActivity extends Activity implements View.OnClickListener{
+public class GoCommentActivity extends BaseActivity implements View.OnClickListener{
     private TextView userName;
     private CircleImageView userHead;
     private TextView orderCount;
@@ -131,6 +126,14 @@ public class GoCommentActivity extends Activity implements View.OnClickListener{
                     if (((CommentEntity) entity).isResult()){
                         setResult(RESULT_OK);
                         //分享
+                        Bundle bundle = new Bundle();
+                        bundle.putString("UserName", userName_extra);
+                        bundle.putString("UserPhotoUrl", userphotoUrl);
+                        bundle.putString("OrderCount", orderCount.getText().toString());
+                        bundle.putFloat("techStar", mRatingBar.getRating());
+                        bundle.putFloat("Star", comRatingBar.getRating());
+                        startActivity(ShareActivity.class, bundle);
+                        finish();
                     }else {
                         T.show(GoCommentActivity.this, ((CommentEntity) entity).getMessage());
                         return;
@@ -138,53 +141,5 @@ public class GoCommentActivity extends Activity implements View.OnClickListener{
                 }
             }
         }, params.toArray(new NameValuePair[9]));
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        if(null != this.getCurrentFocus()){
-            //点击空白位置 隐藏软键盘
-            InputMethodManager mInputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-            return mInputMethodManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
-        }
-        return super.onTouchEvent(event);
-    }
-
-    //================== 封装对话框调用方法 ======================
-    protected CommonDialog dialog;
-    /**
-     * 默认提示：正在加载…
-     */
-    public void showDialog(){
-        if (dialog == null) {
-            dialog = new CommonDialog(this);
-            dialog.setDisplay(Gravity.CENTER);
-            return;
-        }
-        if (!dialog.isShowing()) {
-            dialog.show();
-        }
-    }
-
-    /**
-     * @param message 进度条提示文字
-     */
-    public void showDialog(String message){
-        showDialog();
-        dialog.setMsg(message);
-    }
-
-    public void cancelDialog(){
-        if (dialog != null && dialog.isShowing()) {
-            dialog.dismiss();
-//            dialog = null;
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        cancelDialog();
-        dialog = null;
     }
 }

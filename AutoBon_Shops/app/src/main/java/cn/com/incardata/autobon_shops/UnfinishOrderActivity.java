@@ -22,7 +22,7 @@ import cn.com.incardata.view.PullToRefreshView;
 /**未完成订单
  * @author wanghao
  */
-public class UnfinishOrderActivity extends BaseActivity implements View.OnClickListener{
+public class UnfinishOrderActivity extends BaseForBroadcastActivity implements View.OnClickListener{
     private FragmentManager fragmentManager;
     private TechnicianDialogFragment mDialog;
 

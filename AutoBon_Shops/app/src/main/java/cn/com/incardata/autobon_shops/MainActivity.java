@@ -48,7 +48,7 @@ import cn.com.incardata.view.selftimeview.TimePopupWindow.Type;
 /**下单
  * @author wanghao
  */
-public class MainActivity extends BaseActivity implements View.OnClickListener{
+public class MainActivity extends BaseForBroadcastActivity implements View.OnClickListener{
     private TextView unfinishedOrderTips;
     private ImageView orderImage;
     private TextView sampleImage_text;

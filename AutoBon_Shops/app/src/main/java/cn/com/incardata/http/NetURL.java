@@ -10,19 +10,14 @@ public class NetURL {
 	public static final String VERIFY_SMS = PUB + "verifySms";
 	/** 同步个推CID到后台 */
 	public static final String PUSH_ID = "";
-
 	/** 注册 */
 	public static final String REGISTER_URL = BASE_URL + "coop/register";
-
 	/** 登录 */
 	public static final String LOGIN_URL = BASE_URL + "coop/login";
-
 	/** 上传营业执照副本照片 */
 	public static final String BUSNIESS_LICENSE_URL = BASE_URL + "coop/bussinessLicensePic";
-
 	/** 上传法人身份证正面照 */
 	public static final String CORPORATION_PIC_URL  = BASE_URL + "coop/corporationIdPicA";
-
 	/** 商户资料提交认证 */
 	public static final String CORPORATION_CHECK_URL = BASE_URL + "coop/check";
 
@@ -44,4 +39,8 @@ public class NetURL {
 	public static final String LIST_UNCOMMENT = BASE_URL + "coop/order/listUncomment";
 	/** 评价 */
 	public static final String COMMENT = BASE_URL + "coop/order/comment";
+	/** 找回密码 */
+	public static final String RESET_PASSWORD = BASE_URL + "coop/resetPassword";
+	/** 修改密码 */
+	public static final String CHANGE_PASSWORD = BASE_URL + "coop/changePassword";
 }

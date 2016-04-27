@@ -53,6 +53,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         btn_send_code.setOnClickListener(this);
         btn_register.setOnClickListener(this);
         iv_back.setOnClickListener(this);
+        findViewById(R.id.tv_protocal).setOnClickListener(this);
     }
 
     @Override
@@ -66,6 +67,9 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 break;
             case R.id.iv_back:
                 finish();
+                break;
+            case R.id.tv_protocal:
+                startActivity(ServiceProtocalActivity.class);
                 break;
         }
     }

@@ -16,6 +16,7 @@
     <string name="loading_data_failed">数据加载失败</string>
     <string name="operate_failed_agen">操作失败，请重试一次</string>
     <string name="network_exception">网络异常</string>
+    <string name="no_network_tips">网络未连接</string>
     <string name="RMB">￥</string>
     <string name="load_progress_tips">正在加载…</string>
 
@@ -30,7 +31,7 @@
 
     <!--登录界面-->
     <string name="input_company_name_text">请输入企业简称</string>
-    <string name="input_phone_text">请输入您的手机号码</string>
+    <string name="input_phone_text">请输入手机号码</string>
     <string name="input_pwd_text">请输入您的密码</string>
     <string name="login_text">登录</string>
     <string name="forget_pwd_text">忘记密码?</string>
@@ -44,7 +45,7 @@
     <string name="pwd_text">密码</string>
     <string name="pwd_confirm_text">确认密码</string>
     <string name="register_bottom_tips">点击“注册”代表本人已阅读并同意</string>
-    <string name="text_protocal">《车邻邦技师服务协议》</string>
+    <string name="text_protocal">《车邻邦合作商服务协议》</string>
     <string name="phone_not_empty_tips">手机号不能为空</string>
     <string name="error_phone_number_tips">手机号为11位数字</string>
     <string name="send_code_success">验证码已发送</string>
@@ -60,12 +61,33 @@
     <string name="error_password">密码为字母和数字的组合</string>
     <string name="register_success_tips">注册成功</string>
 
-    <!--找回密码-->
-    <string name="find_pwd_text">找回密码</string>
-    <string name="input_phone_tips">请输入手机号</string>
-    <string name="input_valid_code">请输入验证码</string>
-    <string name="input_new_pwd">请输入新密码</string>
+    <!--找回密码界面-->
+    <string name="find_password">找回密码</string>
+    <string name="hint_phone">请输入手机号</string>
+    <string name="hint_code">请输入验证码</string>
+    <string name="text_get_code">获取验证</string>
+    <string name="code_tips">验证码已以短信形式发送到您的手机中,请注意查收</string>
+    <string name="repeat_get_text">再次获取</string>
+    <string name="second_text">秒</string>
+    <string name="reset_pwd">重置密码</string>
+    <string name="reset_tips">需要数字 字母或符号</string>
+    <string name="failed_code">发送验证码失败</string>
+    <string name="reset_failed">重置密码失败</string>
+    <string name="reset_success">重置密码成功</string>
     <string name="ok_tips">确认</string>
+
+    <!--修改密码-->
+    <string name="modify_pwd">修改密码</string>
+    <string name="input_old_pwd">请输入旧密码</string>
+    <string name="input_new_pwd">请输入新密码</string>
+    <string name="old_empty_tips">旧密码不能为空</string>
+    <string name="new_empty_tips">新密码不能为空</string>
+    <string name="old_length_tips">旧密码长度不能小于8位</string>
+    <string name="new_length_tips">新密码长度不能小于8位</string>
+    <string name="modify_pwd_success">修改密码成功</string>
+    <string name="modify_pwd_failed">修改密码失败</string>
+    <string name="old_pwd_error_tips">原密码错误</string>
+
 
     <!--合作商加盟-->
     <string name="cooperative_title">合作商加盟</string>
@@ -181,5 +203,7 @@
     <string name="other_comment_tips">其他意见和建议（最多200字）</string>
     <string name="submiting_comment">正在提交评价...</string>
     <string name="submit_comment_failed_please_again">提交失败，请重试一次</string>
+    <string name="share_tips">感谢您对本次技师提交的评价，赶快\n分享赢现金红包吧！</string>
+    <string name="service_protocol">服务协议</string>
 
 </resources>

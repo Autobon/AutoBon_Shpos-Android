@@ -46,6 +46,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
         tv_register.setOnClickListener(this);
         login_btn.setOnClickListener(this);
+        findViewById(R.id.find_pwd).setOnClickListener(this);
 
         et_company.setText(SharedPre.getString(context, AutoCon.COMPANY_NAME, ""));
         et_phone.setText(SharedPre.getString(context, AutoCon.FLAG_PHONE, ""));
@@ -59,7 +60,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                 startActivity(RegisterActivity.class);
                 break;
             case R.id.login_btn:
+//                startActivity(ShareActivity.class);
                 login();
+                break;
+            case R.id.find_pwd:
+                startActivity(FindPasswordActivity.class);
                 break;
         }
     }

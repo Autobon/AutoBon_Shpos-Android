@@ -22,7 +22,7 @@ import cn.com.incardata.view.CircleImageView;
 /**
  * 订单详情
  */
-public class OrderInfoActivity extends BaseActivity {
+public class OrderInfoActivity extends BaseForBroadcastActivity {
     private static final int RequestCode = 0x10;
     private TextView orderType;
     private Button commentStatus;

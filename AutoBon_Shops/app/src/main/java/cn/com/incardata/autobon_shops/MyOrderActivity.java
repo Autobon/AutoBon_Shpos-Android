@@ -1,6 +1,5 @@
 package cn.com.incardata.autobon_shops;
 
-import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
@@ -12,7 +11,7 @@ import cn.com.incardata.fragment.MyOrderFragment;
 /**
  * 我的订单
  */
-public class MyOrderActivity extends Activity implements View.OnClickListener, MyOrderFragment.OnMyOrderFragmentListener{
+public class MyOrderActivity extends BaseForBroadcastActivity implements View.OnClickListener, MyOrderFragment.OnMyOrderFragmentListener{
     private FragmentManager mManager;
     private MyOrderFragment mainFragment;
     private MyOrderFragment secFragment;
