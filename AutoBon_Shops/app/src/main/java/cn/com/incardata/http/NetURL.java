@@ -9,7 +9,7 @@ public class NetURL {
 	/** 发送验证短信 */
 	public static final String VERIFY_SMS = PUB + "verifySms";
 	/** 同步个推CID到后台 */
-	public static final String PUSH_ID = "";
+	public static final String PUSH_ID = BASE_URL + "coop/pushId";
 	/** 注册 */
 	public static final String REGISTER_URL = BASE_URL + "coop/register";
 	/** 登录 */
@@ -49,4 +49,8 @@ public class NetURL {
 	public static final String SALE_FIRED = BASE_URL + "coop/saleFired";
 	/** 增加业务员 */
 	public static final String ADD_ACCOUNT = BASE_URL + "coop/addAccount";
+	/** 通知消息 */
+	public static final String MESSAGE = BASE_URL + "coop/message";
+	/** 商户审核信息 */
+	public static final String COOP_CHECK_RESULT = BASE_URL + "coop/coopCheckResult";
 }

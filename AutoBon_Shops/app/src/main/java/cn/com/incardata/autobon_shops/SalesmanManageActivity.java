@@ -22,7 +22,7 @@ import cn.com.incardata.utils.T;
 /**业务员管理
  * @author wanghao
  */
-public class SalesmanManageActivity extends BaseActivity {
+public class SalesmanManageActivity extends BaseForBroadcastActivity {
     private ListView mListView;
     private SalsemanAdapter mAdapter;
     private List<SalemanData> mList;
@@ -85,7 +85,7 @@ public class SalesmanManageActivity extends BaseActivity {
                     mList.add(((SaleFiredEntity) entity).getData());
                     mAdapter.notifyDataSetInvalidated();
                 }else {
-                    T.show(getContext(), R.string.operate_failed_agen);
+                    T.show(getContext(), ((SaleFiredEntity) entity).getMessage());
                 }
             }
         }, new BasicNameValuePair("coopAccountId", String.valueOf(mList.get(pos).getId())));

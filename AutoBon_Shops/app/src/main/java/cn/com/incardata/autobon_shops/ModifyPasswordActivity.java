@@ -24,7 +24,7 @@ import cn.com.incardata.utils.T;
 /**
  * Created by zhangming on 2016/2/26.
  */
-public class ModifyPasswordActivity extends BaseActivity implements View.OnClickListener{
+public class ModifyPasswordActivity extends BaseForBroadcastActivity implements View.OnClickListener{
     private EditText et_pwd;
     private EditText et_new_pwd;
     private Button submit_pwd_btn;
@@ -62,12 +62,8 @@ public class ModifyPasswordActivity extends BaseActivity implements View.OnClick
             T.show(this,getString(R.string.old_empty_tips));
             return;
         }
-        if(old_pwd.length()<8){
+        if(old_pwd.length()<6){
             T.show(this,getString(R.string.old_length_tips));
-            return;
-        }
-        if(!old_pwd.matches("^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,18}$")){
-            T.show(this,getString(R.string.old_error_password));
             return;
         }
 
@@ -88,9 +84,11 @@ public class ModifyPasswordActivity extends BaseActivity implements View.OnClick
         BasicNameValuePair newPassword = new BasicNameValuePair("newPassword",new_pwd);
 
         if(NetWorkHelper.isNetworkAvailable(context)) {
+            showDialog(getString(R.string.submiting));
             Http.getInstance().postTaskToken(NetURL.CHANGE_PASSWORD, ChangePasswordEntity.class, new OnResult() {
                 @Override
                 public void onResult(Object entity) {
+                    cancelDialog();
                     if (entity == null) {
                         T.show(context, context.getString(R.string.modify_pwd_failed));
                         return;

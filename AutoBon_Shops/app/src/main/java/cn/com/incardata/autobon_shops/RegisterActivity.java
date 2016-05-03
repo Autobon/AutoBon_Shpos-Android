@@ -178,9 +178,11 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         mList.add(new BasicNameValuePair("verifySms",code));
 
         if(NetWorkHelper.isNetworkAvailable(context)) {
+            showDialog(getString(R.string.submiting));
             Http.getInstance().postTaskToken(NetURL.REGISTER_URL, RegisterEntity.class, new OnResult() {
                 @Override
                 public void onResult(Object entity) {
+                    cancelDialog();
                     if (entity == null) {
                         T.show(context, context.getString(R.string.operate_failed_agen));
                         return;

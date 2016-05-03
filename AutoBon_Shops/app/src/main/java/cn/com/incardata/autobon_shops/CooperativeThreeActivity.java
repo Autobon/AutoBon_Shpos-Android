@@ -1,23 +1,24 @@
 package cn.com.incardata.autobon_shops;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
+import android.widget.TextView;
 
 import org.apache.http.message.BasicNameValuePair;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.com.incardata.adapter.CommonSpinnerAdapter;
 import cn.com.incardata.http.Http;
 import cn.com.incardata.http.NetURL;
 import cn.com.incardata.http.OnResult;
+import cn.com.incardata.http.response.CooperativeInfo_Data;
 import cn.com.incardata.http.response.CooperativeSubmitEntity;
 import cn.com.incardata.utils.StringUtil;
 import cn.com.incardata.utils.T;
@@ -28,11 +29,12 @@ import cn.com.incardata.view.CheckTipsDialog;
  */
 public class CooperativeThreeActivity extends BaseActivity implements View.OnClickListener{
     private Context context;
-    private Spinner provinceSpinner,citySpinner,areaSpinner;
-    private CommonSpinnerAdapter provinceAdapter,cityAdapter,areaAdapter;
     private EditText et_invoice_header,et_tax_no,et_mail_code,et_full_address,et_contact,et_contactPhone;
+    private TextView shopsAddr;
     private Button join_btn;
     private ImageView iv_back;
+
+    private CooperativeInfo_Data extraCooperation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +45,7 @@ public class CooperativeThreeActivity extends BaseActivity implements View.OnCli
 
     private void init(){
         context = this;
-        provinceSpinner = (Spinner) findViewById(R.id.provinceSpinner);
-        citySpinner = (Spinner) findViewById(R.id.citySpinner);
-        areaSpinner = (Spinner) findViewById(R.id.areaSpinner);
+        extraCooperation = getIntent().getExtras().getParcelable(MainReviewActivity.Cooperation);
 
         et_invoice_header = (EditText) findViewById(R.id.et_invoice_header);
         et_tax_no = (EditText) findViewById(R.id.et_tax_no);
@@ -55,36 +55,25 @@ public class CooperativeThreeActivity extends BaseActivity implements View.OnCli
         et_contactPhone = (EditText) findViewById(R.id.et_contactPhone);
         join_btn = (Button) findViewById(R.id.join_btn);
         iv_back = (ImageView) findViewById(R.id.iv_back);
-
-        List<String> provinceList = new ArrayList<String>();
-        List<String> cityList = new ArrayList<String>();
-        List<String> areaList = new ArrayList<String>();
-
-        provinceList.add(getString(R.string.choose_province));
-        provinceList.add("AA");
-        provinceList.add("BB");
-        provinceList.add("CC");
-
-        cityList.add(getString(R.string.choose_city));
-        cityList.add("MM");
-        cityList.add("NN");
-        cityList.add("KK");
-
-        areaList.add(getString(R.string.choose_area));
-        areaList.add("XX");
-        areaList.add("YY");
-        areaList.add("ZZ");
-
-        provinceAdapter = new CommonSpinnerAdapter(this,provinceList);
-        cityAdapter = new CommonSpinnerAdapter(this,cityList);
-        areaAdapter = new CommonSpinnerAdapter(this,areaList);
-
-        provinceSpinner.setAdapter(provinceAdapter);
-        citySpinner.setAdapter(cityAdapter);
-        areaSpinner.setAdapter(areaAdapter);
+        shopsAddr = (TextView) findViewById(R.id.shops_addr);
 
         join_btn.setOnClickListener(this);
         iv_back.setOnClickListener(this);
+        findViewById(R.id.tv_protocal).setOnClickListener(this);
+
+        initData();
+    }
+
+    private void initData() {
+        if (extraCooperation != null){
+            shopsAddr.setText(extraCooperation.getProvince() + "-" + extraCooperation.getCity() + "-" + extraCooperation.getDistrict());
+            et_invoice_header.setText(extraCooperation.getInvoiceHeader());
+            et_tax_no.setText(extraCooperation.getTaxIdNo());
+            et_mail_code.setText(extraCooperation.getPostcode());
+            et_full_address.setText(extraCooperation.getAddress());
+            et_contact.setText(extraCooperation.getContact());
+            et_contactPhone.setText(extraCooperation.getContactPhone());
+        }
     }
 
     @Override
@@ -92,6 +81,9 @@ public class CooperativeThreeActivity extends BaseActivity implements View.OnCli
         switch (view.getId()){
             case R.id.iv_back:
                 finish();
+                break;
+            case R.id.tv_protocal:
+                startActivity(ServiceProtocalActivity.class);
                 break;
             case R.id.join_btn:
                 submitInfo();
@@ -107,40 +99,17 @@ public class CooperativeThreeActivity extends BaseActivity implements View.OnCli
         String taxIdNo = et_tax_no.getText().toString().trim(); //纳税识别号
         String postcode = et_mail_code.getText().toString().trim(); //邮政编码
 
-        String province,city,area;
-        if(provinceSpinner.getSelectedItemPosition() == 0){
-            province = null;
-        }else{
-            province = (String)provinceSpinner.getSelectedItem();
-        }
-        if(citySpinner.getSelectedItemPosition() == 0){
-            city = null;
-        }else {
-            city = (String)citySpinner.getSelectedItem();
-        }
-        if(areaSpinner.getSelectedItemPosition() == 0){
-            area = null;
-        }else{
-            area = (String)areaSpinner.getSelectedItem();
-        }
 
         String address = et_full_address.getText().toString().trim();  //详细地址
         final String contact = et_contact.getText().toString().trim();  //联系人姓名
         String contactPhone = et_contactPhone.getText().toString().trim(); //联系人电话
 
-        Bundle bundle = getIntent().getExtras();
-        String fullname = bundle.getString("company");
-        String businessLicense = bundle.getString("company_number");
-        String corporationName = bundle.getString("name");
-        String corporationIdNo = bundle.getString("card_number");
-        String bussinessLicensePic = bundle.getString("business_pic_url");
-        String corporationIdPicA = bundle.getString("corporation_pic_url");
-        double longitude = bundle.getDouble("longitude");
-        double latitude = bundle.getDouble("latitude");
-
-        Log.i("test","company===>"+bundle.getString("company")+" company_number===>"+bundle.getString("company_number"));
-        Log.i("test","corporationName===>"+corporationName+" corporationIdNo===>"+corporationIdNo);
-        Log.i("test","longitude===>"+longitude+" latitude=>"+latitude);
+        String fullname = extraCooperation.getFullname();
+        String businessLicense = extraCooperation.getBusinessLicense();
+        String corporationName = extraCooperation.getCorporationName();
+        String corporationIdNo = extraCooperation.getCorporationIdNo();
+        String bussinessLicensePic = extraCooperation.getBussinessLicensePic();
+        String corporationIdPicA = extraCooperation.getCorporationIdPicA();
 
         if(StringUtil.isEmpty(invoiceHeader)){
             T.show(this,getString(R.string.invoice_header_content));
@@ -154,18 +123,7 @@ public class CooperativeThreeActivity extends BaseActivity implements View.OnCli
             T.show(this,getString(R.string.postcode_tips));
             return;
         }
-        if(StringUtil.isEmpty(province)){
-            T.show(this,getString(R.string.choose_province));
-            return;
-        }
-        if(StringUtil.isEmpty(city)){
-            T.show(this,getString(R.string.choose_city));
-            return;
-        }
-        if(StringUtil.isEmpty(area)){
-            T.show(this,getString(R.string.choose_area));
-            return;
-        }
+
         if(StringUtil.isEmpty(address)){
             T.show(this,getString(R.string.mail_address_empty_tips));
             return;
@@ -185,14 +143,14 @@ public class CooperativeThreeActivity extends BaseActivity implements View.OnCli
         BasicNameValuePair bv_corporationIdNo = new BasicNameValuePair("corporationIdNo",corporationIdNo);
         BasicNameValuePair bv_bussinessLicensePic = new BasicNameValuePair("bussinessLicensePic",bussinessLicensePic);
         BasicNameValuePair bv_corporationIdPicA = new BasicNameValuePair("corporationIdPicA",corporationIdPicA);
-        BasicNameValuePair bv_longitude = new BasicNameValuePair("longitude",String.valueOf(longitude));
-        BasicNameValuePair bv_latitude = new BasicNameValuePair("latitude",String.valueOf(latitude));
+        BasicNameValuePair bv_longitude = new BasicNameValuePair("longitude",extraCooperation.getLongitude());
+        BasicNameValuePair bv_latitude = new BasicNameValuePair("latitude",extraCooperation.getLatitude());
         BasicNameValuePair bv_invoiceHeader = new BasicNameValuePair("invoiceHeader",invoiceHeader);
         BasicNameValuePair bv_taxIdNo = new BasicNameValuePair("taxIdNo",taxIdNo);
         BasicNameValuePair bv_postcode = new BasicNameValuePair("postcode",postcode);
-        BasicNameValuePair bv_province = new BasicNameValuePair("province",province);
-        BasicNameValuePair bv_city = new BasicNameValuePair("city",city);
-        BasicNameValuePair bv_district = new BasicNameValuePair("district",area);
+        BasicNameValuePair bv_province = new BasicNameValuePair("province",extraCooperation.getProvince());
+        BasicNameValuePair bv_city = new BasicNameValuePair("city",extraCooperation.getCity());
+        BasicNameValuePair bv_district = new BasicNameValuePair("district",extraCooperation.getDistrict());
         BasicNameValuePair bv_address = new BasicNameValuePair("address",address);
         BasicNameValuePair bv_contact = new BasicNameValuePair("contact",contact);
         BasicNameValuePair bv_contactPhone = new BasicNameValuePair("contactPhone",contactPhone);
@@ -216,9 +174,11 @@ public class CooperativeThreeActivity extends BaseActivity implements View.OnCli
         mList.add(bv_contact);
         mList.add(bv_contactPhone);
 
+        showDialog();
         Http.getInstance().postTaskToken(NetURL.CORPORATION_CHECK_URL, CooperativeSubmitEntity.class, new OnResult() {
             @Override
             public void onResult(Object entity) {
+                cancelDialog();
                 if(entity == null){
                     T.show(context,context.getString(R.string.request_failed));
                     return;
@@ -244,5 +204,14 @@ public class CooperativeThreeActivity extends BaseActivity implements View.OnCli
             }
         });
         dialog.show();
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                Intent intent = new Intent(getContext(), LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 }

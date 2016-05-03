@@ -39,12 +39,14 @@ public class PersonalActivity extends BaseForBroadcastActivity implements View.O
         findViewById(R.id.order_layout).setOnClickListener(this);
         findViewById(R.id.cooperater_layout).setOnClickListener(this);
         findViewById(R.id.salesman_layout).setOnClickListener(this);
+        findViewById(R.id.notify_layout).setOnClickListener(this);
         findViewById(R.id.modify_password_layout).setOnClickListener(this);
         findViewById(R.id.phone_number).setOnClickListener(this);
         findViewById(R.id.logout).setOnClickListener(this);
 
         String str = getString(R.string.order_count, 0);
         orderCount.setText(SpannableStringUtil.getForegroundColorSpan(getContext(), str, 3, str.length(), getResources().getColor(R.color.main_orange)));
+        if (MyApplication.getUser() == null) return;
         companyName.setText(MyApplication.getInstance().getUser().getFullname());
     }
 
@@ -58,9 +60,13 @@ public class PersonalActivity extends BaseForBroadcastActivity implements View.O
                 startActivity(MyOrderActivity.class);
                 break;
             case R.id.cooperater_layout:
+                startActivity(MainReviewActivity.class);
                 break;
             case R.id.salesman_layout:
                 startActivity(SalesmanManageActivity.class);
+                break;
+            case R.id.notify_layout:
+                startActivity(NotificationMessageActivity.class);
                 break;
             case R.id.modify_password_layout:
                 startActivity(ModifyPasswordActivity.class);
@@ -84,6 +90,9 @@ public class PersonalActivity extends BaseForBroadcastActivity implements View.O
                 if (entity != null && entity instanceof OrderCountEntity){
                     String str = getString(R.string.order_count, ((OrderCountEntity) entity).isResult() ? ((OrderCountEntity) entity).getData() : 0);
                     orderCount.setText(SpannableStringUtil.getForegroundColorSpan(getContext(), str, 3, str.length(), getResources().getColor(R.color.main_orange)));
+                    if (MyApplication.getUser() != null){
+                        companyName.setText(MyApplication.getUser().getFullname());
+                    }
                 }
             }
         });

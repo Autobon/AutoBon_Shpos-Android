@@ -20,7 +20,7 @@ import cn.com.incardata.utils.T;
 /**新增业务员
  * @author wanghao
  */
-public class AddSalemanActivity extends BaseActivity implements View.OnClickListener{
+public class AddSalemanActivity extends BaseForBroadcastActivity implements View.OnClickListener{
     private EditText phone;
     private EditText name;
     private RadioGroup gender;

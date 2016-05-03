@@ -20,7 +20,7 @@ import cn.com.incardata.view.CircleImageView;
 /**评价完成－分享
  * @author wanghao
  */
-public class ShareActivity extends BaseActivity {
+public class ShareActivity extends BaseForBroadcastActivity {
     private TextView userName;
     private CircleImageView userHead;
     private TextView orderCount;

@@ -110,9 +110,11 @@ public class UnfinishOrderActivity extends BaseForBroadcastActivity implements V
 
 
     private void getpageList(int page) {
+        if (page == 1) showDialog();
         Http.getInstance().postTaskToken(NetURL.LIST_UNFINISHED, "page=" + page + "&pageSize=5", ListUnfinishedEntity.class, new OnResult() {
             @Override
             public void onResult(Object entity) {
+                cancelDialog();
                 pullToRefreshView.loadedCompleted();
                 if (entity == null){
                     T.show(getContext(), R.string.loading_data_failed);

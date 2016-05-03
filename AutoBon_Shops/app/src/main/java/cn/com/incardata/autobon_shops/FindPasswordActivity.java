@@ -232,9 +232,11 @@ public class FindPasswordActivity extends BaseActivity implements View.OnClickLi
         mList.add(new BasicNameValuePair("verifySms",code));
 
         if(NetWorkHelper.isNetworkAvailable(context)) {
+            showDialog(getString(R.string.submiting));
             Http.getInstance().postTaskToken(NetURL.RESET_PASSWORD, ResetPasswordEntity.class, new OnResult() {
                 @Override
                 public void onResult(Object entity) {
+                    cancelDialog();
                     if (entity == null) {
                         T.show(context, context.getString(R.string.reset_failed));
                         return;

@@ -1,6 +1,7 @@
 package cn.com.incardata.autobon_shops;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +19,7 @@ import cn.com.incardata.http.NetURL;
 import cn.com.incardata.http.NetWorkHelper;
 import cn.com.incardata.http.StatusCode;
 import cn.com.incardata.http.response.LoginEntity;
+import cn.com.incardata.service.AService;
 import cn.com.incardata.utils.AutoCon;
 import cn.com.incardata.utils.SharedPre;
 import cn.com.incardata.utils.StringUtil;
@@ -92,6 +94,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
         if(NetWorkHelper.isNetworkAvailable(context)){
             MyAsyncTask myAsyncTask = new MyAsyncTask();
+            showDialog(getString(R.string.login_ing));
             myAsyncTask.execute(company,phone,pwd);  //传递参数到AsyncTask类中
         }else{
             T.show(context,context.getString(R.string.network_exception));
@@ -124,6 +127,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
+            cancelDialog();
             if (StringUtil.isEmpty(result)) {
                 T.show(context,context.getString(R.string.request_failed));
                 return;
@@ -146,6 +150,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                 }else {
                     startActivity(MainReviewActivity.class);
                 }
+
+                startService(new Intent(getContext(), AService.class));
                 finish();
             }else{  //失败
                 T.show(context,loginEntity.getMessage());

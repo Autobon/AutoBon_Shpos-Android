@@ -1,6 +1,7 @@
 package cn.com.incardata.autobon_shops;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -67,6 +68,8 @@ public class GoCommentActivity extends BaseActivity implements View.OnClickListe
         userName_extra = getIntent().getStringExtra("UserName");
         userphotoUrl = getIntent().getStringExtra("UserPhotoUrl");
         OrderId = getIntent().getIntExtra("OrderId", -1);
+
+        if (TextUtils.isEmpty(userName_extra)) return;
         userName.setText(userName_extra);
         ImageLoaderCache.getInstance().loader(NetURL.IP_PORT + userphotoUrl, userHead);
     }
@@ -81,6 +84,13 @@ public class GoCommentActivity extends BaseActivity implements View.OnClickListe
                     if (tech.isResult()){
                         orderCount.setText(String.valueOf(tech.getData().getTotalOrders()));
                         mRatingBar.setRating(tech.getData().getStarRate());
+
+                        if (TextUtils.isEmpty(userName_extra)){
+                            userName.setText(tech.getData().getTechnician().getName());
+                        }
+                        if (TextUtils.isEmpty(userphotoUrl)){
+                            ImageLoaderCache.getInstance().loader(NetURL.IP_PORT + userphotoUrl, userHead);
+                        }
                     }
                 }
             }

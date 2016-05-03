@@ -30,6 +30,8 @@
        android:layout_below="@id/line_one_view"
        android:textColorHint="@color/lightgray"
        android:paddingLeft="@dimen/dp25"
+       android:maxLength="100"
+       android:maxLines="1"
        android:textColor="@color/darkgray"
        android:textSize="@dimen/sp15"/>
     <View
