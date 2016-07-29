@@ -154,7 +154,7 @@
     <string name="release_order">一键下单</string>
     <string name="ok">确定</string>
     <string name="cancel">取消</string>
-    <string name="not_later_current_time">不能晚于当前时间</string>
+    <string name="not_later_current_time">不能早于当前时间</string>
     <string name="please_upload_order_photo">请上传订单照片</string>
     <string name="required_work_time">施工时间不能为空</string>
     <string name="please_order_type">请选择订单类型</string>
@@ -194,7 +194,7 @@
     <string name="timeouted_order">该订单已超时</string>
     <string name="comment_order">该订单已评价</string>
     <string name="order_infomation">订单详情</string>
-    <string name="order_remark">备注： </string>
+    <string name="order_remark">下单备注： </string>
     <string name="order_create_time">下单时间： </string>
     <string name="tech_info">技师信息</string>
     <!-- 评价 -->
@@ -249,5 +249,23 @@
     <string name="order_finished_dialog_tips">编号为%1$s的订单已结束工作，请您对此次工作的技师做出评价。</string>
     <string name="immediation_comment">立即评价</string>
     <string name="notify">提醒</string>
+
+    <!-- =====================================2期================================ -->
+    <string name="hint_text_phone_name">请输入手机号或姓名</string>
+    <string name="no_search_tech">没有找到技师</string>
+    <string name="appoint_tech">指定技师</string>
+    <string name="revoke_order">撤单</string>
+    <string name="revoke_order_succeed">撤单成功</string>
+    <string name="canceled_order">已撤销</string>
+    <string name="revoked_order">该订单已撤销</string>
+    <string name="work_item_">施工项目：</string>
+    <string name="work_person">施工人员：</string>
+    <string name="work_before_photo">工作前照片</string>
+    <string name="work_after_photo">工作后照片</string>
+    <string name="not">无</string>
+    <string name="appoint_technician_succeed">已成功指定技师</string>
+    <string name="appoint_tech_tips">不群推订单，去指定技师</string>
+    <string name="editor">编辑</string>
+    <string name="modify_succeed">修改成功</string>
 
 </resources>

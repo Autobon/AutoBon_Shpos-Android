@@ -196,21 +196,155 @@
                 android:layout_height="1dp"
                 android:layout_below="@id/create_time_tv"
                 android:layout_marginTop="@dimen/dp5"
+                android:layout_marginBottom="@dimen/dp5"
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_marginRight="@dimen/dp15"
                 android:background="#F0F0F0"/>
 
+            <TextView
+                android:id="@+id/work_item_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/darkgray"
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_below="@id/v5"
+                android:textSize="@dimen/sp13"
+                android:text="@string/work_item_"/>
+
+            <TextView
+                android:id="@+id/work_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/work_item_tv"
+                android:layout_alignTop="@id/work_item_tv"
+                android:layout_marginRight="@dimen/dp15"
+                android:textColor="@color/darkgray"
+                android:textSize="@dimen/sp13"/>
 
             <View
                 android:id="@+id/v6"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp10"
-                android:layout_below="@id/v5"
-                android:background="@color/main_white"/>
+                android:layout_height="1dp"
+                android:layout_below="@id/work_item"
+                android:layout_marginTop="@dimen/dp5"
+                android:layout_marginBottom="@dimen/dp5"
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_marginRight="@dimen/dp15"
+                android:background="#F0F0F0"/>
+
+            <TextView
+                android:id="@+id/work_person_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/darkgray"
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_below="@id/v6"
+                android:textSize="@dimen/sp13"
+                android:text="@string/work_person"/>
+
+            <TextView
+                android:id="@+id/work_person"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/work_person_tv"
+                android:layout_alignTop="@id/work_person_tv"
+                android:layout_marginRight="@dimen/dp15"
+                android:textColor="@color/darkgray"
+                android:textSize="@dimen/sp13"/>
+
+            <View
+                android:id="@+id/v7"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/work_person_tv"
+                android:layout_marginTop="@dimen/dp5"
+                android:layout_marginBottom="@dimen/dp5"
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_marginRight="@dimen/dp15"
+                android:background="#F0F0F0"/>
+
+
+            <TextView
+                android:id="@+id/work_before_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/darkgray"
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_below="@id/v7"
+                android:textSize="@dimen/sp13"
+                android:text="@string/work_before_photo"/>
+
+
+                <cn.com.incardata.view.MyGridView
+                    android:id="@+id/work_before_grid"
+                    android:layout_width="match_parent"
+                    android:layout_below="@id/work_before_tv"
+                    android:layout_marginLeft="@dimen/dp15"
+                    android:layout_marginRight="@dimen/dp15"
+                    android:numColumns="3"
+                    android:listSelector="@android:color/transparent"
+                    android:verticalSpacing="@dimen/dp10"
+                    android:horizontalSpacing="@dimen/dp10"
+                    android:gravity="center"
+                    android:stretchMode="columnWidth"
+                    android:layout_height="wrap_content"/>
+
+            <View
+                android:id="@+id/v8"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/work_before_grid"
+                android:layout_marginTop="@dimen/dp5"
+                android:layout_marginBottom="@dimen/dp5"
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_marginRight="@dimen/dp15"
+                android:background="#F0F0F0"/>
+
+            <TextView
+                android:id="@+id/work_after_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/darkgray"
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_below="@id/v8"
+                android:textSize="@dimen/sp13"
+                android:text="@string/work_after_photo"/>
+
+                <cn.com.incardata.view.MyGridView
+                    android:id="@+id/work_after_grid"
+                    android:layout_width="match_parent"
+                    android:layout_below="@id/work_after_tv"
+                    android:layout_marginLeft="@dimen/dp15"
+                    android:layout_marginRight="@dimen/dp15"
+                    android:numColumns="3"
+                    android:listSelector="@android:color/transparent"
+                    android:stretchMode="columnWidth"
+                    android:verticalSpacing="@dimen/dp10"
+                    android:gravity="center"
+                    android:horizontalSpacing="@dimen/dp10"
+                    android:layout_height="wrap_content"/>
+
+
+            <View
+                android:id="@+id/v9"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/work_after_grid"
+                android:layout_marginTop="@dimen/dp5"
+                android:background="#F0F0F0"/>
+
+            <View
+                android:id="@+id/v10"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp5"
+                android:layout_below="@id/v9"
+                android:background="@color/background_material_light"/>
 
             <LinearLayout
                 android:id="@+id/l1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/v6"
+                android:layout_below="@id/v10"
                 android:orientation="horizontal">
 
                 <View
@@ -231,7 +365,7 @@
             </LinearLayout>
 
             <View
-                android:id="@+id/v7"
+                android:id="@+id/v11"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="#F0F0F0"
@@ -243,7 +377,7 @@
                 android:layout_height="@dimen/dp50"
                 android:layout_marginLeft="@dimen/dp30"
                 android:layout_marginTop="@dimen/dp15"
-                android:layout_below="@id/v7"
+                android:layout_below="@id/v11"
                 android:src="@mipmap/user_hint"
                 app:border_width="0dp"
                 app:border_color="@color/line_color"/>

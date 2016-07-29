@@ -12,27 +12,41 @@
 
     <Button
         android:id="@+id/saleman_operate"
-        android:layout_width="@dimen/dp70"
+        android:layout_width="@dimen/dp60"
         android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/dp10"
-        android:textSize="@dimen/sp15"
+        android:textSize="@dimen/sp13"
         android:textColor="@color/main_orange"
         android:background="@drawable/check_btn"
         android:layout_centerVertical="true"
         android:text="@string/dimission"
-        android:paddingTop="@dimen/dp5"
-        android:paddingBottom="@dimen/dp5"
+        android:paddingLeft="@dimen/dp5"
+        android:paddingRight="@dimen/dp5"
         android:layout_alignParentRight="true"/>
+
+    <Button
+        android:id="@+id/update_saleman"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/dp10"
+        android:textSize="@dimen/sp13"
+        android:textColor="@color/main_orange"
+        android:background="@drawable/check_btn"
+        android:layout_centerVertical="true"
+        android:text="@string/editor"
+        android:paddingLeft="@dimen/dp5"
+        android:paddingRight="@dimen/dp5"
+        android:layout_toLeftOf="@id/saleman_operate"/>
 
     <TextView
         android:id="@+id/status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/sp15"
+        android:textSize="@dimen/sp13"
         android:textColor="@color/darkgray"
         android:layout_centerVertical="true"
-        android:layout_toLeftOf="@id/saleman_operate"
-        android:layout_marginRight="@dimen/dp30"
+        android:layout_toLeftOf="@id/update_saleman"
+        android:layout_marginRight="@dimen/dp20"
         android:text="@string/manager"/>
 
     <TextView
@@ -40,7 +54,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp15"
-        android:textSize="@dimen/sp15"
+        android:textSize="@dimen/sp13"
         android:textColor="@color/darkgray"
         android:layout_centerVertical="true"
         android:text="nino"

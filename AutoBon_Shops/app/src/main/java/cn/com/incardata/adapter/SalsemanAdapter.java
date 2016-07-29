@@ -48,9 +48,11 @@ public class SalsemanAdapter extends BaseAdapter implements View.OnClickListener
             holder = new Holder();
 
             holder.salemanOperate = (Button) convertView.findViewById(R.id.saleman_operate);
+            holder.updateSaleman = (Button) convertView.findViewById(R.id.update_saleman);
             holder.status = (TextView) convertView.findViewById(R.id.status);
             holder.name = (TextView) convertView.findViewById(R.id.name);
             holder.salemanOperate.setOnClickListener(this);
+            holder.updateSaleman.setOnClickListener(this);
 
             convertView.setTag(holder);
         }else {
@@ -59,6 +61,7 @@ public class SalsemanAdapter extends BaseAdapter implements View.OnClickListener
 
         SalemanData saleman = mList.get(position);
         holder.salemanOperate.setTag(position);
+        holder.updateSaleman.setTag(position);
         if (saleman.isFired()){
             holder.salemanOperate.setText(R.string.fired);
         }else {
@@ -67,9 +70,11 @@ public class SalsemanAdapter extends BaseAdapter implements View.OnClickListener
         if (saleman.isMain()){
             holder.status.setText(R.string.manager);
             holder.salemanOperate.setVisibility(View.INVISIBLE);
+            holder.updateSaleman.setVisibility(View.INVISIBLE);
         }else {
             holder.status.setText(R.string.saleman);
             holder.salemanOperate.setVisibility(View.VISIBLE);
+            holder.updateSaleman.setVisibility(View.VISIBLE);
         }
         holder.name.setText(saleman.getName());
         return convertView;
@@ -78,7 +83,14 @@ public class SalsemanAdapter extends BaseAdapter implements View.OnClickListener
     @Override
     public void onClick(View v) {
         if (mListener != null){
-            mListener.onOperateClick((int) v.getTag());
+            switch (v.getId()){
+                case R.id.saleman_operate:
+                    mListener.onOperateClick((int) v.getTag(), false);
+                    break;
+                case R.id.update_saleman:
+                    mListener.onOperateClick((int)v.getTag(), true);
+                    break;
+            }
         }
     }
 
@@ -89,11 +101,12 @@ public class SalsemanAdapter extends BaseAdapter implements View.OnClickListener
     }
 
     public interface OnOperateClickListener{
-        void onOperateClick(int pos);
+        void onOperateClick(int pos, boolean isModify);
     }
 
     private class Holder{
         private Button salemanOperate;
+        private Button updateSaleman;
         private TextView status;
         private TextView name;
     }

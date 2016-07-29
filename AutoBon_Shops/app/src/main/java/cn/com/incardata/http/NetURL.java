@@ -2,9 +2,13 @@ package cn.com.incardata.http;
 
 public class NetURL {
 	/** 基地址 */
-	public final static String BASE_URL = "http://121.40.157.200:12345/api/mobile/";
-	public final static String IP_PORT = "http://121.40.157.200:12345";
-	public static final String PUB = "http://121.40.157.200:12345/api/pub/";
+	public final static String BASE_URL = "http://121.40.219.58/api/mobile/";
+	public final static String IP_PORT = "http://121.40.219.58";
+	public static final String PUB = "http://121.40.219.58/api/pub/";
+
+//	public final static String BASE_URL = "http://hpecar.com:8012/api/mobile/";
+//	public final static String IP_PORT = "http://hpecar.com:8012";
+//	public static final String PUB = "http://hpecar.com:8012/api/pub/";
 
 	/** 发送验证短信 */
 	public static final String VERIFY_SMS = PUB + "verifySms";
@@ -53,4 +57,17 @@ public class NetURL {
 	public static final String MESSAGE = BASE_URL + "coop/message";
 	/** 商户审核信息 */
 	public static final String COOP_CHECK_RESULT = BASE_URL + "coop/coopCheckResult";
+	/** 查询技师 */
+	public static final String SEARCH = BASE_URL + "coop/technician/search";
+	/** 订单指定技师 */
+	public static final String APPOINT = BASE_URL + "coop/order/appoint";
+
+	/** 撤单 */
+	public static String getRevokeOrder(int orderId){
+		return BASE_URL + "coop/order/" + orderId + "/cancel";
+	}
+	/** 修改员工账户 */
+	public static String getSalemanAccount(int accountID){
+		return BASE_URL + "coop/account/" + accountID;
+	}
 }

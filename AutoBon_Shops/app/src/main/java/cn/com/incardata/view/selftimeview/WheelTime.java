@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.List;
@@ -93,9 +94,9 @@ public class WheelTime {
 		// 日
 		wv_day = (WheelView) view.findViewById(R.id.day);
 		// 判断大小月及是否闰年,用来确定"日"的数据
-		if (list_big.contains(String.valueOf(month + 1))) {
+		if (list_big.contains(Number2(month + 1))) {
 			wv_day.setAdapter(new NumericWheelAdapter(1, 31));
-		} else if (list_little.contains(String.valueOf(month + 1))) {
+		} else if (list_little.contains(Number2(month + 1))) {
 			wv_day.setAdapter(new NumericWheelAdapter(1, 30));
 		} else {
 			// 闰年
@@ -123,11 +124,9 @@ public class WheelTime {
 			public void onChanged(WheelView wheel, int oldValue, int newValue) {
 				int year_num = newValue + START_YEAR;
 				// 判断大小月及是否闰年,用来确定"日"的数据
-				if (list_big
-						.contains(String.valueOf(wv_month.getCurrentItem() + 1))) {
+				if (list_big.contains(Number2(wv_month.getCurrentItem() + 1))) {
 					wv_day.setAdapter(new NumericWheelAdapter(1, 31));
-				} else if (list_little.contains(String.valueOf(wv_month
-						.getCurrentItem() + 1))) {
+				} else if (list_little.contains(Number2(wv_month.getCurrentItem() + 1))) {
 					wv_day.setAdapter(new NumericWheelAdapter(1, 30));
 				} else {
 					if ((year_num % 4 == 0 && year_num % 100 != 0)
@@ -144,9 +143,9 @@ public class WheelTime {
 			public void onChanged(WheelView wheel, int oldValue, int newValue) {
 				int month_num = newValue + 1;
 				// 判断大小月及是否闰年,用来确定"日"的数据
-				if (list_big.contains(String.valueOf(month_num))) {
+				if (list_big.contains(Number2(month_num))) {
 					wv_day.setAdapter(new NumericWheelAdapter(1, 31));
-				} else if (list_little.contains(String.valueOf(month_num))) {
+				} else if (list_little.contains(Number2(month_num))) {
 					wv_day.setAdapter(new NumericWheelAdapter(1, 30));
 				} else {
 					if (((wv_year.getCurrentItem() + START_YEAR) % 4 == 0 && (wv_year
@@ -211,5 +210,9 @@ public class WheelTime {
 			.append(wv_hours.getCurrentItem()).append(":")
 			.append(wv_mins.getCurrentItem());
 		return sb.toString();
+	}
+
+	public static String Number2(int nInt) {
+		return new DecimalFormat("##00").format(nInt);
 	}
 }

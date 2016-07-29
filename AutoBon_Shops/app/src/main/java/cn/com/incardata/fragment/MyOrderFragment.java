@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import org.apache.http.message.BasicNameValuePair;
+
 import java.util.ArrayList;
 
 import cn.com.incardata.adapter.OrderAdapter;
@@ -127,28 +129,34 @@ public class MyOrderFragment extends BaseFragment {
         mAdapter.setOnClickCommentListener(new OrderAdapter.OnClickCommentListener() {
             @Override
             public void onClickOperate(int position) {
-                //去评价
                 if ("EXPIRED".equals(mList.get(position).getStatus())){//超时订单
                     T.show(getActivity(), R.string.timeouted_order);
-                }else if (mList.get(position).getComment() == null){//未评价
+                }else if ("FINISHED".equals(mList.get(position).getStatus())){//未评价
                     Intent intent = new Intent(getActivity(), GoCommentActivity.class);
                     intent.putExtra("UserName", mList.get(position).getMainTech().getName());
                     intent.putExtra("UserPhotoUrl", mList.get(position).getMainTech().getAvatar());
                     intent.putExtra("OrderId", mList.get(position).getId());
                     startActivityForResult(intent, RequestCode);//去评价
-                }else {
+                }else if ("COMMENTED".equals(mList.get(position).getStatus())){
                     T.show(getActivity(), R.string.comment_order);
+                }else if ("GIVEN_UP".equals(mList.get(position).getStatus()) || "CANCELED".equals(mList.get(position).getStatus())) {//撤单
+                    T.show(getActivity(), getString(R.string.revoked_order));
                 }
             }
         });
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if ("EXPIRED".equals(mList.get(position).getStatus())){//超时订单
+                if ("EXPIRED".equals(mList.get(position).getStatus())){
                     T.show(getActivity(), R.string.timeouted_order);
+                    return;
+                }else if ("GIVEN_UP".equals(mList.get(position).getStatus()) ||
+                        "CANCELED".equals(mList.get(position).getStatus())){//超时订单
+                    T.show(getActivity(), R.string.revoked_order);
                     return;
                 }else{
                     startActivity(OrderInfoActivity.class, position);
+                    return;
                 }
             }
         });
@@ -163,7 +171,7 @@ public class MyOrderFragment extends BaseFragment {
     }
 
     private void getpageList(int page) {
-        Http.getInstance().postTaskToken(url, "page=" + page + "&pageSize=20", ListFinishedEntity.class, new OnResult() {
+        Http.getInstance().postTaskToken(url, ListFinishedEntity.class, new OnResult() {
             @Override
             public void onResult(Object entity) {
                 mPull.loadedCompleted();
@@ -187,7 +195,7 @@ public class MyOrderFragment extends BaseFragment {
                     isRefresh = false;
                 }
             }
-        });
+        }, new BasicNameValuePair("page", String.valueOf(page)), new BasicNameValuePair("pageSize", "10"));
     }
 
     // TODO: Rename method, update argument and hook method into UI event

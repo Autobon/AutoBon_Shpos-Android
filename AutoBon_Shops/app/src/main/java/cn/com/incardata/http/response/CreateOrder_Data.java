@@ -20,6 +20,7 @@ public class CreateOrder_Data {
     private String remark;
     private int mainTechId;
     private int secondTechId;
+    private Cooperator cooperator;
     private String status;
 
     public int getId() {
@@ -148,6 +149,14 @@ public class CreateOrder_Data {
 
     public void setSecondTechId(int secondTechId) {
         this.secondTechId = secondTechId;
+    }
+
+    public Cooperator getCooperator() {
+        return cooperator;
+    }
+
+    public void setCooperator(Cooperator cooperator) {
+        this.cooperator = cooperator;
     }
 
     public String getStatus() {

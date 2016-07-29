@@ -13,7 +13,7 @@ public class SalemanData implements Parcelable {
     private String shortname;
     private String phone;
     private String name;
-    private boolean gender;
+    private boolean gender;//true男，false女
     private long lastLoginTime;
     private String lastLoginIp;
     private long createTime;

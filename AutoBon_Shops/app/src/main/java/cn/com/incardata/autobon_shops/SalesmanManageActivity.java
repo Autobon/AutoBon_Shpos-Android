@@ -53,14 +53,19 @@ public class SalesmanManageActivity extends BaseForBroadcastActivity {
 
         mAdapter.setOnOperateClickListener(new SalsemanAdapter.OnOperateClickListener() {
             @Override
-            public void onOperateClick(int pos) {
-                if (mList.get(pos).isFired()){
-                    T.show(getContext(), R.string.fired);
+            public void onOperateClick(int pos, boolean isModify) {
+                if (isModify){
+                    Intent intent = new Intent(getContext(), AddSalemanActivity.class);
+                    intent.putExtra("isModify", true);
+                    intent.putExtra("Saleman", mList.get(pos));
+                    startActivityForResult(intent, 0x13);
                 }else {
-                    salemanFired(pos);
+                    if (mList.get(pos).isFired()){
+                        T.show(getContext(), R.string.fired);
+                    }else {
+                        salemanFired(pos);
+                    }
                 }
-
-
             }
         });
 
@@ -121,6 +126,9 @@ public class SalesmanManageActivity extends BaseForBroadcastActivity {
             SalemanData saleman = data.getParcelableExtra("Saleman");
             mList.add(1, saleman);
             mAdapter.notifyDataSetChanged();
+        }else if (requestCode == 0x13 && resultCode == RESULT_OK && data != null){
+            mList.clear();
+            getSalemanList();
         }
     }
 }

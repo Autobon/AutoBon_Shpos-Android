@@ -83,37 +83,37 @@
             android:name=".RegisterActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name=".FindPasswordActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name=".ModifyPasswordActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name=".ServiceProtocalActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name=".CooperativeOneActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name=".CooperativeTwoActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name=".CooperativeThreeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/SpinnerTheme"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
+            android:windowSoftInputMode="stateHidden|adjustResize" />
 
         <!-- 百度地图的定位服务 -->
         <service
@@ -131,7 +131,7 @@
             android:parentActivityName=".BaseActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoTitleBarStyle"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name=".MainReviewActivity"
             android:parentActivityName=".BaseActivity"
@@ -197,6 +197,20 @@
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name=".NotificationMessageActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+
+        <activity
+            android:name=".AddContactActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+
+        <activity
+            android:name=".EnlargementActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar"

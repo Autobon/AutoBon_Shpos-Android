@@ -78,28 +78,29 @@ public class GeTuiReceiver extends BroadcastReceiver {
     private void processMessage(Context context, String msg){
         try {
             JSONObject jsonObject = new JSONObject(msg);
-            if (msg.contains("action")){
-                String action = jsonObject.getString("action");
+            String action = jsonObject.getString("action");
 
-                if ("NEW_MESSAGE".equals(action)){//系统通知
-                    showNotification(context, jsonObject.getJSONObject("message").getString("title"), jsonObject.getJSONObject("message").getString("content"), 1);
-                }else if("VERIFICATION_FAILED".equals(action)){
-                    showNotification(context, jsonObject.getString("title"), "", 2);
-                }else if ("VERIFICATION_SUCCEED".equals(action)){
-                    showNotification(context, jsonObject.getString("title"), "", 2);
-                }
-            }else {
-                if ("FINISHED".equals(jsonObject.getString("status"))){
+            if ("NEW_MESSAGE".equals(action)){//系统通知
+                showNotification(context, jsonObject.getJSONObject("message").getString("title"), jsonObject.getJSONObject("message").getString("content"), 1);
+            }else if("VERIFICATION_FAILED".equals(action)){//认证失败
+                showNotification(context, jsonObject.getString("title"), "", 2);
+            }else if ("VERIFICATION_SUCCEED".equals(action)){//认证成功
+                showNotification(context, jsonObject.getString("title"), "", 2);
+            }else if ("ORDER_COMPLETE".equals(action)) {
+                JSONObject order = jsonObject.getJSONObject("order");
+                if (order == null) return;
+                if ("FINISHED".equals(order.getString("status"))) {//订单完成
                     Intent intent = new Intent(BaseForBroadcastActivity.ACTION_ORDER_FINISHED);
                     intent.putExtra("action", "FINISHED");
-                    intent.putExtra("OrderId", jsonObject.getInt("id"));
-                    intent.putExtra("OrderNum", jsonObject.getString("orderNum"));
+                    intent.putExtra("OrderId", order.getInt("id"));
+                    intent.putExtra("OrderNum", order.getString("orderNum"));
                     context.sendBroadcast(intent);
 
-                    showNotification(context, "订单完成", "单号" + jsonObject.getString("orderNum") + "已完成", 3);
+                    showNotification(context, "订单完成", jsonObject.getString("title"), 3);
+                } else if ("TAKEN_UP".equals(order.getString("status"))) {//技师已接单
+                    showNotification(context, "已接单", jsonObject.getString("title"), 4);
                 }
             }
-
         } catch (JSONException e) {
             e.printStackTrace();
             Log.d("Getui", "透传的josn格式错误");
