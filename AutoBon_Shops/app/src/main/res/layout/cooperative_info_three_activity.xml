@@ -60,9 +60,9 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="@dimen/dp15"
+                    android:paddingBottom="@dimen/dp10"
                     android:paddingLeft="@dimen/dp15"
-                    android:paddingTop="@dimen/dp15"
+                    android:paddingTop="@dimen/dp10"
                     android:text="@string/pay_info_text"
                     android:textColor="@color/darkgray"
                     android:textSize="@dimen/sp15" />
@@ -88,6 +88,7 @@
                 android:paddingBottom="@dimen/dp15"
                 android:paddingLeft="@dimen/dp25"
                 android:paddingTop="@dimen/dp15"
+                android:maxLength="100"
                 android:textColor="@color/darkgray"
                 android:textColorHint="@color/lightgray"
                 android:textSize="@dimen/sp15"/>
@@ -163,49 +164,35 @@
                     android:background="@color/main_orange" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="@dimen/dp15"
+                    android:paddingBottom="@dimen/dp10"
                     android:paddingLeft="@dimen/dp15"
-                    android:paddingTop="@dimen/dp15"
+                    android:paddingTop="@dimen/dp10"
                     android:text="@string/address_info"
                     android:textColor="@color/darkgray"
                     android:textSize="@dimen/sp15" />
+
+                <TextView
+                    android:id="@+id/shops_addr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp10"
+                    android:paddingLeft="@dimen/dp15"
+                    android:paddingTop="@dimen/dp10"
+                    android:textColor="@color/gray_A3"
+                    android:textSize="@dimen/sp13" />
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/white"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="@dimen/dp10">
-                <Spinner
-                    android:id="@+id/provinceSpinner"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/spinner_bg"
-                    android:spinnerMode="dropdown" />
-                <Spinner
-                    android:id="@+id/citySpinner"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/spinner_bg"
-                    android:spinnerMode="dropdown"
-                    android:layout_marginLeft="@dimen/dp10"/>
-                <Spinner
-                    android:id="@+id/areaSpinner"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/spinner_bg"
-                    android:spinnerMode="dropdown"
-                    android:layout_marginLeft="@dimen/dp10"/>
-            </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:background="@color/lightgray"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/dp10"
                 android:background="@color/lightgray"/>
             <EditText
                 android:id="@+id/et_full_address"
@@ -214,12 +201,18 @@
                 android:hint="@string/mail_address_tips"
                 android:textColorHint="@color/lightgray"
                 android:paddingLeft="@dimen/dp15"
-                android:gravity="top"
+                android:gravity="left"
+                android:maxLength="100"
                 android:background="@android:color/white"/>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="@dimen/dp5"
+                android:layout_marginBottom="@dimen/dp10"
+                android:background="@color/lightgray"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
                 android:background="@color/lightgray" />
 
             <EditText
@@ -231,6 +224,8 @@
                 android:paddingBottom="@dimen/dp15"
                 android:paddingLeft="@dimen/dp25"
                 android:paddingTop="@dimen/dp15"
+                android:maxLines="1"
+                android:maxLength="10"
                 android:textColor="@color/darkgray"
                 android:textColorHint="@color/lightgray"
                 android:textSize="@dimen/sp15" />
@@ -259,6 +254,7 @@
                 android:textColorHint="@color/lightgray"
                 android:textSize="@dimen/sp15"
                 android:maxLength="11"
+                android:maxLines="1"
                 android:inputType="phone"/>
 
             <View
@@ -288,14 +284,14 @@
                 android:orientation="horizontal"
                 android:gravity="center"
                 android:layout_marginTop="@dimen/dp10"
-                android:layout_marginBottom="@dimen/dp10">
+                android:layout_marginBottom="@dimen/dp15">
                 <TextView
                     android:id="@+id/tv_tips"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
                     android:textSize="@dimen/sp10"
-                    android:text="@string/register_bottom_tips"
+                    android:text="@string/join_coop_bottom_tips"
                     android:textColor="@color/line_color"/>
                 <TextView
                     android:id="@+id/tv_protocal"
@@ -303,6 +299,8 @@
                     android:layout_height="wrap_content"
                     android:singleLine="true"
                     android:textSize="@dimen/sp10"
+                    android:paddingTop="@dimen/dp5"
+                    android:paddingBottom="@dimen/dp5"
                     android:text="@string/text_protocal"
                     android:textColor="@color/main_orange"
                     android:clickable="true"

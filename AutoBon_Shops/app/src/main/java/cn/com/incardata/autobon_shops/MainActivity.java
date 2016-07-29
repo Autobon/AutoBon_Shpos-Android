@@ -10,8 +10,10 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
@@ -23,7 +25,6 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -37,6 +38,7 @@ import cn.com.incardata.http.OnResult;
 import cn.com.incardata.http.response.CreateOrderEntity;
 import cn.com.incardata.http.response.ListUnfinishedEntity;
 import cn.com.incardata.http.response.UploadPhotoEntity;
+import cn.com.incardata.utils.AutoCon;
 import cn.com.incardata.utils.BitmapHelper;
 import cn.com.incardata.utils.DateCompute;
 import cn.com.incardata.utils.GatherImage;
@@ -48,7 +50,7 @@ import cn.com.incardata.view.selftimeview.TimePopupWindow.Type;
 /**下单
  * @author wanghao
  */
-public class MainActivity extends BaseActivity implements View.OnClickListener{
+public class MainActivity extends BaseForBroadcastActivity implements View.OnClickListener{
     private TextView unfinishedOrderTips;
     private ImageView orderImage;
     private TextView sampleImage_text;
@@ -64,6 +66,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     private int skillId;
     private FragmentManager fragmentManager;
     private ReleaseOrderSuccessDialogFragment tipsDialog;
+
+    private CheckBox assignTech;//指定技师
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +85,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         workTime = (TextView) findViewById(R.id.work_time);
         skillRadioGroup = (RadioGroup) findViewById(R.id.skill_readio_group);
         releaseOrder = (Button) findViewById(R.id.release_order);
+        assignTech = (CheckBox) findViewById(R.id.assign_tech);
 
         findViewById(R.id.main_personal).setOnClickListener(this);
         unfinishedOrderTips.setOnClickListener(this);
@@ -110,7 +115,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
      * 更新未完成订单数量
      */
     private void updateUnfinishOrderNum(){
-        Http.getInstance().postTaskToken(NetURL.LIST_UNFINISHED, "page=1&pageSize=0", ListUnfinishedEntity.class, new OnResult() {
+        Http.getInstance().postTaskToken(NetURL.LIST_UNFINISHED, ListUnfinishedEntity.class, new OnResult() {
             @Override
             public void onResult(Object entity) {
                 if (entity == null) return;
@@ -126,7 +131,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                     }
                 }
             }
-        });
+        }, new BasicNameValuePair("page", String.valueOf(1)), new BasicNameValuePair("pageSize", String.valueOf(1)));
     }
 
     @Override
@@ -177,6 +182,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         params.add(new BasicNameValuePair("remark", remark));
         params.add(new BasicNameValuePair("orderTime", workTime_str));
         params.add(new BasicNameValuePair("orderType", String.valueOf(skillId)));
+        params.add(new BasicNameValuePair("pushToAll", String.valueOf(!assignTech.isChecked())));
         showDialog(getString(R.string.submiting));
         Http.getInstance().postTaskToken(NetURL.CREATE_ORDER, CreateOrderEntity.class, new OnResult() {
             @Override
@@ -189,6 +195,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 if (entity instanceof CreateOrderEntity){
                     CreateOrderEntity createOrder = (CreateOrderEntity) entity;
                     if (createOrder.isResult()){
+                        if (assignTech.isChecked()){
+                            Intent intent = new Intent(getContext(),AddContactActivity.class);
+                            intent.putExtra(AutoCon.ORDER_ID, createOrder.getData().getId());
+                            startActivity(intent);
+                            revert();
+                            return;
+                        }
                         if (tipsDialog == null){
                             tipsDialog = new ReleaseOrderSuccessDialogFragment();
                             tipsDialog.setOnDismissListener(new ReleaseOrderSuccessDialogFragment.OnDismissListener() {
@@ -218,6 +231,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         skillRadioGroup.clearCheck();
         workTime_str = DateCompute.getInstance().getNewTime("yyyy-MM-dd HH:mm");
         workTime.setText(workTime_str);
+        assignTech.setChecked(false);
     }
 
     private void onClickOrderPhoto() {
@@ -256,13 +270,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
 
     private void orderPhotoProcess(Uri uri){
         try {
-            Bitmap bitmap = BitmapFactory.decodeStream(getContext().getContentResolver().openInputStream(uri));
-            bitmap = BitmapHelper.resizeImage(bitmap, 0.5f);
-            BitmapHelper.saveBitmap(this.orderPhotoUri, bitmap, true);
+            Bitmap bitmap = BitmapHelper.resizeImage(getContext(), uri);
+            BitmapHelper.saveBitmap(this.orderPhotoUri, bitmap);
             uploadOrderPhoto();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }catch (NullPointerException e){
+        } catch (NullPointerException e){
             e.printStackTrace();
         }
     }
@@ -331,12 +342,21 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
      * @return 在当前时间之前表示有效
      */
     protected boolean isDateAvailable(Date date) {
-        long between = DateCompute.twoDayBetweenTime("yyyy-MM-dd HH:mm", DateCompute.getDate(date.getTime()), workTime.getText().toString().trim());
+        long between = DateCompute.twoDayBetweenTime("yyyy-MM-dd HH:mm", DateCompute.getDate(date.getTime()), DateCompute.getInstance().getNewTime("yyyy-MM-dd HH:mm"));
         return between > 0 ? true : false;
     }
 
     public static String getTime(Date date) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         return format.format(date);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK){
+            moveTaskToBack(true);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

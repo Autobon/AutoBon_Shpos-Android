@@ -2,27 +2,26 @@ package cn.com.incardata.http;
 
 public class NetURL {
 	/** 基地址 */
-	public final static String BASE_URL = "http://121.40.157.200:12345/api/mobile/";
-	public final static String IP_PORT = "http://121.40.157.200:12345";
-	public static final String PUB = "http://121.40.157.200:12345/api/pub/";
+	public final static String BASE_URL = "http://121.40.219.58/api/mobile/";
+	public final static String IP_PORT = "http://121.40.219.58";
+	public static final String PUB = "http://121.40.219.58/api/pub/";
+
+//	public final static String BASE_URL = "http://hpecar.com:8012/api/mobile/";
+//	public final static String IP_PORT = "http://hpecar.com:8012";
+//	public static final String PUB = "http://hpecar.com:8012/api/pub/";
 
 	/** 发送验证短信 */
 	public static final String VERIFY_SMS = PUB + "verifySms";
 	/** 同步个推CID到后台 */
-	public static final String PUSH_ID = "";
-
+	public static final String PUSH_ID = BASE_URL + "coop/pushId";
 	/** 注册 */
 	public static final String REGISTER_URL = BASE_URL + "coop/register";
-
 	/** 登录 */
 	public static final String LOGIN_URL = BASE_URL + "coop/login";
-
 	/** 上传营业执照副本照片 */
 	public static final String BUSNIESS_LICENSE_URL = BASE_URL + "coop/bussinessLicensePic";
-
 	/** 上传法人身份证正面照 */
 	public static final String CORPORATION_PIC_URL  = BASE_URL + "coop/corporationIdPicA";
-
 	/** 商户资料提交认证 */
 	public static final String CORPORATION_CHECK_URL = BASE_URL + "coop/check";
 
@@ -44,4 +43,31 @@ public class NetURL {
 	public static final String LIST_UNCOMMENT = BASE_URL + "coop/order/listUncomment";
 	/** 评价 */
 	public static final String COMMENT = BASE_URL + "coop/order/comment";
+	/** 找回密码 */
+	public static final String RESET_PASSWORD = BASE_URL + "coop/resetPassword";
+	/** 修改密码 */
+	public static final String CHANGE_PASSWORD = BASE_URL + "coop/changePassword";
+	/** 所有业务员 */
+	public static final String GET_SALE_LIST = BASE_URL + "coop/getSaleList";
+	/** 业务员离职 */
+	public static final String SALE_FIRED = BASE_URL + "coop/saleFired";
+	/** 增加业务员 */
+	public static final String ADD_ACCOUNT = BASE_URL + "coop/addAccount";
+	/** 通知消息 */
+	public static final String MESSAGE = BASE_URL + "coop/message";
+	/** 商户审核信息 */
+	public static final String COOP_CHECK_RESULT = BASE_URL + "coop/coopCheckResult";
+	/** 查询技师 */
+	public static final String SEARCH = BASE_URL + "coop/technician/search";
+	/** 订单指定技师 */
+	public static final String APPOINT = BASE_URL + "coop/order/appoint";
+
+	/** 撤单 */
+	public static String getRevokeOrder(int orderId){
+		return BASE_URL + "coop/order/" + orderId + "/cancel";
+	}
+	/** 修改员工账户 */
+	public static String getSalemanAccount(int accountID){
+		return BASE_URL + "coop/account/" + accountID;
+	}
 }

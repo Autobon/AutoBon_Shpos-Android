@@ -53,6 +53,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         btn_send_code.setOnClickListener(this);
         btn_register.setOnClickListener(this);
         iv_back.setOnClickListener(this);
+        findViewById(R.id.tv_protocal).setOnClickListener(this);
     }
 
     @Override
@@ -66,6 +67,9 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 break;
             case R.id.iv_back:
                 finish();
+                break;
+            case R.id.tv_protocal:
+                startActivity(ServiceProtocalActivity.class);
                 break;
         }
     }
@@ -162,7 +166,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             T.show(context,context.getString(R.string.password_length_tips));
             return;
         }
-        if(!one_pwd.matches(".*[a-zA-Z].*[0-9]|.*[0-9].*[a-zA-Z]")){  //密码长度至少为8位,且为数字或字母组合
+        if(!one_pwd.matches("^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,18}$")){  //密码长度至少为8位,且为数字或字母组合
             T.show(context,context.getString(R.string.error_password));
             return;
         }
@@ -174,9 +178,11 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         mList.add(new BasicNameValuePair("verifySms",code));
 
         if(NetWorkHelper.isNetworkAvailable(context)) {
+            showDialog(getString(R.string.submiting));
             Http.getInstance().postTaskToken(NetURL.REGISTER_URL, RegisterEntity.class, new OnResult() {
                 @Override
                 public void onResult(Object entity) {
+                    cancelDialog();
                     if (entity == null) {
                         T.show(context, context.getString(R.string.operate_failed_agen));
                         return;

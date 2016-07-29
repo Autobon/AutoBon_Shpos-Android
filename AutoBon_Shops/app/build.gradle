@@ -8,8 +8,8 @@ android {
         applicationId "cn.com.incardata.autobon_shops"
         minSdkVersion 14
         targetSdkVersion 21
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "1.1.1"
     }
     buildTypes {
         release {
@@ -17,6 +17,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {
@@ -27,8 +28,6 @@ dependencies {
     compile files('libs/universal-image-loader-1.9.5.jar')
     compile files('libs/GetuiSDK2.8.1.0.jar')
     compile files('libs/GetuiExt-2.0.3.jar')
-    compile files('libs/baidumapapi_v3_3_0.jar')
-    compile files('libs/locSDK_5.0.jar')
     compile files('libs/MobCommons.jar')
     compile files('libs/MobLogCollector.jar')
     compile files('libs/MobTools.jar')
@@ -41,4 +40,8 @@ dependencies {
     compile files('libs/ShareSDK-Wechat-Moments-2.6.6.jar')
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile 'com.android.support:support-v4:21.0.3'
+    compile files('libs/baidumapapi_map_v3_7_3.jar')
+    compile files('libs/locSDK_6.13.jar')
+    compile files('libs/baidumapapi_base_v3_7_3.jar')
+    compile files('libs/baidumapapi_search_v3_7_3.jar')
 }

@@ -30,6 +30,8 @@
        android:layout_below="@id/line_one_view"
        android:textColorHint="@color/lightgray"
        android:paddingLeft="@dimen/dp25"
+       android:maxLength="100"
+       android:maxLines="1"
        android:textColor="@color/darkgray"
        android:textSize="@dimen/sp15"/>
     <View
@@ -118,6 +120,7 @@
         android:background="@android:color/white"
         android:gravity="center">
         <TextView
+            android:id="@+id/find_pwd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/forget_pwd_text"

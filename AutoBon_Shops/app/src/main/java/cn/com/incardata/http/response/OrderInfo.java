@@ -27,6 +27,7 @@ public class OrderInfo implements Parcelable {
     private Construction mainConstruct;
     private Construction secondConstruct;
     private Comment comment;
+//    private Cooperator cooperator;暂无用
     private String status;
 
     public int getId() {

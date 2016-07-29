@@ -16,6 +16,7 @@
     <string name="loading_data_failed">数据加载失败</string>
     <string name="operate_failed_agen">操作失败，请重试一次</string>
     <string name="network_exception">网络异常</string>
+    <string name="no_network_tips">网络未连接</string>
     <string name="RMB">￥</string>
     <string name="load_progress_tips">正在加载…</string>
 
@@ -30,11 +31,12 @@
 
     <!--登录界面-->
     <string name="input_company_name_text">请输入企业简称</string>
-    <string name="input_phone_text">请输入您的手机号码</string>
+    <string name="input_phone_text">请输入手机号码</string>
     <string name="input_pwd_text">请输入您的密码</string>
     <string name="login_text">登录</string>
     <string name="forget_pwd_text">忘记密码?</string>
     <string name="register_text">注册</string>
+    <string name="login_ing">正在登录…</string>
 
     <!--注册界面-->
     <string name="register_company_title">合作商</string>
@@ -44,7 +46,7 @@
     <string name="pwd_text">密码</string>
     <string name="pwd_confirm_text">确认密码</string>
     <string name="register_bottom_tips">点击“注册”代表本人已阅读并同意</string>
-    <string name="text_protocal">《车邻邦技师服务协议》</string>
+    <string name="text_protocal">《车邻邦合作商服务协议》</string>
     <string name="phone_not_empty_tips">手机号不能为空</string>
     <string name="error_phone_number_tips">手机号为11位数字</string>
     <string name="send_code_success">验证码已发送</string>
@@ -59,17 +61,43 @@
     <string name="password_length_tips">密码长度至少为8位</string>
     <string name="error_password">密码为字母和数字的组合</string>
     <string name="register_success_tips">注册成功</string>
+    <string name="service_protocol">服务协议</string>
+    <string name="join_coop_bottom_tips">点击“加盟”代表本人已阅读并同意</string>
 
-    <!--找回密码-->
-    <string name="find_pwd_text">找回密码</string>
-    <string name="input_phone_tips">请输入手机号</string>
-    <string name="input_valid_code">请输入验证码</string>
-    <string name="input_new_pwd">请输入新密码</string>
+    <!--找回密码界面-->
+    <string name="find_password">找回密码</string>
+    <string name="hint_phone">请输入手机号</string>
+    <string name="hint_code">请输入验证码</string>
+    <string name="text_get_code">获取验证</string>
+    <string name="code_tips">验证码已以短信形式发送到您的手机中,请注意查收</string>
+    <string name="repeat_get_text">再次获取</string>
+    <string name="second_text">秒</string>
+    <string name="reset_pwd">重置密码</string>
+    <string name="reset_tips">需要数字 字母或符号</string>
+    <string name="failed_code">发送验证码失败</string>
+    <string name="reset_failed">重置密码失败</string>
+    <string name="reset_success">重置密码成功</string>
     <string name="ok_tips">确认</string>
+
+    <!--修改密码-->
+    <string name="modify_pwd">修改密码</string>
+    <string name="input_old_pwd">请输入旧密码</string>
+    <string name="input_new_pwd">请输入新密码</string>
+    <string name="old_empty_tips">旧密码不能为空</string>
+    <string name="new_empty_tips">新密码不能为空</string>
+    <string name="old_length_tips">旧密码长度不能小于6位</string>
+    <string name="new_length_tips">新密码长度不能小于8位</string>
+    <string name="modify_pwd_success">修改密码成功</string>
+    <string name="modify_pwd_failed">修改密码失败</string>
+    <string name="old_pwd_error_tips">原密码错误</string>
+    <string name="old_error_password">旧密码必须为数字和字母的组合</string>
+    <string name="new_error_password">新密码必须为数字和字母的组合</string>
+    <string name="submit">提交</string>
+
 
     <!--合作商加盟-->
     <string name="cooperative_title">合作商加盟</string>
-    <string name="company_title">英卡科技</string>
+    <string name="company_title">公司信息</string>
     <string name="company_register_name">营业执照的工商注册名称</string>
     <string name="company_number">营业执照号</string>
     <string name="name_text">法人姓名</string>
@@ -81,9 +109,9 @@
     <string name="uninstalled_sdcard">尚未安装SD卡</string>
     <string name="upload_failed_tips">上传失败</string>
     <string name="company_not_empty_tips">注册名称不能为空</string>
-    <string name="company_number_empty_tips">营业执照号不能为空</string>
+    <string name="company_number_empty_tips">请输入正确的营业执照号</string>
     <string name="name_empty_tips">姓名不能为空</string>
-    <string name="card_number_tips">身份证号不能为空</string>
+    <string name="card_number_tips">请输入正确的身份证号</string>
     <string name="bussiness_pic_no_upload">营业执照图片尚未上传</string>
     <string name="card_number_pic_no_upload">身份证图片尚未上传</string>
     <string name="shop_address_text">商户位置</string>
@@ -126,7 +154,7 @@
     <string name="release_order">一键下单</string>
     <string name="ok">确定</string>
     <string name="cancel">取消</string>
-    <string name="not_later_current_time">不能晚于当前时间</string>
+    <string name="not_later_current_time">不能早于当前时间</string>
     <string name="please_upload_order_photo">请上传订单照片</string>
     <string name="required_work_time">施工时间不能为空</string>
     <string name="please_order_type">请选择订单类型</string>
@@ -166,7 +194,7 @@
     <string name="timeouted_order">该订单已超时</string>
     <string name="comment_order">该订单已评价</string>
     <string name="order_infomation">订单详情</string>
-    <string name="order_remark">备注： </string>
+    <string name="order_remark">下单备注： </string>
     <string name="order_create_time">下单时间： </string>
     <string name="tech_info">技师信息</string>
     <!-- 评价 -->
@@ -181,5 +209,63 @@
     <string name="other_comment_tips">其他意见和建议（最多200字）</string>
     <string name="submiting_comment">正在提交评价...</string>
     <string name="submit_comment_failed_please_again">提交失败，请重试一次</string>
+    <string name="share_tips">感谢您对本次技师提交的评价，赶快\n分享赢现金红包吧！</string>
+
+    <!-- 业务员管理 -->
+    <string name="add_salseman">新增</string>
+    <string name="dimission">离职</string>
+    <string name="fired">已离职</string>
+    <string name="manager">管理员</string>
+    <string name="saleman">销售员</string>
+    <string name="input_name">请输入姓名</string>
+    <string name="male">男</string>
+    <string name="female">女</string>
+    <string name="add_saleman_tips">业务员初始密码为123456</string>
+    <string name="add_saleman_success">添加成功</string>
+    <string name="notifycation_list_srt">通知列表</string>
+
+    <!-- 合作商加盟进度 -->
+    <string name="cooperation_status">加盟状态：</string>
+    <string name="check_success">审核成功</string>
+    <string name="checking">正在审核</string>
+    <string name="check_failed">失败</string>
+    <string name="failure_cause">失败原因：</string>
+    <string name="cooperation_info">加盟信息</string>
+    <string name="business_license_name">营业执照名：</string>
+    <string name="business_license_serial">营业执照号：</string>
+    <string name="licensee_name">法人的姓名：</string>
+    <string name="licensee_ID">法人身份证：</string>
+    <string name="business_license_photo_title">营业执照副本</string>
+    <string name="licensee_identify_photo_title">法人身份证正面照</string>
+    <string name="invoice_info">发票信息</string>
+    <string name="invoice_header_name">发票抬头名：</string>
+    <string name="taxpayer_ID">纳税识别号：</string>
+    <string name="postal_code">邮政编码：</string>
+    <string name="postal_address">邮寄地址：</string>
+    <string name="shops_address">商户位置：</string>
+    <string name="join_cooperation">我要加盟</string>
+    <string name="please_shops_location">请确定商户位置</string>
+
+    <string name="order_finished_dialog_tips">编号为%1$s的订单已结束工作，请您对此次工作的技师做出评价。</string>
+    <string name="immediation_comment">立即评价</string>
+    <string name="notify">提醒</string>
+
+    <!-- =====================================2期================================ -->
+    <string name="hint_text_phone_name">请输入手机号或姓名</string>
+    <string name="no_search_tech">没有找到技师</string>
+    <string name="appoint_tech">指定技师</string>
+    <string name="revoke_order">撤单</string>
+    <string name="revoke_order_succeed">撤单成功</string>
+    <string name="canceled_order">已撤销</string>
+    <string name="revoked_order">该订单已撤销</string>
+    <string name="work_item_">施工项目：</string>
+    <string name="work_person">施工人员：</string>
+    <string name="work_before_photo">工作前照片</string>
+    <string name="work_after_photo">工作后照片</string>
+    <string name="not">无</string>
+    <string name="appoint_technician_succeed">已成功指定技师</string>
+    <string name="appoint_tech_tips">不群推订单，去指定技师</string>
+    <string name="editor">编辑</string>
+    <string name="modify_succeed">修改成功</string>
 
 </resources>

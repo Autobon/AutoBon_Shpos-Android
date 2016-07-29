@@ -8,6 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <View
@@ -22,22 +23,34 @@
             android:layout_weight="1"
             android:textColor="@color/darkgray"
             android:background="@android:color/white"
-            android:textSize="@dimen/sp15"
+            android:textSize="@dimen/sp13"
             android:paddingLeft="@dimen/dp10"
-            android:paddingTop="@dimen/dp5"
-            android:paddingBottom="@dimen/dp5"
+            android:paddingTop="@dimen/dp10"
+            android:paddingBottom="@dimen/dp10"
             android:text="@string/order_num"/>
 
-        <TextView
-            android:id="@+id/order_status"
+        <Button
+            android:id="@+id/appoint_tech"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/gray_A3"
+            android:textColor="@color/main_orange"
+            android:layout_marginRight="@dimen/dp10"
+            android:visibility="gone"
+            android:background="@drawable/check_btn"
+            android:text="@string/appoint_tech"
+            android:textSize="@dimen/sp13"/>
+
+        <Button
+            android:id="@+id/revoke_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/main_orange"
             android:layout_marginRight="@dimen/dp15"
-            android:paddingTop="@dimen/dp5"
-            android:paddingBottom="@dimen/dp5"
-            android:text="@string/no_receive"
-            android:textSize="@dimen/sp15"/>
+            android:paddingLeft="@dimen/dp5"
+            android:paddingRight="@dimen/dp5"
+            android:background="@drawable/check_btn"
+            android:text="@string/revoke_order"
+            android:textSize="@dimen/sp13"/>
     </LinearLayout>
 
     <View
@@ -68,7 +81,6 @@
             android:paddingTop="3dp"
             android:paddingBottom="3dp"
             android:layout_alignParentRight="true"
-            android:text="王浩"
             android:background="@drawable/owner_bg" />
 
         <TextView
@@ -79,7 +91,6 @@
             android:textColor="@color/main_orange"
             android:textSize="@dimen/sp13"
             android:maxLines="1"
-            android:text="美容清洁"
             android:ellipsize="end" />
 
         <TextView

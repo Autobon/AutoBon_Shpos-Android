@@ -1,9 +1,12 @@
 package cn.com.incardata.http.response;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
- * Created by zhangming on 2016/3/30.
+ * Created by wanghao on 2016/3/30.
  */
-public class CooperativeInfo_Data {
+public class CooperativeInfo_Data implements Parcelable {
     private int id;
     private String phone;
     private String fullname;
@@ -26,7 +29,7 @@ public class CooperativeInfo_Data {
     private String contactPhone;
     private String lastLoginTime;
     private String lastLoginIp;
-    private int createTime;
+    private long createTime;
     private int statusCode;
 
     public int getId() {
@@ -205,11 +208,11 @@ public class CooperativeInfo_Data {
         this.lastLoginIp = lastLoginIp;
     }
 
-    public int getCreateTime() {
+    public long getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(int createTime) {
+    public void setCreateTime(long createTime) {
         this.createTime = createTime;
     }
 
@@ -220,4 +223,79 @@ public class CooperativeInfo_Data {
     public void setStatusCode(int statusCode) {
         this.statusCode = statusCode;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.id);
+        dest.writeString(this.phone);
+        dest.writeString(this.fullname);
+        dest.writeString(this.businessLicense);
+        dest.writeString(this.corporationName);
+        dest.writeString(this.corporationIdNo);
+        dest.writeString(this.bussinessLicensePic);
+        dest.writeString(this.corporationIdPicA);
+        dest.writeString(this.corporationIdPicB);
+        dest.writeString(this.longitude);
+        dest.writeString(this.latitude);
+        dest.writeString(this.invoiceHeader);
+        dest.writeString(this.taxIdNo);
+        dest.writeString(this.postcode);
+        dest.writeString(this.province);
+        dest.writeString(this.city);
+        dest.writeString(this.district);
+        dest.writeString(this.address);
+        dest.writeString(this.contact);
+        dest.writeString(this.contactPhone);
+        dest.writeString(this.lastLoginTime);
+        dest.writeString(this.lastLoginIp);
+        dest.writeLong(this.createTime);
+        dest.writeInt(this.statusCode);
+    }
+
+    public CooperativeInfo_Data() {
+    }
+
+    protected CooperativeInfo_Data(Parcel in) {
+        this.id = in.readInt();
+        this.phone = in.readString();
+        this.fullname = in.readString();
+        this.businessLicense = in.readString();
+        this.corporationName = in.readString();
+        this.corporationIdNo = in.readString();
+        this.bussinessLicensePic = in.readString();
+        this.corporationIdPicA = in.readString();
+        this.corporationIdPicB = in.readString();
+        this.longitude = in.readString();
+        this.latitude = in.readString();
+        this.invoiceHeader = in.readString();
+        this.taxIdNo = in.readString();
+        this.postcode = in.readString();
+        this.province = in.readString();
+        this.city = in.readString();
+        this.district = in.readString();
+        this.address = in.readString();
+        this.contact = in.readString();
+        this.contactPhone = in.readString();
+        this.lastLoginTime = in.readString();
+        this.lastLoginIp = in.readString();
+        this.createTime = in.readLong();
+        this.statusCode = in.readInt();
+    }
+
+    public static final Parcelable.Creator<CooperativeInfo_Data> CREATOR = new Parcelable.Creator<CooperativeInfo_Data>() {
+        @Override
+        public CooperativeInfo_Data createFromParcel(Parcel source) {
+            return new CooperativeInfo_Data(source);
+        }
+
+        @Override
+        public CooperativeInfo_Data[] newArray(int size) {
+            return new CooperativeInfo_Data[size];
+        }
+    };
 }

@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -23,7 +24,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import cn.com.incardata.http.HttpClientInCar;
+import cn.com.incardata.http.ImageLoaderCache;
 import cn.com.incardata.http.NetURL;
+import cn.com.incardata.http.response.CooperativeInfo_Data;
 import cn.com.incardata.http.response.UploadPicEntity;
 import cn.com.incardata.utils.SDCardUtils;
 import cn.com.incardata.utils.StringUtil;
@@ -50,12 +53,14 @@ public class CooperativeOneActivity extends BaseActivity implements View.OnClick
     private static final String BUSINESS_KEY = "busniess_key";
     private static final String CORPORATION_KEY = "corporation_key";
 
+    private CooperativeInfo_Data extraCooperation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cooperative_info_one_activity);
         init();
+        initData();
     }
 
     private void init(){
@@ -79,18 +84,53 @@ public class CooperativeOneActivity extends BaseActivity implements View.OnClick
         tv_two_example_tips = (TextView) findViewById(R.id.tv_two_example_tips);
 
         iv_back.setOnClickListener(this);
-        iv_camera_one_pic.setOnClickListener(this);
-        iv_camera_two_pic.setOnClickListener(this);
+        iv_pic_one.setOnClickListener(this);
+        iv_pic_two.setOnClickListener(this);
         btn_submit.setOnClickListener(this);
+
+        if (getIntent().getExtras() != null){
+            this.extraCooperation = getIntent().getExtras().getParcelable(MainReviewActivity.Cooperation);
+        }else {
+            this.extraCooperation = new CooperativeInfo_Data();
+        }
+    }
+
+    private void initData(){
+        if (this.extraCooperation != null){
+            et_company.setText(extraCooperation.getFullname());
+            et_company_number.setText(extraCooperation.getBusinessLicense());
+            et_name.setText(extraCooperation.getCorporationName());
+            et_card_number.setText(extraCooperation.getCorporationIdNo());
+
+            picMap.put(BUSINESS_KEY, extraCooperation.getBussinessLicensePic());
+            picMap.put(CORPORATION_KEY, extraCooperation.getCorporationIdPicA());
+
+            if (!TextUtils.isEmpty(picMap.get(BUSINESS_KEY))){
+                tv_one_example_tips.setVisibility(View.INVISIBLE);
+                ImageLoaderCache.getInstance().loader(NetURL.IP_PORT + picMap.get(BUSINESS_KEY), iv_pic_one);
+            }
+            if (!TextUtils.isEmpty(picMap.get(CORPORATION_KEY))){
+                tv_one_example_tips.setVisibility(View.INVISIBLE);
+                ImageLoaderCache.getInstance().loader(NetURL.IP_PORT + picMap.get(CORPORATION_KEY), iv_pic_two);
+            }
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.iv_camera_one_pic:
+            case R.id.iv_back:
+                finish();
+                break;
+            case R.id.iv_pic_one:
                 onClickPic(CAPTURE_BUSSINESS_LICENSE_PIC_REQUEST);
                 break;
-            case R.id.iv_camera_two_pic:
+            case R.id.iv_pic_two:
                 onClickPic(CAPTURE_CORPORATION_PIC_REQUEST);
                 break;
             case R.id.btn_submit: //填写信息,转移数据
@@ -155,10 +195,10 @@ public class CooperativeOneActivity extends BaseActivity implements View.OnClick
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(imageUri, "image/*");
         intent.putExtra("crop", true);
-        intent.putExtra("aspectX", 1);
-        intent.putExtra("aspectY", 1);
-        intent.putExtra("outputX", 350);
-        intent.putExtra("outputY", 350);
+        intent.putExtra("aspectX", 4);
+        intent.putExtra("aspectY", 3);
+        intent.putExtra("outputX", 600);
+        intent.putExtra("outputY", 450);
         intent.putExtra("scale", true);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, imageCropUri);
         intent.putExtra("return-data", false);
@@ -202,13 +242,12 @@ public class CooperativeOneActivity extends BaseActivity implements View.OnClick
                         try {
                             Bitmap bitmap = BitmapFactory.decodeStream(getContext().getContentResolver().openInputStream(imageCropUri));
                             String url = entity.getData();
-                            tv_one_example_tips.setVisibility(View.INVISIBLE);
-                            tv_two_example_tips.setVisibility(View.INVISIBLE);
-
                             if(NetURL.BUSNIESS_LICENSE_URL.equals(picUrl)){
+                                tv_one_example_tips.setVisibility(View.INVISIBLE);
                                 picMap.put(BUSINESS_KEY,url);
                                 iv_pic_one.setImageBitmap(bitmap);
                             }else if(NetURL.CORPORATION_PIC_URL.equals(picUrl)){
+                                tv_two_example_tips.setVisibility(View.INVISIBLE);
                                 picMap.put(CORPORATION_KEY,url);
                                 iv_pic_two.setImageBitmap(bitmap);
                             }
@@ -230,17 +269,21 @@ public class CooperativeOneActivity extends BaseActivity implements View.OnClick
         tv_two_example_tips.setVisibility(View.VISIBLE);
     }
 
+    private String company;
+    private String company_number;
+    private String name;
+    private String card_number;
     private void checkInfo(){
-        String company = et_company.getText().toString().trim();
-        String company_number = et_company_number.getText().toString().trim();
-        String name = et_name.getText().toString().trim();
-        String card_number = et_card_number.getText().toString().trim();
+        company = et_company.getText().toString().trim();
+        company_number = et_company_number.getText().toString().trim();
+        name = et_name.getText().toString().trim();
+        card_number = et_card_number.getText().toString().trim();
 
         if(StringUtil.isEmpty(company)){
             T.show(context,context.getString(R.string.company_not_empty_tips));
             return;
         }
-        if(StringUtil.isEmpty(company_number)){
+        if(StringUtil.isEmpty(company_number) || company_number.length() != 15){
             T.show(context,context.getString(R.string.company_number_empty_tips));
             return;
         }
@@ -248,7 +291,7 @@ public class CooperativeOneActivity extends BaseActivity implements View.OnClick
             T.show(context,context.getString(R.string.name_empty_tips));
             return;
         }
-        if(StringUtil.isEmpty(card_number)){
+        if(StringUtil.isEmpty(card_number) || !card_number.matches("^(\\d{14}|\\d{17})(\\d|[xX])$")){
             T.show(context,context.getString(R.string.card_number_tips));
             return;
         }
@@ -261,13 +304,15 @@ public class CooperativeOneActivity extends BaseActivity implements View.OnClick
             return;
         }
 
+        this.extraCooperation.setFullname(company);
+        this.extraCooperation.setBusinessLicense(company_number);
+        this.extraCooperation.setCorporationName(name);
+        this.extraCooperation.setCorporationIdNo(card_number);
+        this.extraCooperation.setBussinessLicensePic(picMap.get(BUSINESS_KEY));
+        this.extraCooperation.setCorporationIdPicA(picMap.get(CORPORATION_KEY));
+
         Bundle bundle = new Bundle();
-        bundle.putString("company",company);
-        bundle.putString("company_number",company_number);
-        bundle.putString("name",name);
-        bundle.putString("card_number",card_number);
-        bundle.putString("business_pic_url",picMap.get(BUSINESS_KEY));
-        bundle.putString("corporation_pic_url",picMap.get(CORPORATION_KEY));
-        startActivity(CooperativeTwoActivity.class,bundle);
+        bundle.putParcelable(MainReviewActivity.Cooperation, this.extraCooperation);
+        startActivity(CooperativeTwoActivity.class, bundle);
     }
 }

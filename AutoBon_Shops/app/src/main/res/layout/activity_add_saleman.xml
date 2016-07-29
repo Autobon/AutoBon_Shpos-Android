@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_white"
+    android:orientation="vertical"
+    tools:context="cn.com.incardata.autobon_shops.AddSalemanActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp45"
+        android:background="@color/main_orange">
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="@dimen/dp35"
+            android:layout_height="match_parent"
+            android:padding="@dimen/dp10"
+            android:src="@mipmap/default_back"
+            android:scaleType="centerInside"
+            android:clickable="true"
+            android:focusable="true"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/salseman_manage"
+            android:textSize="@dimen/sp18"
+            android:textColor="@android:color/white"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/lightgray"
+        android:layout_marginTop="@dimen/dp20"/>
+
+    <EditText
+        android:id="@+id/saleman_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/input_phone_text"
+        android:background="@android:color/white"
+        android:paddingBottom="@dimen/dp15"
+        android:paddingTop="@dimen/dp15"
+        android:textColorHint="@color/lightgray"
+        android:paddingLeft="@dimen/dp25"
+        android:maxLength="11"
+        android:textColor="@color/darkgray"
+        android:textSize="@dimen/sp15"
+        android:inputType="number"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/lightgray" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/lightgray"
+        android:layout_marginTop="@dimen/dp5"/>
+
+    <EditText
+        android:id="@+id/saleman_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/input_name"
+        android:background="@android:color/white"
+        android:paddingBottom="@dimen/dp15"
+        android:paddingTop="@dimen/dp15"
+        android:textColorHint="@color/lightgray"
+        android:paddingLeft="@dimen/dp25"
+        android:maxLength="10"
+        android:textColor="@color/darkgray"
+        android:textSize="@dimen/sp15"
+        android:inputType="text"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/lightgray" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/dp5"
+        android:background="@color/lightgray" />
+
+    <RadioGroup
+        android:id="@+id/gender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/dp10"
+        android:paddingLeft="@dimen/dp25"
+        android:paddingTop="@dimen/dp10"
+        android:orientation="horizontal"
+        android:background="@android:color/white">
+
+        <RadioButton
+            android:id="@+id/male"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/dp5"
+            android:textSize="@dimen/sp15"
+            android:layout_marginLeft="@dimen/dp15"
+            android:textColor="@color/darkgray"
+            android:button="@drawable/checkbox_style"
+            android:text="@string/male"
+            android:background="@null"/>
+
+        <RadioButton
+            android:id="@+id/female"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/dp5"
+            android:textSize="@dimen/sp15"
+            android:layout_marginLeft="@dimen/dp50"
+            android:textColor="@color/darkgray"
+            android:button="@drawable/checkbox_style"
+            android:text="@string/female"
+            android:background="@null"/>
+
+    </RadioGroup>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/lightgray" />
+
+    <Button
+        android:id="@+id/submit_add_saleman"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp30"
+        android:layout_marginTop="@dimen/dp50"
+        android:layout_marginRight="@dimen/dp30"
+        android:paddingBottom="@dimen/dp10"
+        android:paddingTop="@dimen/dp10"
+        android:textSize="@dimen/sp18"
+        android:textColor="@android:color/white"
+        android:text="@string/submit"
+        android:background="@drawable/login_btn_selector"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp10"
+        android:textSize="@dimen/sp12"
+        android:textColor="@color/gray_A3"
+        android:gravity="center"
+        android:text="@string/add_saleman_tips"/>
+</LinearLayout>

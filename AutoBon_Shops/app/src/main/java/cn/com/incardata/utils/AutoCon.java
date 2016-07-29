@@ -19,4 +19,6 @@ public class AutoCon {
     public static final String IS_AUTHORIZED = "isAuthorized";
     /** 订单信息 */
     public static final String ORDER_INFO = "orderInfo";
+    /**  订单ID */
+    public final static String ORDER_ID = "orderId";
 }

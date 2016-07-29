@@ -15,7 +15,9 @@
         <item>邮政储蓄银行</item>
     </string-array>
 
-    <string-array name="work_item">
+    <string-array name="work_items">
+        <!--<key>0占位</key>-->
+        <item>前风挡</item>
         <!--<key>1</key>-->
         <item>前风挡</item>
         <!--<key>2</key>-->

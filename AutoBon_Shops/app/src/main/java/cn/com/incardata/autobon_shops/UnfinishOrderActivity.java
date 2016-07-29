@@ -1,9 +1,12 @@
 package cn.com.incardata.autobon_shops;
 
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
+
+import org.apache.http.message.BasicNameValuePair;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,13 +19,15 @@ import cn.com.incardata.http.OnResult;
 import cn.com.incardata.http.response.GetTechnicianEntity;
 import cn.com.incardata.http.response.ListUnfinishedEntity;
 import cn.com.incardata.http.response.OrderInfo;
+import cn.com.incardata.http.response.RevokeOrderEntity;
+import cn.com.incardata.utils.AutoCon;
 import cn.com.incardata.utils.T;
 import cn.com.incardata.view.PullToRefreshView;
 
 /**未完成订单
  * @author wanghao
  */
-public class UnfinishOrderActivity extends BaseActivity implements View.OnClickListener{
+public class UnfinishOrderActivity extends BaseForBroadcastActivity implements View.OnClickListener{
     private FragmentManager fragmentManager;
     private TechnicianDialogFragment mDialog;
 
@@ -72,14 +77,52 @@ public class UnfinishOrderActivity extends BaseActivity implements View.OnClickL
                 getpageList(++page);
             }
         });
-        mAdapter.setOnClickOwnerListener(new UnfinishListAdapter.OnClickOwnerListener() {
+        mAdapter.setonClickOperateListener(new UnfinishListAdapter.OnClickOperateListener() {
+
             @Override
-            public void onClickOwner(int position) {
-                showMainTechnicainInfo(position);
+            public void onClickOrderOperate(int position, int type) {
+                switch (type){
+                    case 1:
+                        Intent intent = new Intent(getContext(), AddContactActivity.class);
+                        intent.putExtra(AutoCon.ORDER_ID, mList.get(position).getId());
+                        startActivity(intent);
+                        break;
+                    case 2:
+                        revokeOrder(position);
+                        break;
+                    case 3:
+                        showMainTechnicainInfo(position);
+                        break;
+                }
             }
         });
 
         getpageList(1);
+    }
+
+    /**
+     * 撤单
+     * @param position
+     */
+    private void revokeOrder(final int position){
+        Http.getInstance().postTaskToken(NetURL.getRevokeOrder(mList.get(position).getId()), "", RevokeOrderEntity.class, new OnResult() {
+            @Override
+            public void onResult(Object entity) {
+                if (entity == null){
+                    T.show(getContext(), R.string.operate_failed_agen);
+                    return;
+                }
+                if (entity instanceof RevokeOrderEntity){
+                    if (((RevokeOrderEntity) entity).isResult()){
+                        mList.remove(position);
+                        mAdapter.notifyDataSetChanged();
+                        T.show(getContext(), getString(R.string.revoke_order_succeed));
+                    }else {
+                        T.show(getContext(), ((RevokeOrderEntity) entity).getMessage());
+                    }
+                }
+            }
+        });
     }
 
     /**
@@ -110,9 +153,11 @@ public class UnfinishOrderActivity extends BaseActivity implements View.OnClickL
 
 
     private void getpageList(int page) {
-        Http.getInstance().postTaskToken(NetURL.LIST_UNFINISHED, "page=" + page + "&pageSize=5", ListUnfinishedEntity.class, new OnResult() {
+        if (page == 1) showDialog();
+        Http.getInstance().postTaskToken(NetURL.LIST_UNFINISHED, ListUnfinishedEntity.class, new OnResult() {
             @Override
             public void onResult(Object entity) {
+                cancelDialog();
                 pullToRefreshView.loadedCompleted();
                 if (entity == null){
                     T.show(getContext(), R.string.loading_data_failed);
@@ -134,7 +179,7 @@ public class UnfinishOrderActivity extends BaseActivity implements View.OnClickL
                     isRefresh = false;
                 }
             }
-        });
+        }, new BasicNameValuePair("page", String.valueOf(page)), new BasicNameValuePair("pageSize", "10"));
     }
 
     @Override

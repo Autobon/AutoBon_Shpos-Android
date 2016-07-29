@@ -81,6 +81,8 @@ public class AService extends Service {
                 if (entity instanceof PushIDEntity && !((PushIDEntity) entity).isResult()){
                     L.d("Getui", "cid上传失败");
                     mHandler.sendEmptyMessageDelayed(0, 5000);
+                }else {
+                    L.d("Getui", "cid上传成功");
                 }
             }
         }, new BasicNameValuePair("pushId", PushManager.getInstance().getClientid(this)));

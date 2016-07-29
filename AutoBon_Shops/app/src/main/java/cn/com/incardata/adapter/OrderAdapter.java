@@ -67,16 +67,18 @@ public class OrderAdapter extends BaseAdapter implements View.OnClickListener {
         holder.orderNum.setText(context.getString(R.string.order_num, orderInfo.getOrderNum()));
         holder.orderType.setText(MyApplication.getInstance().getSkill(orderInfo.getOrderType()));
 
+        holder.orderOperate.setAlpha(1f);
         if ("EXPIRED".equals(orderInfo.getStatus())){//超时订单
             holder.orderOperate.setText(R.string.timeouted);
-            holder.orderOperate.setTag(position);
-        }else if (orderInfo.getComment() == null){//未评价
+        }else if ("FINISHED".equals(orderInfo.getStatus())){//未评价
             holder.orderOperate.setText(R.string.uncomment);
-            holder.orderOperate.setTag(position);
-        }else {
+        }else if ("COMMENTED".equals(orderInfo.getStatus())){
             holder.orderOperate.setText(R.string.commented);
-            holder.orderOperate.setTag(position);
+        }else if ("GIVEN_UP".equals(orderInfo.getStatus()) || "CANCELED".equals(orderInfo.getStatus())){//撤单
+            holder.orderOperate.setText(R.string.canceled_order);
+            holder.orderOperate.setAlpha(0.4f);
         }
+        holder.orderOperate.setTag(position);
 
         return convertView;
     }

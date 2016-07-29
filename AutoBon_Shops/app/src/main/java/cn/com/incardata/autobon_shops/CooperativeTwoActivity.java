@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -17,11 +18,11 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
+import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
-import com.baidu.mapapi.map.MapStatusUpdateFactory;
+import com.baidu.mapapi.map.MapPoi;
 import com.baidu.mapapi.map.MapView;
-import com.baidu.mapapi.map.MyLocationConfiguration;
 import com.baidu.mapapi.map.Overlay;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.search.core.SearchResult;
@@ -29,9 +30,11 @@ import com.baidu.mapapi.search.geocode.GeoCodeOption;
 import com.baidu.mapapi.search.geocode.GeoCodeResult;
 import com.baidu.mapapi.search.geocode.GeoCoder;
 import com.baidu.mapapi.search.geocode.OnGetGeoCoderResultListener;
+import com.baidu.mapapi.search.geocode.ReverseGeoCodeOption;
 import com.baidu.mapapi.search.geocode.ReverseGeoCodeResult;
 
 import cn.com.incardata.http.NetWorkHelper;
+import cn.com.incardata.http.response.CooperativeInfo_Data;
 import cn.com.incardata.utils.BaiduMapUtil;
 import cn.com.incardata.utils.T;
 
@@ -46,20 +49,24 @@ public class CooperativeTwoActivity extends BaseActivity implements View.OnClick
     protected MapView mMapView;
     protected LocationClient mLocationClient;
     protected MyBDLocationListener myBDLocationListener;
+    private MyGeoCoderListener geoCoderListener;
     protected ImageView iv_back,iv_clear;
     protected TextView tv_search;
     protected Button sure_btn;
     protected Overlay markOverlay; //标志物图层
     protected Overlay popOverlay;  //信息框图层
 
-    protected static Bundle bundle;
-    protected static int defaultLevel = 15;
-    protected static int scanTime = 5000;
+    protected static int defaultLevel = 16;
+    protected static int scanTime = 1;
+
+    private CooperativeInfo_Data extraCooperation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cooperative_info_two_activity);
+        //在使用百度地图SDK各组件之前初始化context信息,传入ApplicationContext
+        SDKInitializer.initialize(getApplicationContext());
         init();
         initBaiduMapView();
     }
@@ -68,12 +75,49 @@ public class CooperativeTwoActivity extends BaseActivity implements View.OnClick
     protected void onStart() {
         super.onStart();
         initNetManager();
-        Log.i("test","business_pic_url===>"+bundle.getString("business_pic_url")+" corporation_pic_url===>"+bundle.getString("corporation_pic_url"));
     }
 
     protected void initBaiduMapView(){
         mMapView = (MapView) findViewById(R.id.bmapView);  	// 获取地图控件引用
         baiduMap = mMapView.getMap();  //管理具体的某一个MapView对象,缩放,旋转,平移
+
+        geoCoderListener = new MyGeoCoderListener();
+        baiduMap.setOnMapClickListener(new BaiduMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                //获取经纬度
+                System.out.println("latitude=" + latLng.longitude + ",longitude=" + latLng.latitude);
+                // 构建MarkerOption，用于在地图上添加Marker
+                showAddressInMap(latLng, "");
+
+                //实例化一个地理编码查询对象
+                GeoCoder geoCoder = GeoCoder.newInstance();
+                //设置反地理编码位置坐标
+                ReverseGeoCodeOption op = new ReverseGeoCodeOption();
+                op.location(latLng);
+                //发起反地理编码请求(经纬度->地址信息)
+                geoCoder.reverseGeoCode(op);
+                geoCoder.setOnGetGeoCodeResultListener(geoCoderListener);
+            }
+
+            @Override
+            public boolean onMapPoiClick(MapPoi mapPoi) {
+                if (mapPoi != null){
+                    // 构建MarkerOption，用于在地图上添加Marker
+                    showAddressInMap(mapPoi.getPosition(), "");
+
+                    //实例化一个地理编码查询对象
+                    GeoCoder geoCoder = GeoCoder.newInstance();
+                    //设置反地理编码位置坐标
+                    ReverseGeoCodeOption op = new ReverseGeoCodeOption();
+                    op.location(mapPoi.getPosition());
+                    //发起反地理编码请求(经纬度->地址信息)
+                    geoCoder.reverseGeoCode(op);
+                    geoCoder.setOnGetGeoCodeResultListener(geoCoderListener);
+                }
+                return true;
+            }
+        });
         /**
          * 百度地图加载完毕后回调此方法(传参入口)
          */
@@ -83,7 +127,6 @@ public class CooperativeTwoActivity extends BaseActivity implements View.OnClick
                 registerMyLocation();
             }
         });
-        BaiduMapUtil.hiddenBaiduLogo(mMapView);  //隐藏百度广告图标
         mMapView.showZoomControls(false);
         mMapView.showScaleControl(true);  //默认是true,显示标尺
     }
@@ -96,7 +139,7 @@ public class CooperativeTwoActivity extends BaseActivity implements View.OnClick
 
     private void init(){
         context = this;
-        bundle = getIntent().getExtras();  //得到上一个页面传递的bundle
+        extraCooperation = getIntent().getExtras().getParcelable(MainReviewActivity.Cooperation);  //得到上一个页面传递的bundle
 
         sure_btn = (Button) findViewById(R.id.sure_btn);
         iv_back = (ImageView) findViewById(R.id.iv_back);
@@ -124,14 +167,20 @@ public class CooperativeTwoActivity extends BaseActivity implements View.OnClick
                 addressToGeoPoint(address);
                 break;
             case R.id.sure_btn:
-                startActivity(CooperativeThreeActivity.class,bundle);
+                if (TextUtils.isEmpty(extraCooperation.getProvince())){
+                    T.show(getContext(), getString(R.string.please_shops_location));
+                    return;
+                }
+                Bundle bundle = new Bundle();
+                bundle.putParcelable(MainReviewActivity.Cooperation, extraCooperation);
+                startActivity(CooperativeThreeActivity.class, bundle);
                 break;
         }
     }
 
     protected void addressToGeoPoint(String address) {
         GeoCoder mSearch = GeoCoder.newInstance();
-        mSearch.setOnGetGeoCodeResultListener(new MyGeoCoderListener());
+        mSearch.setOnGetGeoCodeResultListener(geoCoderListener);
         mSearch.geocode(new GeoCodeOption().city(address).address(address));
     }
 
@@ -150,13 +199,13 @@ public class CooperativeTwoActivity extends BaseActivity implements View.OnClick
             return;
         }
         markOverlay = BaiduMapUtil.drawMarker(baiduMap,mLatlng,BitmapDescriptorFactory.fromResource(R.mipmap.shop),BaiduMapUtil.markZIndex);
-        popOverlay = BaiduMapUtil.drawPopWindow(baiduMap,context,mLatlng,address,BaiduMapUtil.popZIndex);
-        BaiduMapUtil.zoomByOneCenterPoint(baiduMap,mLatlng,defaultLevel);
+//        popOverlay = BaiduMapUtil.drawPopWindow(baiduMap,context,mLatlng,address,BaiduMapUtil.popZIndex);
+        BaiduMapUtil.zoomByOneCenterPoint(baiduMap, mLatlng, defaultLevel);
     }
 
     public void registerMyLocation(){
         myBDLocationListener = new MyBDLocationListener();
-        mLocationClient = new LocationClient(context);
+        mLocationClient = new LocationClient(getApplicationContext());
         mLocationClient.registerLocationListener(myBDLocationListener);
         baiduMap.setMyLocationEnabled(true);// 打开定位图层
 
@@ -169,13 +218,14 @@ public class CooperativeTwoActivity extends BaseActivity implements View.OnClick
         option.setOpenGps(true);  //设置打开GPS
         mLocationClient.setLocOption(option);
         mLocationClient.start();
+        mLocationClient.requestLocation();
 
         baiduMap.getUiSettings().setCompassEnabled(false);  //不显示指南针
-        MyLocationConfiguration configuration = new MyLocationConfiguration(
-                MyLocationConfiguration.LocationMode.FOLLOWING, true,
-                BitmapDescriptorFactory.fromResource(R.mipmap.shop));
-        baiduMap.setMyLocationConfigeration(configuration);// 设置定位显示的模式
-        baiduMap.setMapStatus(MapStatusUpdateFactory.zoomTo(baiduMap.getMapStatus().zoom));  //定位后更新缩放级别
+//        MyLocationConfiguration configuration = new MyLocationConfiguration(
+//                MyLocationConfiguration.LocationMode.FOLLOWING, true,
+//                BitmapDescriptorFactory.fromResource(R.mipmap.shop));
+//        baiduMap.setMyLocationConfigeration(configuration);// 设置定位显示的模式
+//        baiduMap.setMapStatus(MapStatusUpdateFactory.zoomTo(baiduMap.getMapStatus().zoom));  //定位后更新缩放级别
     }
 
     @Override
@@ -239,7 +289,7 @@ public class CooperativeTwoActivity extends BaseActivity implements View.OnClick
                         return;
                     }
                     markOverlay = BaiduMapUtil.drawMarker(baiduMap,latLng, BitmapDescriptorFactory.fromResource(R.mipmap.shop),BaiduMapUtil.markZIndex);
-                    popOverlay = BaiduMapUtil.drawPopWindow(baiduMap,context,latLng,address,BaiduMapUtil.popZIndex);
+//                    popOverlay = BaiduMapUtil.drawPopWindow(baiduMap,context,latLng,address,BaiduMapUtil.popZIndex);
                     BaiduMapUtil.zoomByOneCenterPoint(baiduMap,latLng,defaultLevel);
                 }
             }
@@ -255,14 +305,29 @@ public class CooperativeTwoActivity extends BaseActivity implements View.OnClick
             }
             LatLng mLatlng = result.getLocation();
             String address = result.getAddress();
-            bundle.putDouble("latitude",mLatlng.latitude);
-            bundle.putDouble("longitude",mLatlng.longitude);
             showAddressInMap(mLatlng,address);  //根据经纬度设置图标在地图上
+
+            //实例化一个地理编码查询对象
+            GeoCoder geoCoder = GeoCoder.newInstance();
+            //设置反地理编码位置坐标
+            ReverseGeoCodeOption op = new ReverseGeoCodeOption();
+            op.location(mLatlng);
+            //发起反地理编码请求(经纬度->地址信息)
+            geoCoder.reverseGeoCode(op);
+            geoCoder.setOnGetGeoCodeResultListener(geoCoderListener);
         }
 
         @Override
         public void onGetReverseGeoCodeResult(ReverseGeoCodeResult result) {
+            if (result != null && !TextUtils.isEmpty(result.getAddress())){
+                et_content.setText(result.getAddress());
 
+                extraCooperation.setLongitude(String.valueOf(result.getLocation().longitude));
+                extraCooperation.setLatitude(String.valueOf(result.getLocation().latitude));
+                extraCooperation.setProvince(result.getAddressDetail().province);
+                extraCooperation.setCity(result.getAddressDetail().city);
+                extraCooperation.setDistrict(result.getAddressDetail().district);
+            }
         }
     }
 

@@ -25,7 +25,16 @@ public class MyApplication extends Application{
     private static MyApplication instance;
     private String cookie;
     public static HashMap<Integer, String> skillMap;
-    private CooperativeSubmit_Data user;
+
+    public static CooperativeSubmit_Data getUser() {
+        return user;
+    }
+
+    public static void setUser(CooperativeSubmit_Data user) {
+        MyApplication.user = user;
+    }
+
+    private static CooperativeSubmit_Data user;
 
     public static synchronized MyApplication getInstance(){
         return instance;
@@ -106,14 +115,6 @@ public class MyApplication extends Application{
             setCookie(autoken);
         }
         return this.cookie;
-    }
-
-    public CooperativeSubmit_Data getUser() {
-        return user;
-    }
-
-    public void setUser(CooperativeSubmit_Data user) {
-        this.user = user;
     }
 
     public void switchLanguage(int language){

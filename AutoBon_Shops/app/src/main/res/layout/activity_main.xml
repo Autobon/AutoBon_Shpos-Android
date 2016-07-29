@@ -282,17 +282,33 @@
                 android:layout_height="1dp"
                 android:background="#F0F0F0"/>
 
-
             <Button
                 android:id="@+id/release_order"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/login_btn_selector"
                 android:padding="@dimen/dp10"
-                android:layout_margin="@dimen/dp15"
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_marginRight="@dimen/dp15"
+                android:layout_marginTop="@dimen/dp15"
+                android:layout_marginBottom="@dimen/dp5"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/sp18"
                 android:text="@string/release_order"/>
+
+            <CheckBox
+                android:id="@+id/assign_tech"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/dp15"
+                android:gravity="center"
+                android:padding="@dimen/dp5"
+                android:textSize="@dimen/sp13"
+                android:textColor="@color/gray_A3"
+                android:button="@drawable/assign_tech_checkbox_style"
+                android:text="@string/appoint_tech_tips"
+                android:background="@null"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
