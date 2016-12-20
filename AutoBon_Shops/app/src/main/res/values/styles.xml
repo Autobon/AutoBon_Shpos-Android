@@ -5,6 +5,15 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="AlertDialogTheme" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item> <!-- 边框 -->
+        <item name="android:windowIsFloating">true</item> <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsTranslucent">false</item> <!-- 半透明 -->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/dric</item>
+        <item name="android:backgroundDimEnabled">true</item> <!-- 模糊 -->
+    </style>
+
     <style name="LoginButtonStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -21,6 +30,12 @@
         <item name="android:indeterminateDrawable">@drawable/my_rating_bg_bar</item>
         <item name="android:minHeight">14dp</item>
         <item name="android:maxHeight">14dp</item>
+    </style>
+    <style name="ZRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/zrating_bg_bar</item>
+        <item name="android:indeterminateDrawable">@drawable/zrating_bg_bar</item>
+        <item name="android:minHeight">27dp</item>
+        <item name="android:maxHeight">27dp</item>
     </style>
 
     <style name="LargeRatingBar" parent="@android:style/Widget.RatingBar">

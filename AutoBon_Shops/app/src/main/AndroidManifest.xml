@@ -115,6 +115,7 @@
             android:theme="@style/SpinnerTheme"
             android:windowSoftInputMode="stateHidden|adjustResize" />
 
+
         <!-- 百度地图的定位服务 -->
         <service
             android:name="com.baidu.location.f"
@@ -210,7 +211,25 @@
             android:windowSoftInputMode="stateHidden|adjustResize" />
 
         <activity
-            android:name=".EnlargementActivity"
+        android:name=".EnlargementActivity"
+        android:configChanges="keyboardHidden|orientation|screenSize"
+        android:screenOrientation="portrait"
+        android:theme="@android:style/Theme.NoTitleBar"
+        android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".TechnicianInfoActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".UnFinishOrderInfoActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".ReviewMessageActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar"

@@ -18,6 +18,7 @@ import cn.com.incardata.http.response.GetSaleListEntity;
 import cn.com.incardata.http.response.SaleFiredEntity;
 import cn.com.incardata.http.response.SalemanData;
 import cn.com.incardata.utils.T;
+import cn.com.incardata.view.CaptureDialog;
 
 /**业务员管理
  * @author wanghao
@@ -26,6 +27,7 @@ public class SalesmanManageActivity extends BaseForBroadcastActivity {
     private ListView mListView;
     private SalsemanAdapter mAdapter;
     private List<SalemanData> mList;
+    private CaptureDialog captureDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,17 +55,34 @@ public class SalesmanManageActivity extends BaseForBroadcastActivity {
 
         mAdapter.setOnOperateClickListener(new SalsemanAdapter.OnOperateClickListener() {
             @Override
-            public void onOperateClick(int pos, boolean isModify) {
+            public void onOperateClick(final int pos, boolean isModify) {
                 if (isModify){
-                    Intent intent = new Intent(getContext(), AddSalemanActivity.class);
-                    intent.putExtra("isModify", true);
-                    intent.putExtra("Saleman", mList.get(pos));
-                    startActivityForResult(intent, 0x13);
+                    if (mList.get(pos).isFired()){
+                        T.show(getContext(), "该业务员已离职");
+                    }else {
+                        Intent intent = new Intent(getContext(), AddSalemanActivity.class);
+                        intent.putExtra("isModify", true);
+                        intent.putExtra("Saleman", mList.get(pos));
+                        startActivityForResult(intent, 0x13);
+                    }
                 }else {
                     if (mList.get(pos).isFired()){
                         T.show(getContext(), R.string.fired);
                     }else {
-                        salemanFired(pos);
+                        captureDialog = new CaptureDialog(getContext(), "确定把该员工离职！", true, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                captureDialog.dismiss();
+                                salemanFired(pos);
+                            }
+                        }, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                captureDialog.dismiss();
+                            }
+                        });
+                        captureDialog.show();
+
                     }
                 }
             }

@@ -183,13 +183,13 @@ public class CooperativeThreeActivity extends BaseActivity implements View.OnCli
                     T.show(context,context.getString(R.string.request_failed));
                     return;
                 }
-                CooperativeSubmitEntity cooperativeSubmitEntity = (CooperativeSubmitEntity) entity;
-                if(cooperativeSubmitEntity.isResult()){
-                    showTipsDialog();
-                }else{
-                    T.show(context,cooperativeSubmitEntity.getMessage());
-                    return;
-                }
+//                CooperativeSubmitEntity cooperativeSubmitEntity = (CooperativeSubmitEntity) entity;
+//                if(cooperativeSubmitEntity.isResult()){
+//                    showTipsDialog();
+//                }else{
+//                    T.show(context,cooperativeSubmitEntity.getMessage());
+//                    return;
+//                }
             }
         },(BasicNameValuePair[])mList.toArray(new BasicNameValuePair[mList.size()]));
     }

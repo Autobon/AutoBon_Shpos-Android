@@ -15,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
+
 import cn.com.incardata.application.MyApplication;
 import cn.com.incardata.http.Http;
 import cn.com.incardata.http.ImageLoaderCache;
@@ -23,8 +25,11 @@ import cn.com.incardata.http.OnResult;
 import cn.com.incardata.http.response.Construction;
 import cn.com.incardata.http.response.GetTechnicianEntity;
 import cn.com.incardata.http.response.OrderInfo;
+import cn.com.incardata.http.response.TechnicianMessage;
 import cn.com.incardata.utils.AutoCon;
 import cn.com.incardata.utils.DateCompute;
+import cn.com.incardata.utils.DecimalUtil;
+import cn.com.incardata.utils.T;
 import cn.com.incardata.view.CircleImageView;
 import cn.com.incardata.view.MyGridView;
 
@@ -37,25 +42,28 @@ public class OrderInfoActivity extends BaseForBroadcastActivity {
     private Button commentStatus;
     private TextView orderNum;
     private TextView orderTime;
-    private ImageView orderImage;
+    private TextView startTime;
+    private TextView endTime;
+    private TextView agreeEndTime;
+    //    private ImageView orderImage;
     private TextView remark;
     private TextView createTime;
-    private TextView workItem;
+    //    private TextView workItem;
     private TextView workPerson;
     private GridView beforePhoto;
     private GridView afterPhoto;
+    private GridView order_grid;
     private CircleImageView userPhoto;
     private TextView userName;
     private TextView orderCount;
     private RatingBar ratingBar;
-    private String[] workItems;
+    //    private String[] workItems;
     private OrderInfo orderInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_info);
-        workItems = getResources().getStringArray(R.array.work_items);
         initView();
         updateUI();
     }
@@ -65,13 +73,15 @@ public class OrderInfoActivity extends BaseForBroadcastActivity {
         commentStatus = (Button) findViewById(R.id.comment_state);
         orderNum = (TextView) findViewById(R.id.order_number);
         orderTime = (TextView) findViewById(R.id.order_time);
-        orderImage = (ImageView) findViewById(R.id.order_image);
+        startTime = (TextView) findViewById(R.id.work_startTime);
+        endTime = (TextView) findViewById(R.id.work_endTime);
+        agreeEndTime = (TextView) findViewById(R.id.agree_work_endTime);
         remark = (TextView) findViewById(R.id.remark);
         createTime = (TextView) findViewById(R.id.create_time);
-        workItem = (TextView) findViewById(R.id.work_item);
         workPerson = (TextView) findViewById(R.id.work_person);
         beforePhoto = (MyGridView) findViewById(R.id.work_before_grid);
         afterPhoto = (GridView) findViewById(R.id.work_after_grid);
+        order_grid = (GridView) findViewById(R.id.order_grid);
         userPhoto = (CircleImageView) findViewById(R.id.tech_header);
         userName = (TextView) findViewById(R.id.user_name);
         orderCount = (TextView) findViewById(R.id.order_num);
@@ -83,134 +93,228 @@ public class OrderInfoActivity extends BaseForBroadcastActivity {
                 finish();
             }
         });
-        orderImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                if (orderInfo != null){
-                    bundle.putStringArray(EnlargementActivity.IMAGE_URL, new String[]{orderInfo.getPhoto()});
-                }
-                startActivity(EnlargementActivity.class, bundle);
-            }
-        });
+//        orderImage.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Bundle bundle = new Bundle();
+//                if (orderInfo != null){
+//                    bundle.putStringArray(EnlargementActivity.IMAGE_URL, new String[]{orderInfo.getPhoto()});
+//                }
+//                startActivity(EnlargementActivity.class, bundle);
+//            }
+//        });
 
         commentStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), GoCommentActivity.class);
-                intent.putExtra("UserName", orderInfo.getMainTech().getName());
-                intent.putExtra("UserPhotoUrl", orderInfo.getMainTech().getAvatar());
-                intent.putExtra("OrderId", orderInfo.getId());
-                startActivityForResult(intent, RequestCode);//去评价
+
+                if ("FINISHED".equals(orderInfo.getStatus())) {//未评价
+                    Intent intent = new Intent(getContext(), GoCommentActivity.class);
+                    intent.putExtra("UserName", orderInfo.getTechName());
+                    intent.putExtra("UserPhotoUrl", orderInfo.getTechAvatar());
+                    intent.putExtra("orderCount", orderInfo.getOrderCount());
+                    intent.putExtra("OrderId", orderInfo.getId());
+                    intent.putExtra("evaluate", orderInfo.getEvaluate());
+                    startActivityForResult(intent, RequestCode);//去评价
+                } else {
+                    T.show(getContext(),"该订单已评价");
+                    return;
+                }
+
             }
         });
 
         orderInfo = getIntent().getParcelableExtra(AutoCon.ORDER_INFO);
-        getTechInfo(orderInfo.getId());
+//        getTechInfo(orderInfo.getId());
     }
 
-    private void getTechInfo(int orderId){
-        Http.getInstance().getTaskToken(NetURL.GET_TECHNICIAN, "orderId=" + orderId, GetTechnicianEntity.class, new OnResult() {
+    /**
+     * 根据技师id获取技师信息
+     */
+    private void getTechMessage() {
+        showDialog();
+        Http.getInstance().getTaskToken(NetURL.getTechIdMessageV2(1), "", GetTechnicianEntity.class, new OnResult() {
             @Override
             public void onResult(Object entity) {
-                if (entity == null){
-//                    T.show(getContext(), R.string.loading_data_failed);
-                    return;
-                }
-                if (entity instanceof GetTechnicianEntity){
-                    if (((GetTechnicianEntity) entity).isResult()){
-                        orderCount.setText(((GetTechnicianEntity) entity).getData().getTotalOrders() + "");
-                        ratingBar.setRating(((GetTechnicianEntity) entity).getData().getStarRate());
-                    }else {
-//                        T.show(getContext(), R.string.loading_data_failed);
-                        return;
+                cancelDialog();
+                if (entity != null && entity instanceof GetTechnicianEntity) {
+                    GetTechnicianEntity tech = (GetTechnicianEntity) entity;
+                    if (tech.isStatus()) {
+                        TechnicianMessage technicianMessage = JSON.parseObject(tech.getMessage().toString(), TechnicianMessage.class);
+                        workPerson.setText(technicianMessage.getName());
+                        ImageLoaderCache.getInstance().loader( NetURL.IP_PORT + technicianMessage.getAvatar(), userPhoto);
+                        userName.setText(technicianMessage.getName());
+                        orderCount.setText(String.valueOf(technicianMessage.getOrderCount()));
+                        ratingBar.setRating(technicianMessage.getEvaluate());
+                    } else {
+                        T.show(getContext(), tech.getMessage().toString());
                     }
+                } else {
+                    T.show(getContext(), R.string.loading_data_failed);
                 }
             }
         });
     }
 
-    private void updateUI(){
-        if (orderInfo == null)return;
-        orderType.setText(MyApplication.getInstance().getSkill(orderInfo.getOrderType()));
+
+
+    private void updateUI() {
+        if (orderInfo == null) return;
+//        orderType.setText(MyApplication.getInstance().getSkill(orderInfo.getOrderType()));
         orderNum.setText(getString(R.string.order_num, orderInfo.getOrderNum()));
-        orderTime.setText(getString(R.string.order_time, DateCompute.getDate(orderInfo.getOrderTime())));
-
-        if (orderInfo.getComment() == null){//未评价
-            commentStatus.setText(R.string.uncomment);
-        }else {
-            commentStatus.setText(R.string.commented);
-            commentStatus.setEnabled(false);
-        }
-
-        ImageLoaderCache.getInstance().loader(NetURL.IP_PORT + orderInfo.getPhoto(), orderImage, 0);
-        remark.setText(orderInfo.getRemark());
-        createTime.setText(DateCompute.getDate(orderInfo.getAddTime()));
-        String works = orderInfo.getMainConstruct().getWorkItems();
-        if (TextUtils.isEmpty(works)){
-            workItem.setText(R.string.not);
-        }else {
-            if (works.contains(",")) {
-                String[] items = works.split(",");
-                String tempItem = "";
-                for (String str : items) {
-                    tempItem += workItems[Integer.parseInt(str)] + ",";
-                }
-                workItem.setText(tempItem.substring(0, tempItem.length() - 1));
-            } else {
-                workItem.setText(workItems[1]);
+        if (orderInfo.getType() == null) {
+            orderType.setText("");
+        } else {
+            String[] types = orderInfo.getType().split(",");
+            String type = "";
+            for (int i = 0; i < types.length; i++) {
+                type = type + getProjectName(types[i]) + ",";
             }
+            if (type != "" && type.length() > 0) {
+                type = type.substring(0, type.length() - 1);
+            }
+            orderType.setText(type);
         }
-        workPerson.setText(orderInfo.getMainTech().getName());
+        orderTime.setText(getString(R.string.order_time1, DateCompute.getDate(orderInfo.getAgreedStartTime())));
 
-        ImageLoaderCache.getInstance().loader(NetURL.IP_PORT + orderInfo.getMainTech().getAvatar(), userPhoto);
-        userName.setText(orderInfo.getMainTech().getName());
 
-        updateGridView(orderInfo.getMainConstruct());
+        if ("FINISHED".equals(orderInfo.getStatus())) {//未评价
+            commentStatus.setText(R.string.uncomment);
+        } else if ("EXPIRED".equals(orderInfo.getStatus())){
+            commentStatus.setText(R.string.timeouted);
+//            commentStatus.setEnabled(false);
+        } else if ("COMMENTED".equals(orderInfo.getStatus())){
+            commentStatus.setText(R.string.commented);
+//            commentStatus.setEnabled(false);
+        }else if ("GIVEN_UP".equals(orderInfo.getStatus())){
+            commentStatus.setText(R.string.canceled_order);
+//            commentStatus.setEnabled(false);
+        }
+
+        remark.setText(orderInfo.getRemark());
+        createTime.setText(DateCompute.getDate(orderInfo.getCreateTime()));
+        if (orderInfo.getStartTime() != 0){
+            startTime.setText(DateCompute.getDate(orderInfo.getStartTime()));
+        }else {
+            startTime.setText("");
+        }
+        if (orderInfo.getEndTime() != 0){
+            endTime.setText(DateCompute.getDate(orderInfo.getEndTime()));
+        }else {
+            endTime.setText("");
+        }
+        agreeEndTime.setText(DateCompute.getDate(orderInfo.getAgreedEndTime()));
+        if (!TextUtils.isEmpty(orderInfo.getTechName())){
+            workPerson.setText(orderInfo.getTechName());
+        }else{
+            workPerson.setText("");
+        }
+        if (!TextUtils.isEmpty(orderInfo.getTechAvatar())){
+            ImageLoaderCache.getInstance().loader(NetURL.IP_PORT + orderInfo.getTechAvatar(), userPhoto);
+        }else{
+            return;
+        }
+        if (!TextUtils.isEmpty(orderInfo.getTechName())){
+            userName.setText(orderInfo.getTechName());
+        }else{
+            userName.setText("");
+        }
+        if (orderInfo.getOrderCount() != 0){
+            orderCount.setText(String.valueOf(orderInfo.getOrderCount()));
+        }else {
+            orderCount.setText("");
+        }
+        if (orderInfo.getEvaluate() == null){
+            ratingBar.setRating(0);
+        }else {
+            ratingBar.setRating(DecimalUtil.floatToInt(orderInfo.getEvaluate()));
+        }
+
+//        getTechMessage();
+        updateGridView();
     }
 
-    private void updateGridView(Construction mainConstruct) {
-        if (mainConstruct == null) return;
+    public String getProjectName(String type) {
+        if ("1".equals(type)) {
+            return "隔热膜";
+        } else if ("2".equals(type)) {
+            return "隐形车衣";
+        } else if ("3".equals(type)) {
+            return "车身改色";
+        } else if ("4".equals(type)) {
+            return "美容清洁";
+        }
+        if (type == null) ;
+        return null;
+    }
+
+    private void updateGridView() {
+
         Myadapter myadapter;
-        final String[] urlBefore;
-        String urlBeforePhotos = mainConstruct.getBeforePhotos();
-        if (urlBeforePhotos.contains(",")) {
-            urlBefore = urlBeforePhotos.split(",");
+        final String[] urlOrder;
+        String urlOrderPhotos = orderInfo.getPhoto();
+        if (urlOrderPhotos.contains(",")) {
+            urlOrder = urlOrderPhotos.split(",");
         } else {
-            urlBefore = new String[]{urlBeforePhotos};
+            urlOrder = new String[]{urlOrderPhotos};
         }
-        myadapter = new Myadapter(this, urlBefore);
-        beforePhoto.setAdapter(myadapter);
+        myadapter = new Myadapter(this, urlOrder);
+        order_grid.setAdapter(myadapter);
 
-        beforePhoto.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                openImage(position, urlBefore);
-            }
-        });
-
-        final String[] urlAfter;
-        String urlAfterPhotos = mainConstruct.getAfterPhotos();
-        if (urlAfterPhotos.contains(",")) {
-            urlAfter = urlAfterPhotos.split(",");
-        } else {
-            urlAfter = new String[]{urlAfterPhotos};
-        }
-        myadapter = new Myadapter(this, urlAfter);
-        afterPhoto.setAdapter(myadapter);
-        afterPhoto.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        order_grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                openImage(position, urlAfter);
+                openImage(position, urlOrder);
             }
         });
+
+        if (orderInfo.getBeforePhotos() != null){
+            final String[] urlBefore;
+            String urlBeforePhotos = orderInfo.getBeforePhotos();
+            if (urlBeforePhotos.contains(",")) {
+                urlBefore = urlBeforePhotos.split(",");
+            } else {
+                urlBefore = new String[]{urlBeforePhotos};
+            }
+            myadapter = new Myadapter(this, urlBefore);
+            beforePhoto.setAdapter(myadapter);
+
+            beforePhoto.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                    openImage(position, urlBefore);
+                }
+            });
+        }
+
+
+        if (orderInfo.getAfterPhotos() != null){
+            final String[] urlAfter;
+            String urlAfterPhotos = orderInfo.getAfterPhotos();
+            if (urlAfterPhotos.contains(",")) {
+                urlAfter = urlAfterPhotos.split(",");
+            } else {
+                urlAfter = new String[]{urlAfterPhotos};
+            }
+            myadapter = new Myadapter(this, urlAfter);
+            afterPhoto.setAdapter(myadapter);
+            afterPhoto.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    openImage(position, urlAfter);
+                }
+            });
+        }
+
     }
 
-    /** 查看图片
+    /**
+     * 查看图片
+     *
      * @param position
      * @param urls
      */
-    private void openImage(int position, String... urls){
+    private void openImage(int position, String... urls) {
         Bundle bundle = new Bundle();
         bundle.putStringArray(EnlargementActivity.IMAGE_URL, urls);
         bundle.putInt(EnlargementActivity.POSITION, position);
@@ -264,9 +368,9 @@ public class OrderInfoActivity extends BaseForBroadcastActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RequestCode && resultCode == RESULT_OK){
+        if (requestCode == RequestCode && resultCode == RESULT_OK) {
             commentStatus.setText(R.string.commented);
-            commentStatus.setEnabled(false);
+//            commentStatus.setEnabled(false);
         }
     }
 }

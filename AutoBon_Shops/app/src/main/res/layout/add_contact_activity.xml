@@ -78,6 +78,10 @@
             android:text="@string/search_text"
             android:textColor="@color/darkgray" />
     </LinearLayout>
+    <View
+        android:background="@color/lightgray"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
     <cn.com.incardata.view.PullToRefreshView
         android:id="@+id/pull_refresh"
         android:layout_width="match_parent"

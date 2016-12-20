@@ -38,28 +38,28 @@
                 android:layout_height="1dp"
                 android:background="@color/lightgray"
                 android:layout_marginTop="@dimen/dp20"/>
-            <EditText
-                android:id="@+id/et_company"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:maxLength="30"
-                android:hint="@string/company_short_text"
-                android:background="@android:color/white"
-                android:paddingBottom="@dimen/dp15"
-                android:paddingTop="@dimen/dp15"
-                android:textColorHint="@color/lightgray"
-                android:paddingLeft="@dimen/dp25"
-                android:textSize="@dimen/sp15"
-                android:textColor="@color/darkgray"/>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/lightgray"/>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/lightgray"
-                android:layout_marginTop="@dimen/dp5"/>
+            <!--<EditText-->
+                <!--android:id="@+id/et_company"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:maxLength="30"-->
+                <!--android:hint="@string/company_short_text"-->
+                <!--android:background="@android:color/white"-->
+                <!--android:paddingBottom="@dimen/dp15"-->
+                <!--android:paddingTop="@dimen/dp15"-->
+                <!--android:textColorHint="@color/lightgray"-->
+                <!--android:paddingLeft="@dimen/dp25"-->
+                <!--android:textSize="@dimen/sp15"-->
+                <!--android:textColor="@color/darkgray"/>-->
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="1dp"-->
+                <!--android:background="@color/lightgray"/>-->
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="1dp"-->
+                <!--android:background="@color/lightgray"-->
+                <!--android:layout_marginTop="@dimen/dp5"/>-->
             <EditText
                 android:id="@+id/et_phone"
                 android:layout_width="match_parent"
@@ -105,7 +105,7 @@
                     android:textColor="@color/darkgray"/>
                 <Button
                     android:id="@+id/btn_send_code"
-                    android:layout_width="@dimen/dp65"
+                    android:layout_width="@dimen/dp70"
                     android:layout_height="@dimen/dp25"
                     android:layout_marginRight="@dimen/dp25"
                     android:background="@drawable/check_btn"
@@ -124,20 +124,37 @@
                 android:layout_height="1dp"
                 android:background="@color/lightgray"
                 android:layout_marginTop="@dimen/dp5"/>
-            <EditText
-                android:id="@+id/et_pwd"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/pwd_text"
-                android:background="@android:color/white"
-                android:paddingBottom="@dimen/dp15"
-                android:paddingTop="@dimen/dp15"
-                android:textColorHint="@color/lightgray"
                 android:paddingLeft="@dimen/dp25"
-                android:textSize="@dimen/sp15"
-                android:textColor="@color/darkgray"
-                android:inputType="textPassword"
-                android:maxLength="18"/>
+                android:background="@android:color/white"
+                android:orientation="horizontal">
+                <EditText
+                    android:id="@+id/et_pwd"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/pwd_text"
+                    android:layout_weight="1"
+                    android:background="@android:color/white"
+                    android:paddingBottom="@dimen/dp15"
+                    android:paddingTop="@dimen/dp15"
+                    android:textColorHint="@color/lightgray"
+                    android:textSize="@dimen/sp15"
+                    android:textColor="@color/darkgray"
+                    android:inputType="textPassword"
+                    android:maxLength="18"/>
+                <ImageView
+                    android:id="@+id/iv_eye1"
+                    android:layout_width="@dimen/dp20"
+                    android:layout_height="@dimen/dp20"
+                    android:scaleType="centerInside"
+                    android:layout_gravity="center_vertical"
+                    android:src="@mipmap/eye_hidden"
+                    android:layout_marginRight="@dimen/dp30"
+                    />
+            </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -147,20 +164,37 @@
                 android:layout_height="1dp"
                 android:background="@color/lightgray"
                 android:layout_marginTop="@dimen/dp5"/>
-            <EditText
-                android:id="@+id/et_confirm_pwd"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/pwd_confirm_text"
-                android:background="@android:color/white"
-                android:paddingBottom="@dimen/dp15"
-                android:paddingTop="@dimen/dp15"
-                android:textColorHint="@color/lightgray"
                 android:paddingLeft="@dimen/dp25"
-                android:textSize="@dimen/sp15"
-                android:textColor="@color/darkgray"
-                android:inputType="textPassword"
-                android:maxLength="18"/>
+                android:background="@android:color/white"
+                android:orientation="horizontal">
+                <EditText
+                    android:id="@+id/et_confirm_pwd"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/pwd_confirm_text"
+                    android:background="@android:color/white"
+                    android:paddingBottom="@dimen/dp15"
+                    android:paddingTop="@dimen/dp15"
+                    android:textColorHint="@color/lightgray"
+                    android:textSize="@dimen/sp15"
+                    android:textColor="@color/darkgray"
+                    android:inputType="textPassword"
+                    android:maxLength="18"/>
+                <ImageView
+                    android:id="@+id/iv_eye2"
+                    android:layout_width="@dimen/dp20"
+                    android:layout_height="@dimen/dp20"
+                    android:scaleType="centerInside"
+                    android:layout_gravity="center_vertical"
+                    android:src="@mipmap/eye_hidden"
+                    android:layout_marginRight="@dimen/dp30"
+                    />
+            </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"

@@ -60,7 +60,7 @@ public class PersonalActivity extends BaseForBroadcastActivity implements View.O
                 startActivity(MyOrderActivity.class);
                 break;
             case R.id.cooperater_layout:
-                startActivity(MainReviewActivity.class);
+                startActivity(ReviewMessageActivity.class);
                 break;
             case R.id.salesman_layout:
                 startActivity(SalesmanManageActivity.class);

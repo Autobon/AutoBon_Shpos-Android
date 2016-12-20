@@ -6,20 +6,14 @@ import java.util.List;
  * Created by wanghao on 16/4/20.
  */
 public class ListOrder_Data {
-    private int page;
     private int totalElements;
     private int totalPages;
-    private int pageSize;
-    private int count;
-    private List<OrderInfo> list;
-
-    public int getPage() {
-        return page;
-    }
-
-    public void setPage(int page) {
-        this.page = page;
-    }
+    private boolean last;
+    private int size;
+    private int number;
+    private boolean first;
+    private int numberOfElements;
+    private List<OrderInfo> content;
 
     public int getTotalElements() {
         return totalElements;
@@ -37,27 +31,51 @@ public class ListOrder_Data {
         this.totalPages = totalPages;
     }
 
-    public int getPageSize() {
-        return pageSize;
+    public boolean isLast() {
+        return last;
     }
 
-    public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
+    public void setLast(boolean last) {
+        this.last = last;
     }
 
-    public int getCount() {
-        return count;
+    public int getSize() {
+        return size;
     }
 
-    public void setCount(int count) {
-        this.count = count;
+    public void setSize(int size) {
+        this.size = size;
     }
 
-    public List<OrderInfo> getList() {
-        return list;
+    public int getNumber() {
+        return number;
     }
 
-    public void setList(List<OrderInfo> list) {
-        this.list = list;
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public boolean isFirst() {
+        return first;
+    }
+
+    public void setFirst(boolean first) {
+        this.first = first;
+    }
+
+    public int getNumberOfElements() {
+        return numberOfElements;
+    }
+
+    public void setNumberOfElements(int numberOfElements) {
+        this.numberOfElements = numberOfElements;
+    }
+
+    public List<OrderInfo> getContent() {
+        return content;
+    }
+
+    public void setContent(List<OrderInfo> content) {
+        this.content = content;
     }
 }

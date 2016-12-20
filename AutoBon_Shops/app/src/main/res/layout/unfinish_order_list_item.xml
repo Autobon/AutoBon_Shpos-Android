@@ -2,150 +2,94 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
+    android:descendantFocusability="blocksDescendants"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
-
+    android:background="@color/line_light_color">
     <LinearLayout
+        android:orientation="vertical"
+        android:background="@color/main_white"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <View
-            android:layout_width="5dp"
-            android:layout_height="match_parent"
-            android:background="@color/main_orange"/>
-
-        <TextView
-            android:id="@+id/order_num"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="@color/darkgray"
-            android:background="@android:color/white"
-            android:textSize="@dimen/sp13"
-            android:paddingLeft="@dimen/dp10"
-            android:paddingTop="@dimen/dp10"
-            android:paddingBottom="@dimen/dp10"
-            android:text="@string/order_num"/>
-
-        <Button
-            android:id="@+id/appoint_tech"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/main_orange"
-            android:layout_marginRight="@dimen/dp10"
-            android:visibility="gone"
-            android:background="@drawable/check_btn"
-            android:text="@string/appoint_tech"
-            android:textSize="@dimen/sp13"/>
-
-        <Button
-            android:id="@+id/revoke_order"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/main_orange"
-            android:layout_marginRight="@dimen/dp15"
-            android:paddingLeft="@dimen/dp5"
-            android:paddingRight="@dimen/dp5"
-            android:background="@drawable/check_btn"
-            android:text="@string/revoke_order"
-            android:textSize="@dimen/sp13"/>
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#F0F0F0"/>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/dp15"
-        android:layout_marginRight="@dimen/dp15"
         android:layout_marginTop="@dimen/dp5"
-        android:layout_marginBottom="@dimen/dp10">
+        android:layout_height="wrap_content">
+        <View
+            android:background="#dddddd"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
 
-        <TextView
-            android:id="@+id/order_owner"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:minWidth="@dimen/dp50"
-            android:maxWidth="@dimen/dp110"
-            android:ellipsize="end"
-            android:textColor="@android:color/white"
-            android:gravity="center"
             android:layout_marginTop="@dimen/dp5"
-            android:textSize="@dimen/sp13"
-            android:paddingTop="3dp"
-            android:paddingBottom="3dp"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/owner_bg" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/order_type"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/order_owner"
-            android:textColor="@color/main_orange"
-            android:textSize="@dimen/sp13"
-            android:maxLines="1"
-            android:ellipsize="end" />
+            <TextView
+                android:id="@+id/order_num"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textColor="@color/darkgray"
+                android:background="@android:color/white"
+                android:textSize="@dimen/sp12"
+                android:paddingLeft="@dimen/dp10"
+                android:paddingTop="@dimen/dp10"
+                android:paddingBottom="@dimen/dp5"
+                android:text="@string/order_num"/>
 
-        <TextView
-            android:id="@+id/order_time"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/darker_gray"
-            android:layout_marginTop="3dp"
-            android:layout_toLeftOf="@id/order_owner"
-            android:layout_below="@id/order_type"
-            android:textSize="@dimen/sp13"
-            android:maxLines="1"
-            android:text="@string/order_time"
-            android:ellipsize="end" />
+            <Button
+                android:id="@+id/appoint_tech"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/main_white"
+                android:layout_marginRight="@dimen/dp10"
+                android:visibility="visible"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/unfinish_add_tech_btn_style"
+                android:text="@string/appoint_tech"
+                android:textSize="@dimen/sp12"/>
 
-        <ImageView
-            android:id="@+id/order_image"
+            <Button
+                android:id="@+id/revoke_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#585858"
+                android:layout_marginRight="@dimen/dp10"
+                android:paddingLeft="@dimen/dp15"
+                android:paddingRight="@dimen/dp15"
+                android:background="@drawable/unfinish_order_cancel_btn"
+                android:text="@string/revoke_order"
+                android:textSize="@dimen/sp12"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp120"
-            android:layout_below="@id/order_time"
+            android:paddingLeft="@dimen/dp10"
+            android:paddingRight="@dimen/dp10"
             android:layout_marginTop="@dimen/dp5"
-            android:background="@color/lightgray" />
-
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#F0F0F0"/>
-
-    <TextView
-        android:id="@+id/remark"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/darker_gray"
-        android:layout_margin="@dimen/dp15"
-        android:textSize="@dimen/sp13"
-        android:text="@string/remark" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#F0F0F0"/>
-
-    <TextView
-        android:id="@+id/create_time"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/darker_gray"
-        android:layout_margin="@dimen/dp15"
-        android:textSize="@dimen/sp13"
-        android:text="@string/create_time" />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#F0F0F0"/>
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/orderType"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textSize="@dimen/sp12"
+                android:textColor="@color/darkgray"
+                android:text="隔热膜、隐形车衣、车身改色、美容清洁"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/orderStatus"
+                android:textSize="@dimen/sp12"
+                android:text="开始施工"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <View
+            android:background="#dddddd"
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+    </LinearLayout>
 
 </LinearLayout>

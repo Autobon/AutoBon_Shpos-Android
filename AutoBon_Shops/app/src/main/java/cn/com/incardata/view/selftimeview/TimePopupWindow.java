@@ -18,6 +18,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import cn.com.incardata.autobon_shops.R;
+import cn.com.incardata.utils.DateCompute;
 
 /**
  * 时间选择器
@@ -69,9 +70,10 @@ public class TimePopupWindow extends PopupWindow implements OnClickListener {
 //		calendar.setTimeInMillis(System.currentTimeMillis());
 		
 		Calendar calendar = Calendar.getInstance();
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:ss");
-		String time=this.m_CurTime.getText().toString()+" 00:00";
-        if(JudgeDate.isDate(time, "yyyy-MM-dd hh:ss")){
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+//		String time=this.m_CurTime.getText().toString()+" 00:00";
+		String time=this.m_CurTime.getText().toString();
+        if(JudgeDate.isDate(time, "yyyy-MM-dd HH:mm")){
              try {
                 calendar.setTime(dateFormat.parse(time));
              } catch (ParseException e) {
@@ -194,7 +196,7 @@ public class TimePopupWindow extends PopupWindow implements OnClickListener {
 		} else {
 			if (timeSelectListener != null) {
 				try {
-					Date date = WheelTime.dateFormat.parse(wheelTime.getTime());
+					Date date = DateCompute.getStringToDate(wheelTime.getTime());
 					timeSelectListener.onTimeSelect(date);
 				} catch (ParseException e) {
 					e.printStackTrace();
@@ -204,6 +206,7 @@ public class TimePopupWindow extends PopupWindow implements OnClickListener {
 			return;
 		}
 	}
+
 
 	public interface OnTimeSelectListener {
 		void onTimeSelect(Date date);

@@ -52,6 +52,24 @@ public class DecimalUtil {
 		BigDecimal bd1 = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
 		return bd1.floatValue();
 	}
+
+	/**
+	 * float类型四舍五入成int类型
+	 * @param f
+	 * @return
+     */
+	public static int floatToInt(float f) {
+		int i = 0;
+		if (f > 0) {
+			i = (int) ((f * 10 + 5) / 10);
+		} else if (f < 0) {
+			i = (int) ((f * 10 - 5) / 10);
+		} else {
+			i = 0;
+		}
+		return i;
+	}
+
 	
 	public static String Number1(double nFloat) {
 		return new DecimalFormat("##0.0").format(nFloat);    

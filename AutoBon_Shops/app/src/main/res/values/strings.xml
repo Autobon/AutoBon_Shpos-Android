@@ -42,7 +42,7 @@
     <string name="register_company_title">合作商</string>
     <string name="company_short_text">企业简称</string>
     <string name="valid_code_text">验证码</string>
-    <string name="get_check_btn_text">获取验证</string>
+    <string name="get_check_btn_text">获取验证码</string>
     <string name="pwd_text">密码</string>
     <string name="pwd_confirm_text">确认密码</string>
     <string name="register_bottom_tips">点击“注册”代表本人已阅读并同意</string>
@@ -145,10 +145,10 @@
     <string name="order_info">订单信息</string>
     <string name="sample_image">订单图片</string>
     <string name="please_edit_remark">请填写备注(最多200字)</string>
-    <string name="work_time">施工时间</string>
+    <string name="work_time">预约施工时间</string>
     <string name="work_item">施工项目</string>
     <string name="skill_item_1">隔热层</string>
-    <string name="skill_item_2">隐型车衣</string>
+    <string name="skill_item_2">隐形车衣</string>
     <string name="skill_item_3">车身改色</string>
     <string name="skill_item_4">美容清洁</string>
     <string name="release_order">一键下单</string>
@@ -156,7 +156,8 @@
     <string name="cancel">取消</string>
     <string name="not_later_current_time">不能早于当前时间</string>
     <string name="please_upload_order_photo">请上传订单照片</string>
-    <string name="required_work_time">施工时间不能为空</string>
+    <string name="required_work_time">预约施工时间不能为空</string>
+    <string name="agreedEndTime_str">最迟交车时间不能为空</string>
     <string name="please_order_type">请选择订单类型</string>
     <string name="submiting">正在处理…</string>
     <string name="release_order_failed_again">下单失败，请重试一次</string>
@@ -164,13 +165,14 @@
 
     <!-- 未完成订单 -->
     <string name="unfinish_order">未完成订单</string>
-    <string name="order_num">订单编号%1$s</string>
+    <string name="order_num">订单编号：%1$s</string>
     <string name="no_receive">未接单</string>
     <string name="received">已接单</string>
-    <string name="order_time">预约时间 %1$s</string>
+    <string name="order_time">预约开始时间 %1$s</string>
     <string name="remark">备注： %1$s</string>
-    <string name="create_time">下单时间： %1$s</string>
+    <string name="create_time">订单创建时间：</string>
     <string name="order_number_text">订单数</string>
+    <string name="order_time1">预约施工时间： %1$s</string>
 
     <!-- 合作商 -->
     <string name="cooperater">合作商</string>
@@ -216,7 +218,7 @@
     <string name="dimission">离职</string>
     <string name="fired">已离职</string>
     <string name="manager">管理员</string>
-    <string name="saleman">销售员</string>
+    <string name="saleman">业务员</string>
     <string name="input_name">请输入姓名</string>
     <string name="male">男</string>
     <string name="female">女</string>
@@ -267,5 +269,14 @@
     <string name="appoint_tech_tips">不群推订单，去指定技师</string>
     <string name="editor">编辑</string>
     <string name="modify_succeed">修改成功</string>
+    <string name="tech_message">技师详情</string>
+    <string name="agreeworktime">预约施工时间：</string>
+    <string name="agreeendtime">最迟交车时间：</string>
+    <string name="workstarttime">施工开始时间：</string>
+    <string name="workendtime">施工结束时间：</string>
+    <string name="add_zhanghu">新增账户</string>
+    <string name="agreeTime">预约时间： </string>
+    <string name="work_skill">施工项目：</string>
+    <string name="no_order">暂无订单</string>
 
 </resources>

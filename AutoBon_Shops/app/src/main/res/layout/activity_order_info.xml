@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:background="@color/line_light_color">
 
 
     <RelativeLayout
@@ -17,312 +17,399 @@
             android:id="@+id/back"
             android:layout_width="@dimen/dp35"
             android:layout_height="match_parent"
-            android:padding="@dimen/dp10"
-            android:src="@mipmap/default_back"
-            android:scaleType="centerInside"
             android:clickable="true"
-            android:focusable="true"/>
+            android:focusable="true"
+            android:padding="@dimen/dp10"
+            android:scaleType="centerInside"
+            android:src="@mipmap/default_back" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="@string/order_infomation"
-            android:textSize="@dimen/sp18"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp18" />
 
         <ImageView
             android:layout_width="@dimen/dp45"
             android:layout_height="match_parent"
-            android:padding="@dimen/dp10"
-            android:scaleType="centerInside"
+            android:layout_alignParentRight="true"
             android:clickable="true"
             android:focusable="true"
-            android:visibility="invisible"
-            android:layout_alignParentRight="true"/>
+            android:padding="@dimen/dp10"
+            android:scaleType="centerInside"
+            android:visibility="invisible" />
     </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/r1">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="@dimen/dp10"
-            android:background="@android:color/white">
+            android:background="@android:color/white"
+            android:paddingTop="@dimen/dp10">
 
             <Button
                 android:id="@+id/comment_state"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/sp13"
+                android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/dp15"
                 android:layout_marginTop="5dp"
-                android:paddingTop="3dp"
+                android:background="@drawable/check_btn"
                 android:paddingBottom="3dp"
                 android:paddingLeft="@dimen/dp10"
                 android:paddingRight="@dimen/dp10"
+                android:paddingTop="3dp"
                 android:text="@string/uncomment"
                 android:textColor="@color/main_orange"
-                android:background="@drawable/check_btn"
-                android:layout_alignParentRight="true" />
+                android:textSize="@dimen/sp13" />
 
             <TextView
                 android:id="@+id/order_type"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/main_orange"
-                android:layout_toLeftOf="@id/comment_state"
                 android:layout_marginLeft="@dimen/dp15"
                 android:layout_marginRight="@dimen/dp10"
-                android:textSize="@dimen/sp13"
-                android:text="@string/uncomment"
+                android:layout_toLeftOf="@id/comment_state"
+                android:ellipsize="end"
                 android:maxLines="1"
-                android:ellipsize="end" />
+                android:text="@string/uncomment"
+                android:textColor="@color/main_orange"
+                android:textSize="@dimen/sp13" />
 
             <TextView
                 android:id="@+id/order_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@id/comment_state"
-                android:layout_marginLeft="@dimen/dp15"
-                android:layout_marginRight="@dimen/dp10"
                 android:layout_below="@id/order_type"
-                android:textColor="@color/darkgray"
-                android:textSize="@dimen/sp13"
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_marginTop="@dimen/dp5"
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_toLeftOf="@id/comment_state"
+                android:ellipsize="end"
                 android:maxLines="1"
                 android:text="@string/order_num"
-                android:ellipsize="end" />
+                android:textColor="@color/darkgray"
+                android:textSize="@dimen/sp13" />
 
             <TextView
                 android:id="@+id/order_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@id/comment_state"
+                android:layout_below="@id/order_number"
                 android:layout_marginLeft="@dimen/dp15"
                 android:layout_marginRight="@dimen/dp10"
-                android:layout_below="@id/order_number"
-                android:textColor="@color/darkgray"
-                android:textSize="@dimen/sp13"
+                android:layout_toLeftOf="@id/comment_state"
+                android:ellipsize="end"
+                android:layout_marginTop="@dimen/dp5"
                 android:maxLines="1"
-                android:text="@string/order_time"
-                android:ellipsize="end" />
+                android:text="@string/order_time1"
+                android:textColor="@color/darkgray"
+                android:textSize="@dimen/sp13" />
 
             <View
                 android:id="@+id/v2"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_below="@id/order_time"
-                android:layout_marginTop="@dimen/dp5"
                 android:layout_marginBottom="@dimen/dp5"
                 android:layout_marginLeft="@dimen/dp15"
                 android:layout_marginRight="@dimen/dp15"
-                android:background="#F0F0F0"/>
-
-            <ImageView
-                android:id="@+id/order_image"
+                android:layout_marginTop="@dimen/dp5"
+                android:background="#F0F0F0" />
+            <cn.com.incardata.view.MyGridView
+                android:id="@+id/order_grid"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp120"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/v2"
                 android:layout_marginLeft="@dimen/dp15"
-                android:layout_marginRight="@dimen/dp15"/>
+                android:layout_marginRight="@dimen/dp15"
+                android:gravity="center"
+                android:horizontalSpacing="@dimen/dp10"
+                android:listSelector="@android:color/transparent"
+                android:numColumns="3"
+                android:stretchMode="columnWidth"
+                android:verticalSpacing="@dimen/dp10" />
+
+            <!--<cn.com.incardata.view.MyGridView-->
+                <!--android:id="@+id/order_grid"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@id/v2"-->
+                <!--android:layout_marginLeft="@dimen/dp15"-->
+                <!--android:layout_marginRight="@dimen/dp15"-->
+                <!--android:layout_marginTop="@dimen/dp10"-->
+                <!--android:gravity="center"-->
+                <!--android:horizontalSpacing="@dimen/dp10"-->
+                <!--android:listSelector="@android:color/transparent"-->
+                <!--android:numColumns="3"-->
+                <!--android:stretchMode="columnWidth"-->
+                <!--android:verticalSpacing="@dimen/dp10" />-->
 
             <View
                 android:id="@+id/v3"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_below="@id/order_image"
-                android:layout_marginTop="@dimen/dp5"
+                android:layout_below="@id/order_grid"
                 android:layout_marginBottom="@dimen/dp5"
                 android:layout_marginLeft="@dimen/dp15"
                 android:layout_marginRight="@dimen/dp15"
-                android:background="#F0F0F0"/>
+                android:layout_marginTop="@dimen/dp5"
+                android:background="#F0F0F0" />
 
             <TextView
                 android:id="@+id/remark_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/darkgray"
-                android:layout_marginLeft="@dimen/dp15"
                 android:layout_below="@id/v3"
-                android:textSize="@dimen/sp13"
-                android:text="@string/order_remark"/>
+                android:layout_marginLeft="@dimen/dp15"
+                android:text="@string/order_remark"
+                android:textColor="@color/darkgray"
+                android:textSize="@dimen/sp13" />
 
             <TextView
                 android:id="@+id/remark"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/remark_tv"
                 android:layout_alignTop="@id/remark_tv"
                 android:layout_marginRight="@dimen/dp15"
+                android:layout_toRightOf="@id/remark_tv"
                 android:textColor="@color/darkgray"
-                android:textSize="@dimen/sp13"/>
+                android:textSize="@dimen/sp13" />
 
             <View
                 android:id="@+id/v4"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_below="@id/remark"
-                android:layout_marginTop="@dimen/dp5"
                 android:layout_marginBottom="@dimen/dp5"
                 android:layout_marginLeft="@dimen/dp15"
                 android:layout_marginRight="@dimen/dp15"
-                android:background="#F0F0F0"/>
+                android:layout_marginTop="@dimen/dp5"
+                android:background="#F0F0F0" />
 
             <TextView
                 android:id="@+id/create_time_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/darkgray"
-                android:layout_marginLeft="@dimen/dp15"
                 android:layout_below="@id/v4"
-                android:textSize="@dimen/sp13"
-                android:text="@string/order_create_time"/>
+                android:layout_marginLeft="@dimen/dp15"
+                android:text="@string/create_time"
+                android:textColor="@color/darkgray"
+                android:textSize="@dimen/sp13" />
 
             <TextView
                 android:id="@+id/create_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/create_time_tv"
                 android:layout_alignTop="@id/create_time_tv"
                 android:layout_marginRight="@dimen/dp15"
+                android:layout_toRightOf="@id/create_time_tv"
                 android:textColor="@color/darkgray"
-                android:textSize="@dimen/sp13"/>
+                android:textSize="@dimen/sp13" />
 
             <View
                 android:id="@+id/v5"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_below="@id/create_time_tv"
-                android:layout_marginTop="@dimen/dp5"
                 android:layout_marginBottom="@dimen/dp5"
                 android:layout_marginLeft="@dimen/dp15"
                 android:layout_marginRight="@dimen/dp15"
-                android:background="#F0F0F0"/>
+                android:layout_marginTop="@dimen/dp5"
+                android:background="#F0F0F0" />
 
             <TextView
-                android:id="@+id/work_item_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/darkgray"
-                android:layout_marginLeft="@dimen/dp15"
-                android:layout_below="@id/v5"
-                android:textSize="@dimen/sp13"
-                android:text="@string/work_item_"/>
+            android:id="@+id/work_startTime_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/darkgray"
+            android:layout_marginLeft="@dimen/dp15"
+            android:layout_below="@id/v5"
+            android:textSize="@dimen/sp13"
+            android:text="@string/workstarttime"/>
 
             <TextView
-                android:id="@+id/work_item"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/work_item_tv"
-                android:layout_alignTop="@id/work_item_tv"
-                android:layout_marginRight="@dimen/dp15"
-                android:textColor="@color/darkgray"
-                android:textSize="@dimen/sp13"/>
+            android:id="@+id/work_startTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/work_startTime_tv"
+            android:layout_alignTop="@id/work_startTime_tv"
+            android:layout_marginRight="@dimen/dp15"
+            android:textColor="@color/darkgray"
+            android:textSize="@dimen/sp13"/>
 
             <View
                 android:id="@+id/v6"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_below="@id/work_item"
-                android:layout_marginTop="@dimen/dp5"
+                android:layout_below="@id/work_startTime"
                 android:layout_marginBottom="@dimen/dp5"
                 android:layout_marginLeft="@dimen/dp15"
                 android:layout_marginRight="@dimen/dp15"
-                android:background="#F0F0F0"/>
+                android:layout_marginTop="@dimen/dp5"
+                android:background="#F0F0F0" />
 
             <TextView
-                android:id="@+id/work_person_tv"
+                android:id="@+id/work_endTime_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/darkgray"
                 android:layout_marginLeft="@dimen/dp15"
                 android:layout_below="@id/v6"
                 android:textSize="@dimen/sp13"
-                android:text="@string/work_person"/>
+                android:text="@string/workendtime"/>
+
+            <TextView
+                android:id="@+id/work_endTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/work_endTime_tv"
+                android:layout_alignTop="@id/work_endTime_tv"
+                android:layout_marginRight="@dimen/dp15"
+                android:textColor="@color/darkgray"
+                android:textSize="@dimen/sp13"/>
+
+            <View
+                android:id="@+id/v12"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/work_endTime"
+                android:layout_marginBottom="@dimen/dp5"
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_marginRight="@dimen/dp15"
+                android:layout_marginTop="@dimen/dp5"
+                android:background="#F0F0F0" />
+
+            <TextView
+                android:id="@+id/agree_work_endTime_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/darkgray"
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_below="@id/v12"
+                android:textSize="@dimen/sp13"
+                android:text="@string/agreeendtime"/>
+
+            <TextView
+                android:id="@+id/agree_work_endTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/agree_work_endTime_tv"
+                android:layout_alignTop="@id/agree_work_endTime_tv"
+                android:layout_marginRight="@dimen/dp15"
+                android:textColor="@color/darkgray"
+                android:textSize="@dimen/sp13"/>
+
+            <View
+                android:id="@+id/v13"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/agree_work_endTime"
+                android:layout_marginBottom="@dimen/dp5"
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_marginRight="@dimen/dp15"
+                android:layout_marginTop="@dimen/dp5"
+                android:background="#F0F0F0" />
+
+
+
+            <TextView
+                android:id="@+id/work_person_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/v13"
+                android:layout_marginLeft="@dimen/dp15"
+                android:text="@string/work_person"
+                android:textColor="@color/darkgray"
+                android:textSize="@dimen/sp13" />
 
             <TextView
                 android:id="@+id/work_person"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/work_person_tv"
                 android:layout_alignTop="@id/work_person_tv"
                 android:layout_marginRight="@dimen/dp15"
+                android:layout_toRightOf="@id/work_person_tv"
                 android:textColor="@color/darkgray"
-                android:textSize="@dimen/sp13"/>
+                android:textSize="@dimen/sp13" />
 
             <View
                 android:id="@+id/v7"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_below="@id/work_person_tv"
-                android:layout_marginTop="@dimen/dp5"
                 android:layout_marginBottom="@dimen/dp5"
                 android:layout_marginLeft="@dimen/dp15"
                 android:layout_marginRight="@dimen/dp15"
-                android:background="#F0F0F0"/>
+                android:layout_marginTop="@dimen/dp5"
+                android:background="#F0F0F0" />
 
 
             <TextView
                 android:id="@+id/work_before_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/darkgray"
-                android:layout_marginLeft="@dimen/dp15"
                 android:layout_below="@id/v7"
-                android:textSize="@dimen/sp13"
-                android:text="@string/work_before_photo"/>
+                android:layout_marginLeft="@dimen/dp15"
+                android:text="@string/work_before_photo"
+                android:textColor="@color/darkgray"
+                android:textSize="@dimen/sp13" />
 
 
-                <cn.com.incardata.view.MyGridView
-                    android:id="@+id/work_before_grid"
-                    android:layout_width="match_parent"
-                    android:layout_below="@id/work_before_tv"
-                    android:layout_marginLeft="@dimen/dp15"
-                    android:layout_marginRight="@dimen/dp15"
-                    android:numColumns="3"
-                    android:listSelector="@android:color/transparent"
-                    android:verticalSpacing="@dimen/dp10"
-                    android:horizontalSpacing="@dimen/dp10"
-                    android:gravity="center"
-                    android:stretchMode="columnWidth"
-                    android:layout_height="wrap_content"/>
+            <cn.com.incardata.view.MyGridView
+                android:id="@+id/work_before_grid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/work_before_tv"
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_marginRight="@dimen/dp15"
+                android:gravity="center"
+                android:horizontalSpacing="@dimen/dp10"
+                android:listSelector="@android:color/transparent"
+                android:numColumns="3"
+                android:stretchMode="columnWidth"
+                android:verticalSpacing="@dimen/dp10" />
 
             <View
                 android:id="@+id/v8"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_below="@id/work_before_grid"
-                android:layout_marginTop="@dimen/dp5"
                 android:layout_marginBottom="@dimen/dp5"
                 android:layout_marginLeft="@dimen/dp15"
                 android:layout_marginRight="@dimen/dp15"
-                android:background="#F0F0F0"/>
+                android:layout_marginTop="@dimen/dp5"
+                android:background="#F0F0F0" />
 
             <TextView
                 android:id="@+id/work_after_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/darkgray"
-                android:layout_marginLeft="@dimen/dp15"
                 android:layout_below="@id/v8"
-                android:textSize="@dimen/sp13"
-                android:text="@string/work_after_photo"/>
+                android:layout_marginLeft="@dimen/dp15"
+                android:text="@string/work_after_photo"
+                android:textColor="@color/darkgray"
+                android:textSize="@dimen/sp13" />
 
-                <cn.com.incardata.view.MyGridView
-                    android:id="@+id/work_after_grid"
-                    android:layout_width="match_parent"
-                    android:layout_below="@id/work_after_tv"
-                    android:layout_marginLeft="@dimen/dp15"
-                    android:layout_marginRight="@dimen/dp15"
-                    android:numColumns="3"
-                    android:listSelector="@android:color/transparent"
-                    android:stretchMode="columnWidth"
-                    android:verticalSpacing="@dimen/dp10"
-                    android:gravity="center"
-                    android:horizontalSpacing="@dimen/dp10"
-                    android:layout_height="wrap_content"/>
+            <cn.com.incardata.view.MyGridView
+                android:id="@+id/work_after_grid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/work_after_tv"
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_marginRight="@dimen/dp15"
+                android:gravity="center"
+                android:horizontalSpacing="@dimen/dp10"
+                android:listSelector="@android:color/transparent"
+                android:numColumns="3"
+                android:stretchMode="columnWidth"
+                android:verticalSpacing="@dimen/dp10" />
 
 
             <View
@@ -331,14 +418,14 @@
                 android:layout_height="1dp"
                 android:layout_below="@id/work_after_grid"
                 android:layout_marginTop="@dimen/dp5"
-                android:background="#F0F0F0"/>
+                android:background="#F0F0F0" />
 
             <View
                 android:id="@+id/v10"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp5"
                 android:layout_below="@id/v9"
-                android:background="@color/background_material_light"/>
+                android:background="@color/background_material_light" />
 
             <LinearLayout
                 android:id="@+id/l1"
@@ -350,17 +437,17 @@
                 <View
                     android:layout_width="@dimen/dp5"
                     android:layout_height="match_parent"
-                    android:background="@color/main_orange"/>
+                    android:background="@color/main_orange" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/sp15"
-                    android:textColor="@color/darkgray"
+                    android:layout_marginBottom="@dimen/dp5"
                     android:layout_marginLeft="@dimen/dp10"
                     android:layout_marginTop="@dimen/dp5"
-                    android:layout_marginBottom="@dimen/dp5"
-                    android:text="@string/tech_info"/>
+                    android:text="@string/tech_info"
+                    android:textColor="@color/darkgray"
+                    android:textSize="@dimen/sp15" />
 
             </LinearLayout>
 
@@ -368,71 +455,70 @@
                 android:id="@+id/v11"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#F0F0F0"
-                android:layout_below="@id/l1" />
+                android:layout_below="@id/l1"
+                android:background="#F0F0F0" />
 
             <cn.com.incardata.view.CircleImageView
                 android:id="@+id/tech_header"
                 android:layout_width="@dimen/dp50"
                 android:layout_height="@dimen/dp50"
+                android:layout_below="@id/v11"
                 android:layout_marginLeft="@dimen/dp30"
                 android:layout_marginTop="@dimen/dp15"
-                android:layout_below="@id/v11"
                 android:src="@mipmap/user_hint"
-                app:border_width="0dp"
-                app:border_color="@color/line_color"/>
+                app:border_color="@color/line_color"
+                app:border_width="0dp" />
 
             <TextView
                 android:id="@+id/user_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:layout_marginLeft="@dimen/dp10"
                 android:layout_alignTop="@id/tech_header"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginTop="3dp"
                 android:layout_toRightOf="@id/tech_header"
-                android:textSize="@dimen/sp13"
-                android:textColor="@color/darkgray" />
+                android:textColor="@color/darkgray"
+                android:textSize="@dimen/sp13" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp5"
-                android:layout_marginBottom="@dimen/dp15"
-                android:layout_marginRight="@dimen/dp15"
                 android:layout_alignLeft="@id/user_name"
                 android:layout_below="@id/user_name"
-                android:gravity="center_vertical"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/dp15"
+                android:layout_marginRight="@dimen/dp15"
+                android:layout_marginTop="@dimen/dp5"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/tv_order_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/sp13"
+                    android:text="@string/order_number_text"
                     android:textColor="@color/darkgray"
-                    android:text="@string/order_number_text"/>
+                    android:textSize="@dimen/sp13" />
 
                 <TextView
                     android:id="@+id/order_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/sp15"
-                    android:textColor="@color/main_orange"
+                    android:layout_marginLeft="@dimen/dp5"
                     android:text="0"
-                    android:layout_marginLeft="@dimen/dp5"/>
+                    android:textColor="@color/main_orange"
+                    android:textSize="@dimen/sp15" />
 
                 <RatingBar
                     android:id="@+id/ratingbar"
                     style="@style/mRatingBar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:numStars="5"
-                    android:rating="0"
                     android:layout_marginLeft="@dimen/dp10"
                     android:gravity="center_vertical"
-                    android:isIndicator="true">
-                </RatingBar>
+                    android:isIndicator="true"
+                    android:numStars="5"
+                    android:rating="0"></RatingBar>
             </LinearLayout>
 
         </RelativeLayout>

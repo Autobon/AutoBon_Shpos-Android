@@ -64,8 +64,12 @@ public class SalsemanAdapter extends BaseAdapter implements View.OnClickListener
         holder.updateSaleman.setTag(position);
         if (saleman.isFired()){
             holder.salemanOperate.setText(R.string.fired);
+            holder.salemanOperate.setBackgroundColor(context.getResources().getColor(R.color.line_color));
+            holder.salemanOperate.setTextColor(context.getResources().getColor(R.color.main_white));
         }else {
             holder.salemanOperate.setText(R.string.dimission);
+            holder.salemanOperate.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.check_btn));
+            holder.salemanOperate.setTextColor(context.getResources().getColor(R.color.main_orange));
         }
         if (saleman.isMain()){
             holder.status.setText(R.string.manager);

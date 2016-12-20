@@ -131,6 +131,44 @@ public class BitmapHelper {
 		return null;
 	}
 
+
+	/** 通过传入位图、比例进行位图的缩放操作 */
+	public static Bitmap resizeImage(Context context, Uri uri, float scale) {
+		Bitmap bitmap = null;
+		BitmapFactory.Options options = new BitmapFactory.Options();
+		options.inJustDecodeBounds = true;//不加载到内存
+		options.inPreferredConfig = Bitmap.Config.RGB_565;
+		try {
+			InputStream in = context.getContentResolver().openInputStream(uri);
+			BitmapFactory.decodeStream(in, null, options);
+			in.close();
+			int originalWidth = options.outWidth;
+			int originalHeight = options.outHeight;
+			if ((originalWidth == -1) || (originalHeight == -1)) return null;
+
+			int inSampleSize = 1;//计算缩放比（最长边不超过800px）
+			if (originalWidth > originalHeight && originalHeight > 800){
+				inSampleSize = originalWidth / 800;
+			}else if (originalHeight > originalWidth && originalHeight > 800){
+				inSampleSize = originalHeight / 800;
+			}
+			if (inSampleSize <= 0) inSampleSize = 4;
+			options.inSampleSize = inSampleSize;
+			options.inJustDecodeBounds = false;
+			in = context.getContentResolver().openInputStream(uri);
+			bitmap = BitmapFactory.decodeStream(in, null, options);
+			in.close();
+			return ThumbnailUtils.extractThumbnail(bitmap, originalWidth / inSampleSize, originalHeight / inSampleSize, ThumbnailUtils.OPTIONS_RECYCLE_INPUT);
+//			return Bitmap.createScaledBitmap(bitmap, originalWidth / inSampleSize, originalHeight / inSampleSize, true);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
 	public static Bitmap createImageThumbnail(String filePath){
 		Bitmap bitmap = null;
 		BitmapFactory.Options opts = new BitmapFactory.Options();

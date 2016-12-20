@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -28,8 +29,9 @@ public class AddSalemanActivity extends BaseForBroadcastActivity implements View
     private RadioGroup gender;
     private RadioButton male;
     private RadioButton female;
+    private TextView tv_setting;
 
-    private boolean isModify;
+    private boolean isModify = false;
     private int accountId;
 
     @Override
@@ -46,6 +48,7 @@ public class AddSalemanActivity extends BaseForBroadcastActivity implements View
         gender = (RadioGroup) findViewById(R.id.gender);
         male = (RadioButton) findViewById(R.id.male);
         female = (RadioButton) findViewById(R.id.female);
+        tv_setting = (TextView) findViewById(R.id.tv_setting);
 
         findViewById(R.id.back).setOnClickListener(this);
         findViewById(R.id.submit_add_saleman).setOnClickListener(this);
@@ -69,6 +72,11 @@ public class AddSalemanActivity extends BaseForBroadcastActivity implements View
         }else {
             gender.check(female.getId());
         }
+        if (isModify){
+            tv_setting.setText("员工信息修改");
+        }else {
+            tv_setting.setText("新增账户");
+        }
     }
 
     @Override
@@ -86,6 +94,8 @@ public class AddSalemanActivity extends BaseForBroadcastActivity implements View
     private void onSubmit() {
         String phone = this.phone.getText().toString();
         String name = this.name.getText().toString();
+
+
 
         if (TextUtils.isEmpty(phone)){
             T.show(getContext(), R.string.phone_not_empty_tips);

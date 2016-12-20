@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/main_white">
+    android:background="@color/line_light_color">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -89,7 +89,7 @@
                 android:paddingTop="@dimen/dp15"
                 android:textColor="@color/darkgray"
                 android:textColorHint="@color/lightgray"
-                android:maxLength="100"
+                android:maxLength="20"
                 android:textSize="@dimen/sp15"/>
 
             <View
@@ -103,82 +103,82 @@
                 android:layout_marginTop="@dimen/dp5"
                 android:background="@color/lightgray" />
 
-            <EditText
-                android:id="@+id/et_company_number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/white"
-                android:hint="@string/company_number"
-                android:paddingBottom="@dimen/dp15"
-                android:paddingLeft="@dimen/dp25"
-                android:paddingTop="@dimen/dp15"
-                android:textColor="@color/darkgray"
-                android:textColorHint="@color/lightgray"
-                android:textSize="@dimen/sp15"
-                android:maxLength="15"
-                android:inputType="number"/>
+            <!--<EditText-->
+            <!--android:id="@+id/et_company_number"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@android:color/white"-->
+            <!--android:hint="@string/company_number"-->
+            <!--android:paddingBottom="@dimen/dp15"-->
+            <!--android:paddingLeft="@dimen/dp25"-->
+            <!--android:paddingTop="@dimen/dp15"-->
+            <!--android:textColor="@color/darkgray"-->
+            <!--android:textColorHint="@color/lightgray"-->
+            <!--android:textSize="@dimen/sp15"-->
+            <!--android:maxLength="15"-->
+            <!--android:inputType="number"/>-->
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/lightgray" />
+            <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="1dp"-->
+            <!--android:background="@color/lightgray" />-->
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="@dimen/dp5"
-                android:background="@color/lightgray" />
+            <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="1dp"-->
+            <!--android:layout_marginTop="@dimen/dp5"-->
+            <!--android:background="@color/lightgray" />-->
 
-            <EditText
-                android:id="@+id/et_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/white"
-                android:hint="@string/name_text"
-                android:maxLength="10"
-                android:paddingBottom="@dimen/dp15"
-                android:paddingLeft="@dimen/dp25"
-                android:paddingTop="@dimen/dp15"
-                android:textColor="@color/darkgray"
-                android:textColorHint="@color/lightgray"
-                android:textSize="@dimen/sp15"/>
+            <!--<EditText-->
+            <!--android:id="@+id/et_name"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@android:color/white"-->
+            <!--android:hint="@string/name_text"-->
+            <!--android:maxLength="10"-->
+            <!--android:paddingBottom="@dimen/dp15"-->
+            <!--android:paddingLeft="@dimen/dp25"-->
+            <!--android:paddingTop="@dimen/dp15"-->
+            <!--android:textColor="@color/darkgray"-->
+            <!--android:textColorHint="@color/lightgray"-->
+            <!--android:textSize="@dimen/sp15"/>-->
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/lightgray" />
+            <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="1dp"-->
+            <!--android:background="@color/lightgray" />-->
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="@dimen/dp5"
-                android:background="@color/lightgray" />
+            <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="1dp"-->
+            <!--android:layout_marginTop="@dimen/dp5"-->
+            <!--android:background="@color/lightgray" />-->
 
-            <EditText
-                android:id="@+id/et_card_number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/white"
-                android:hint="@string/card_number_text"
-                android:paddingBottom="@dimen/dp15"
-                android:paddingLeft="@dimen/dp25"
-                android:paddingTop="@dimen/dp15"
-                android:textColor="@color/darkgray"
-                android:textColorHint="@color/lightgray"
-                android:textSize="@dimen/sp15"
-                android:digits="@string/digits_indentify_number"
-                android:maxLength="18"/>
+            <!--<EditText-->
+            <!--android:id="@+id/et_card_number"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@android:color/white"-->
+            <!--android:hint="@string/card_number_text"-->
+            <!--android:paddingBottom="@dimen/dp15"-->
+            <!--android:paddingLeft="@dimen/dp25"-->
+            <!--android:paddingTop="@dimen/dp15"-->
+            <!--android:textColor="@color/darkgray"-->
+            <!--android:textColorHint="@color/lightgray"-->
+            <!--android:textSize="@dimen/sp15"-->
+            <!--android:digits="@string/digits_indentify_number"-->
+            <!--android:maxLength="18"/>-->
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/lightgray" />
+            <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="1dp"-->
+            <!--android:background="@color/lightgray" />-->
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="@dimen/dp15"
-                android:background="@color/lightgray" />
+            <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="1dp"-->
+            <!--android:layout_marginTop="@dimen/dp15"-->
+            <!--android:background="@color/lightgray" />-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -211,6 +211,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@android:color/white"
                 android:layout_marginTop="@dimen/dp10"
                 android:layout_marginBottom="@dimen/dp10">
                 <ImageView
@@ -218,8 +219,8 @@
                     android:layout_width="@dimen/dp230"
                     android:layout_height="@dimen/dp130"
                     android:background="#EEEEEE"
+                    android:layout_marginTop="@dimen/dp20"
                     android:layout_centerInParent="true"
-                    android:layout_marginBottom="@dimen/dp10"
                     android:scaleType="fitXY"/>
                 <ImageView
                     android:id="@+id/iv_camera_one_pic"
@@ -227,104 +228,229 @@
                     android:layout_height="@dimen/dp20"
                     android:src="@mipmap/large_camera"
                     android:layout_alignRight="@id/iv_pic_one"
-                    android:layout_alignParentBottom="true"
                     android:layout_marginRight="-10dp"
+                    android:layout_alignBottom="@id/iv_pic_one"
                     android:layout_marginBottom="-10dp"/>
-                <TextView
-                    android:id="@+id/tv_one_example_tips"
+                <ImageView
+                    android:id="@+id/img_hint"
+                    android:src="@mipmap/user_hint"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/card_photo"
                     android:layout_centerInParent="true"
-                    android:textSize="@dimen/sp15"
-                    android:textColor="@color/line_color"/>
-            </RelativeLayout>
+                    android:layout_height="wrap_content" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/lightgray" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/white"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
 
                 <View
-                    android:layout_width="@dimen/dp5"
-                    android:layout_height="match_parent"
-                    android:background="@color/main_orange" />
-
-                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="@dimen/dp10"
-                    android:paddingLeft="@dimen/dp15"
-                    android:paddingTop="@dimen/dp10"
-                    android:text="@string/card_photo_text"
-                    android:textColor="@color/darkgray"
-                    android:textSize="@dimen/sp15" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/lightgray" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp10"
-                android:layout_marginBottom="@dimen/dp10">
-                <ImageView
-                    android:id="@+id/iv_pic_two"
-                    android:layout_width="@dimen/dp230"
-                    android:layout_height="@dimen/dp130"
-                    android:background="#EEEEEE"
-                    android:layout_centerInParent="true"
-                    android:layout_marginBottom="@dimen/dp10"
-                    android:scaleType="fitXY"/>
-                <ImageView
-                    android:id="@+id/iv_camera_two_pic"
-                    android:layout_width="@dimen/dp20"
-                    android:layout_height="@dimen/dp20"
-                    android:src="@mipmap/large_camera"
-                    android:layout_alignRight="@id/iv_pic_two"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginRight="-10dp"
-                    android:layout_marginBottom="-10dp"/>
-                <TextView
-                    android:id="@+id/tv_two_example_tips"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/card_photo"
-                    android:layout_centerInParent="true"
-                    android:textSize="@dimen/sp15"
-                    android:textColor="@color/line_color"/>
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/dp20"
+                    android:layout_below="@id/iv_pic_one"
+                    android:background="@color/lightgray" />
             </RelativeLayout>
 
-            <View
+
+
+            <!--地图板块-->
+            <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@android:color/white"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:layout_marginTop="@dimen/dp10">-->
+
+            <!--<View-->
+            <!--android:layout_width="@dimen/dp5"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="@color/main_orange" />-->
+
+            <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:paddingBottom="@dimen/dp10"-->
+            <!--android:paddingLeft="@dimen/dp15"-->
+            <!--android:paddingTop="@dimen/dp10"-->
+            <!--android:text="@string/shop_address_text"-->
+            <!--android:textColor="@color/darkgray"-->
+            <!--android:textSize="@dimen/sp15" />-->
+            <!--</LinearLayout>-->
+
+            <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="1dp"-->
+            <!--android:background="@color/gray_A3"/>-->
+
+            <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:layout_marginTop="@dimen/dp5"-->
+            <!--android:background="@android:color/white"-->
+            <!--android:paddingTop="@dimen/dp10"-->
+            <!--android:paddingBottom="@dimen/dp10"-->
+            <!--android:paddingLeft="@dimen/dp15"-->
+            <!--android:paddingRight="@dimen/dp15">-->
+            <!--<LinearLayout-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@drawable/pop_shape"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:paddingTop="@dimen/dp5"-->
+            <!--android:paddingBottom="@dimen/dp5">-->
+
+            <!--<ImageView-->
+            <!--android:layout_width="@dimen/dp25"-->
+            <!--android:layout_height="@dimen/dp25"-->
+            <!--android:scaleType="centerInside"-->
+            <!--android:src="@mipmap/search_img" />-->
+
+            <!--<EditText-->
+            <!--android:id="@+id/et_content"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@null"-->
+            <!--android:hint="@string/hint_text_address_name"-->
+            <!--android:textColor="@color/darkgray"-->
+            <!--android:textColorHint="@color/lightgray"-->
+            <!--android:textSize="@dimen/sp15"-->
+            <!--android:maxLength="20"-->
+            <!--android:singleLine="true"/>-->
+
+            <!--<ImageView-->
+            <!--android:id="@+id/iv_clear"-->
+            <!--android:layout_width="@dimen/dp25"-->
+            <!--android:layout_height="@dimen/dp25"-->
+            <!--android:scaleType="centerInside"-->
+            <!--android:src="@mipmap/iv_delete" />-->
+            <!--</LinearLayout>-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/tv_search"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_marginLeft="@dimen/dp15"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:text="@string/search_text"-->
+            <!--android:textColor="@color/darkgray" />-->
+            <!--</LinearLayout>-->
+
+
+            <!--<com.baidu.mapapi.map.MapView-->
+            <!--android:id="@+id/bmapView"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="@dimen/dp200" />-->
+
+            <!--//=====================================================-->
+
+            <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@android:color/white"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:orientation="horizontal">-->
+
+            <!--<View-->
+            <!--android:layout_width="@dimen/dp5"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="@color/main_orange" />-->
+
+            <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:paddingBottom="@dimen/dp10"-->
+            <!--android:paddingLeft="@dimen/dp15"-->
+            <!--android:paddingTop="@dimen/dp10"-->
+            <!--android:text="@string/card_photo_text"-->
+            <!--android:textColor="@color/darkgray"-->
+            <!--android:textSize="@dimen/sp15" />-->
+            <!--</LinearLayout>-->
+
+            <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="1dp"-->
+            <!--android:background="@color/lightgray" />-->
+
+            <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="@dimen/dp10"-->
+            <!--android:layout_marginBottom="@dimen/dp10">-->
+            <!--<ImageView-->
+            <!--android:id="@+id/iv_pic_two"-->
+            <!--android:layout_width="@dimen/dp230"-->
+            <!--android:layout_height="@dimen/dp130"-->
+            <!--android:background="#EEEEEE"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:layout_marginBottom="@dimen/dp10"-->
+            <!--android:scaleType="fitXY"/>-->
+            <!--<ImageView-->
+            <!--android:id="@+id/iv_camera_two_pic"-->
+            <!--android:layout_width="@dimen/dp20"-->
+            <!--android:layout_height="@dimen/dp20"-->
+            <!--android:src="@mipmap/large_camera"-->
+            <!--android:layout_alignRight="@id/iv_pic_two"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_marginRight="-10dp"-->
+            <!--android:layout_marginBottom="-10dp"/>-->
+            <!--<TextView-->
+            <!--android:id="@+id/tv_two_example_tips"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@string/card_photo"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:textSize="@dimen/sp15"-->
+            <!--android:textColor="@color/line_color"/>-->
+            <!--</RelativeLayout>-->
+            <LinearLayout
+                android:orientation="vertical"
+                android:background="@android:color/white"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="@dimen/dp5"
-                android:background="@color/lightgray" />
-            <Button
-                android:id="@+id/btn_submit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft ="@dimen/dp35"
-                android:layout_marginRight="@dimen/dp35"
-                android:paddingTop="@dimen/dp12"
-                android:paddingBottom="@dimen/dp12"
-                android:gravity="center"
-                android:textSize="@dimen/sp18"
-                android:background="@drawable/login_btn_selector"
-                android:textColor="@android:color/white"
-                android:layout_marginTop="@dimen/dp20"
-                android:layout_marginBottom="@dimen/dp20"
-                android:text="@string/next_btn_text"/>
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/btn_submit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft ="@dimen/dp35"
+                    android:layout_marginRight="@dimen/dp35"
+                    android:paddingTop="@dimen/dp12"
+                    android:gravity="center"
+                    android:textSize="@dimen/sp18"
+                    android:background="@drawable/login_btn_selector"
+                    android:textColor="@android:color/white"
+                    android:layout_marginTop="@dimen/dp30"
+                    android:text="@string/join_text"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_marginBottom="@dimen/dp15">
+                    <TextView
+                        android:id="@+id/tv_tips"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:textSize="@dimen/sp10"
+                        android:text="@string/join_coop_bottom_tips"
+                        android:textColor="@color/line_color"/>
+                    <TextView
+                        android:id="@+id/tv_protocal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:textSize="@dimen/sp10"
+                        android:paddingTop="@dimen/dp5"
+                        android:paddingBottom="@dimen/dp5"
+                        android:text="@string/text_protocal"
+                        android:textColor="@color/main_orange"
+                        android:clickable="true"
+                        android:focusable="true"/>
+                </LinearLayout>
+            </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

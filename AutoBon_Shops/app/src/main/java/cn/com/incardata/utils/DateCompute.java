@@ -185,4 +185,16 @@ public class DateCompute {
 		SimpleDateFormat dateFm = new SimpleDateFormat("yyyy-MM-dd EEEE");
 		return dateFm.format(date);
 	}
+
+
+    /**
+	 * String类型日期转换成Date格式
+	 */
+
+	public static Date getStringToDate(String date) throws ParseException {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
+		Date date1 = sdf.parse(date);
+		return date1;
+	}
 }

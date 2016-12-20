@@ -19,34 +19,34 @@
         android:background="@color/lightgray"
         android:layout_below="@id/iv_logo"
         android:layout_marginTop="@dimen/dp50"/>
-   <EditText
-       android:id="@+id/et_company"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:hint="@string/input_company_name_text"
-       android:background="@android:color/white"
-       android:paddingBottom="@dimen/dp10"
-       android:paddingTop="@dimen/dp10"
-       android:layout_below="@id/line_one_view"
-       android:textColorHint="@color/lightgray"
-       android:paddingLeft="@dimen/dp25"
-       android:maxLength="100"
-       android:maxLines="1"
-       android:textColor="@color/darkgray"
-       android:textSize="@dimen/sp15"/>
-    <View
-        android:id="@+id/line_two_view"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/lightgray"
-        android:layout_below="@id/et_company"/>
-    <View
-        android:id="@+id/line_three_view"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/lightgray"
-        android:layout_below="@id/line_two_view"
-        android:layout_marginTop="@dimen/dp5"/>
+   <!--<EditText-->
+       <!--android:id="@+id/et_company"-->
+       <!--android:layout_width="match_parent"-->
+       <!--android:layout_height="wrap_content"-->
+       <!--android:hint="@string/input_company_name_text"-->
+       <!--android:background="@android:color/white"-->
+       <!--android:paddingBottom="@dimen/dp10"-->
+       <!--android:paddingTop="@dimen/dp10"-->
+       <!--android:layout_below="@id/line_one_view"-->
+       <!--android:textColorHint="@color/lightgray"-->
+       <!--android:paddingLeft="@dimen/dp25"-->
+       <!--android:maxLength="100"-->
+       <!--android:maxLines="1"-->
+       <!--android:textColor="@color/darkgray"-->
+       <!--android:textSize="@dimen/sp15"/>-->
+    <!--<View-->
+        <!--android:id="@+id/line_two_view"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="1dp"-->
+        <!--android:background="@color/lightgray"-->
+        <!--android:layout_below="@id/et_company"/>-->
+    <!--<View-->
+        <!--android:id="@+id/line_three_view"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="1dp"-->
+        <!--android:background="@color/lightgray"-->
+        <!--android:layout_below="@id/line_two_view"-->
+        <!--android:layout_marginTop="@dimen/dp5"/>-->
     <EditText
         android:id="@+id/et_phone"
         android:layout_width="match_parent"
@@ -55,7 +55,7 @@
         android:background="@android:color/white"
         android:paddingBottom="@dimen/dp10"
         android:paddingTop="@dimen/dp10"
-        android:layout_below="@id/line_three_view"
+        android:layout_below="@id/line_one_view"
         android:textColorHint="@color/lightgray"
         android:paddingLeft="@dimen/dp25"
         android:maxLength="11"
@@ -75,27 +75,46 @@
         android:background="@color/lightgray"
         android:layout_below="@id/line_four_view"
         android:layout_marginTop="@dimen/dp5"/>
-    <EditText
-        android:id="@+id/et_pwd"
+    <LinearLayout
+        android:id="@+id/ll_pwd"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/input_pwd_text"
-        android:background="@android:color/white"
-        android:paddingBottom="@dimen/dp10"
-        android:paddingTop="@dimen/dp10"
+        android:orientation="horizontal"
         android:layout_below="@id/line_five_view"
-        android:textColorHint="@color/lightgray"
-        android:paddingLeft="@dimen/dp25"
-        android:maxLength="18"
-        android:textColor="@color/darkgray"
-        android:textSize="@dimen/sp15"
-        android:inputType="textPassword"/>
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/et_pwd"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:hint="@string/input_pwd_text"
+            android:background="@android:color/white"
+            android:paddingBottom="@dimen/dp10"
+            android:paddingTop="@dimen/dp10"
+            android:textColorHint="@color/lightgray"
+            android:paddingLeft="@dimen/dp25"
+            android:maxLength="18"
+            android:textColor="@color/darkgray"
+            android:textSize="@dimen/sp15"
+            android:inputType="textPassword"/>
+        <ImageView
+            android:id="@+id/iv_eye"
+            android:layout_width="@dimen/dp20"
+            android:layout_height="@dimen/dp20"
+            android:scaleType="centerInside"
+            android:layout_gravity="center_vertical"
+            android:src="@mipmap/eye_hidden"
+            android:layout_marginRight="@dimen/dp40"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"/>
+
+    </LinearLayout>
+
     <View
         android:id="@+id/line_six_view"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/lightgray"
-        android:layout_below="@id/et_pwd"/>
+        android:layout_below="@id/ll_pwd"/>
     <Button
         android:id="@+id/login_btn"
         android:layout_width="match_parent"

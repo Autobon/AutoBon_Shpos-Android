@@ -5,14 +5,14 @@ package cn.com.incardata.http.response;
  * 上传营业执照副本照片
  * 上传法人身份证正面照
  */
-public class UploadPicEntity extends BaseEntity{
-    private String data;
+public class UploadPicEntity extends BaseEntityTwo{
+    private String message;
 
-    public String getData() {
-        return data;
+    public String getMessage() {
+        return message;
     }
 
-    public void setData(String data) {
-        this.data = data;
+    public void setMessage(String message) {
+        this.message = message;
     }
 }
