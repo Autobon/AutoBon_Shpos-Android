@@ -2,6 +2,7 @@ package cn.com.incardata.autobon_shops;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -54,7 +55,7 @@ public class OrderInfoActivity extends BaseForBroadcastActivity {
     private GridView afterPhoto;
     private GridView order_grid;
     private CircleImageView userPhoto;
-    private TextView userName;
+    private TextView userName,user_phone;
     private TextView orderCount;
     private RatingBar ratingBar;
     //    private String[] workItems;
@@ -84,6 +85,7 @@ public class OrderInfoActivity extends BaseForBroadcastActivity {
         order_grid = (GridView) findViewById(R.id.order_grid);
         userPhoto = (CircleImageView) findViewById(R.id.tech_header);
         userName = (TextView) findViewById(R.id.user_name);
+        user_phone = (TextView) findViewById(R.id.user_phone);
         orderCount = (TextView) findViewById(R.id.order_num);
         ratingBar = (RatingBar) findViewById(R.id.ratingbar);
 
@@ -124,6 +126,15 @@ public class OrderInfoActivity extends BaseForBroadcastActivity {
             }
         });
 
+        user_phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("tel:" + orderInfo.getTechPhone());
+                Intent intent = new Intent(Intent.ACTION_DIAL, uri);
+                startActivity(intent);
+            }
+        });
+
         orderInfo = getIntent().getParcelableExtra(AutoCon.ORDER_INFO);
 //        getTechInfo(orderInfo.getId());
     }
@@ -144,6 +155,7 @@ public class OrderInfoActivity extends BaseForBroadcastActivity {
                         workPerson.setText(technicianMessage.getName());
                         ImageLoaderCache.getInstance().loader( NetURL.IP_PORT + technicianMessage.getAvatar(), userPhoto);
                         userName.setText(technicianMessage.getName());
+
                         orderCount.setText(String.valueOf(technicianMessage.getOrderCount()));
                         ratingBar.setRating(technicianMessage.getEvaluate());
                     } else {
@@ -219,6 +231,12 @@ public class OrderInfoActivity extends BaseForBroadcastActivity {
         }else{
             userName.setText("");
         }
+        if (!TextUtils.isEmpty(orderInfo.getTechPhone())){
+            user_phone.setText(orderInfo.getTechPhone());
+        }else{
+            user_phone.setText("");
+        }
+
         if (orderInfo.getOrderCount() != 0){
             orderCount.setText(String.valueOf(orderInfo.getOrderCount()));
         }else {

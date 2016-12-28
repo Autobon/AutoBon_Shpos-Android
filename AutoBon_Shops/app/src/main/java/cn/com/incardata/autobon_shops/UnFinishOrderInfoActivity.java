@@ -45,7 +45,7 @@ public class UnFinishOrderInfoActivity extends BaseActivity implements View.OnCl
     private Context context;
     private TextView order_num,orderStatus,orderType,agreeStartTime,agreeEndTime,createOrderTime,orderRemark;
     private Button appoint_tech,revoke_order;
-    private GridView order_grid;
+    private GridView order_grid,before_photo;
     protected BaiduMap baiduMap;
     private MapView mMapView;
     private OrderInfo orderInfo;
@@ -80,6 +80,7 @@ public class UnFinishOrderInfoActivity extends BaseActivity implements View.OnCl
         createOrderTime = (TextView) findViewById(R.id.createOrderTime);
         orderRemark = (TextView) findViewById(R.id.orderRemark);
         order_grid = (GridView) findViewById(R.id.order_grid);
+        before_photo = (GridView) findViewById(R.id.before_photo);
         appoint_tech = (Button) findViewById(R.id.appoint_tech);
         revoke_order = (Button) findViewById(R.id.revoke_order);
         img_tech_message = (ImageView) findViewById(R.id.img_tech_message);
@@ -87,6 +88,7 @@ public class UnFinishOrderInfoActivity extends BaseActivity implements View.OnCl
         mMapView = (MapView) findViewById(R.id.bmapView);
 
         order_grid.setFocusable(false);
+        before_photo.setFocusable(false);
 
         appoint_tech.setOnClickListener(this);
         revoke_order.setOnClickListener(this);
@@ -253,6 +255,25 @@ public class UnFinishOrderInfoActivity extends BaseActivity implements View.OnCl
                 openImage(position, orderPhotos);
             }
         });
+
+        if (orderInfo.getBeforePhotos() != null){
+            final String[] urlBefore;
+            String urlBeforePhotos = orderInfo.getBeforePhotos();
+            if (urlBeforePhotos.contains(",")) {
+                urlBefore = urlBeforePhotos.split(",");
+            } else {
+                urlBefore = new String[]{urlBeforePhotos};
+            }
+            myadapter = new Myadapter(this, urlBefore);
+            before_photo.setAdapter(myadapter);
+
+            before_photo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                    openImage(position, urlBefore);
+                }
+            });
+        }
     }
 
     @Override

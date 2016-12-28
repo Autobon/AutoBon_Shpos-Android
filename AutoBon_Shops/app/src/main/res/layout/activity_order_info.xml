@@ -471,7 +471,7 @@
 
             <TextView
                 android:id="@+id/user_name"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@id/tech_header"
                 android:layout_marginLeft="@dimen/dp10"
@@ -479,6 +479,18 @@
                 android:layout_toRightOf="@id/tech_header"
                 android:textColor="@color/darkgray"
                 android:textSize="@dimen/sp13" />
+
+            <TextView
+                android:id="@+id/user_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/tech_header"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginTop="3dp"
+                android:layout_toRightOf="@id/user_name"
+                android:textColor="@color/darkgray"
+                android:textSize="@dimen/sp13" />
+
 
             <LinearLayout
                 android:layout_width="wrap_content"

@@ -240,7 +240,6 @@ public class MyOrderFragment extends BaseFragment {
                         if (listOrder_data.getTotalElements() == 0){
                             if (isFrist){
                                 T.show(getActivity(),R.string.no_order);
-                                return;
                             }
                         }
                         mList.addAll(listOrder_data.getContent());

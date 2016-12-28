@@ -219,7 +219,6 @@ public class UnfinishOrderActivity extends BaseForBroadcastActivity implements V
                         }
                         if (listOrder_data.getTotalElements() == 0){
                             T.show(getContext(),getString(R.string.no_order));
-                            return;
                         }
                         mList.addAll(listOrder_data.getContent());
                         mAdapter.notifyDataSetChanged();
