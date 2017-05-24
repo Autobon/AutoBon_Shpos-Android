@@ -1,5 +1,7 @@
 package cn.com.incardata.autobon_shops;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,6 +22,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.com.incardata.adapter.MyContactAdapter;
+import cn.com.incardata.fragment.CollectionTechnicianFragment;
+import cn.com.incardata.fragment.DistanceTechnicianFragment;
+import cn.com.incardata.fragment.MyOrderFragment;
 import cn.com.incardata.http.Http;
 import cn.com.incardata.http.NetURL;
 import cn.com.incardata.http.NetWorkHelper;
@@ -34,229 +39,296 @@ import cn.com.incardata.utils.StringUtil;
 import cn.com.incardata.utils.T;
 import cn.com.incardata.view.PullToRefreshView;
 
-/**给订单指定技师(给intent传递AutoCon.ORDER_ID)
+/**
+ * 给订单指定技师(给intent传递AutoCon.ORDER_ID)
  * Created by wanghao on 2016/7/6
  */
-public class AddContactActivity extends BaseActivity implements View.OnClickListener,
-        PullToRefreshView.OnHeaderRefreshListener,PullToRefreshView.OnFooterRefreshListener{
+public class AddContactActivity extends BaseActivity implements View.OnClickListener {
     private Context context;
-    private ImageView iv_back,iv_clear;
-    private TextView tv_search;
-    private EditText et_content;
-    private ListView technician_list;
-    private PullToRefreshView refreshView;
-
-    private MyContactAdapter mAdapter;
-    private List<TechnicianMessage> mList;
-
-    private int total;
-    private int curPage;
-    private static final int pageSize = 20;
-    private boolean isList = false;
+    private ImageView iv_back;
+    private TextView swicth;
+//    private ImageView iv_clear;
+//    private TextView tv_search;
+//    private EditText et_content;
+//    private ListView technician_list;
+//    private PullToRefreshView refreshView;
+//
+//    private MyContactAdapter mAdapter;
+//    private List<TechnicianMessage> mList;
+//
+//    private int total;
+//    private int curPage;
+//    private static final int pageSize = 20;
+//    private boolean isList = false;
     private int orderID;
     private int activityId;
+
+    public static boolean isFinish = false;
+
+    private FragmentManager mManager;
+    private DistanceTechnicianFragment distanceTechnicianFragment;
+    private CollectionTechnicianFragment collectionTechnicianFragment;
+
+    private int container;
+
+    private boolean isCollection = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_contact_activity);
+
         initView();
         setListener();
-        getTechList(1,pageSize,false);
+//        getTechList(1, pageSize, false);
 
-        mList = new ArrayList<TechnicianMessage>();
-        mAdapter = new MyContactAdapter(AddContactActivity.this,mList);
-        technician_list.setAdapter(mAdapter);
+//        mList = new ArrayList<TechnicianMessage>();
+//        mAdapter = new MyContactAdapter(AddContactActivity.this, mList);
+//        technician_list.setAdapter(mAdapter);
 //        Bundle bundle = getIntent().getExtras();
-        orderID = getIntent().getIntExtra(AutoCon.ORDER_ID, -1);
-         activityId = getIntent().getIntExtra("activityId",-1);
-        mAdapter.setOrderId(orderID);
+
+//        mAdapter.setOrderId(orderID);
     }
 
-    public void initView(){
-        total = -1;  //初始化总条目个数
-        curPage = 1;  //初始化当前页
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        if (isFinish) {
+            isFinish = false;
+            finish();
+        }
+    }
+
+    public void initView() {
+//        total = -1;  //初始化总条目个数
+//        curPage = 1;  //初始化当前页
         context = this;
         iv_back = (ImageView) findViewById(R.id.iv_back);
-        iv_clear = (ImageView) findViewById(R.id.iv_clear);
-        et_content = (EditText) findViewById(R.id.et_content);
-        tv_search = (TextView) findViewById(R.id.tv_search);
-        technician_list = (ListView) findViewById(R.id.technician_list);
-        refreshView = (PullToRefreshView) findViewById(R.id.pull_refresh);
-        refreshView.setEnablePullTorefresh(false);
-        refreshView.setVisibility(View.GONE);
+        swicth = (TextView) findViewById(R.id.swicth);
 
-        technician_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(AddContactActivity.this,TechnicianInfoActivity.class);
-                intent.putExtra("techMessage" , mList.get(position));
-                intent.putExtra("orderId",orderID);
-                intent.putExtra("activityId",activityId);
-                startActivity(intent);
-            }
-        });
+        container = R.id.technician_content;
+
+        orderID = getIntent().getIntExtra(AutoCon.ORDER_ID, -1);
+        activityId = getIntent().getIntExtra("activityId", -1);
+
+        distanceTechnicianFragment = DistanceTechnicianFragment.newInstance(orderID,activityId);
+        collectionTechnicianFragment = CollectionTechnicianFragment.newInstance(orderID,activityId);
+        mManager = getFragmentManager();
+
+        FragmentTransaction ft = mManager.beginTransaction();
+        ft.add(container, collectionTechnicianFragment).add(container, distanceTechnicianFragment).hide(collectionTechnicianFragment).show(distanceTechnicianFragment).commit();
+//        iv_clear = (ImageView) findViewById(R.id.iv_clear);
+//        et_content = (EditText) findViewById(R.id.et_content);
+//        tv_search = (TextView) findViewById(R.id.tv_search);
+//        technician_list = (ListView) findViewById(R.id.technician_list);
+//        refreshView = (PullToRefreshView) findViewById(R.id.pull_refresh);
+//        refreshView.setEnablePullTorefresh(false);
+//        refreshView.setVisibility(View.GONE);
+//
+//        technician_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Intent intent = new Intent(AddContactActivity.this, TechnicianInfoActivity.class);
+//                intent.putExtra("techMessage", mList.get(position));
+//                intent.putExtra("orderId", orderID);
+//                intent.putExtra("activityId", activityId);
+//                startActivity(intent);
+//            }
+//        });
+
+
+
+
+        showSelect(isCollection);
+        swicth.setText("收藏");
     }
 
-    public void setListener(){
+    /**
+     * 切换
+     * @param isCollection 是否收藏
+     */
+    private void showSelect(boolean isCollection){
+        if (!isCollection){
+            if (distanceTechnicianFragment.isVisible()) return;
+
+            swicth.setText("收藏");
+            FragmentTransaction ft = mManager.beginTransaction();
+            ft.hide(collectionTechnicianFragment).show(distanceTechnicianFragment).commit();
+        }else {
+            if (collectionTechnicianFragment.isVisible()) return;
+
+            swicth.setText("距离");
+            FragmentTransaction ft = mManager.beginTransaction();
+            ft.hide(distanceTechnicianFragment).show(collectionTechnicianFragment).commit();
+        }
+    }
+
+    public void setListener() {
         iv_back.setOnClickListener(this);
-        iv_clear.setOnClickListener(this);
-        tv_search.setOnClickListener(this);
-        refreshView.setOnFooterRefreshListener(this);
+        swicth.setOnClickListener(this);
+//        iv_clear.setOnClickListener(this);
+//        tv_search.setOnClickListener(this);
+//        refreshView.setOnFooterRefreshListener(this);
 
     }
 
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.iv_back:
                 finish();
                 break;
-            case R.id.iv_clear:
-                et_content.setText("");
+            case R.id.swicth:
+                isCollection = !isCollection;
+                showSelect(isCollection);
                 break;
-            case R.id.tv_search:  //搜索
-                String content = et_content.getText().toString().trim();
-//                if(StringUtil.isEmpty(content)){
-//                    T.show(this,getString(R.string.hint_text_phone_name));
-//                    return;
+//            case R.id.iv_clear:
+//                et_content.setText("");
+//                break;
+//            case R.id.tv_search:  //搜索
+//                String content = et_content.getText().toString().trim();
+////                if(StringUtil.isEmpty(content)){
+////                    T.show(this,getString(R.string.hint_text_phone_name));
+////                    return;
+////                }
+//                total = -1;  //初始化总条目个数
+//                curPage = 1;  //初始化当前页
+//                mList.clear();  //清除上次的数据
+//                findContactByPage(content,1,pageSize,true);  //分页查询技师
+//                break;
+        }
+    }
+
+//    /**
+//     * 查询技师列表
+//     *
+//     * @param page          当前第几页
+//     * @param pageSize      一页数量
+//     * @param isPullRefresh 是否上拉刷新
+//     */
+//    private void getTechList(final int page, final int pageSize, final boolean isPullRefresh) {
+//        isList = true;
+//        List<BasicNameValuePair> bpList = new ArrayList<BasicNameValuePair>();
+////        BasicNameValuePair param = new BasicNameValuePair("query",content);
+//        BasicNameValuePair two_param = new BasicNameValuePair("page", String.valueOf(page).trim());
+//        BasicNameValuePair three_param = new BasicNameValuePair("pageSize", String.valueOf(pageSize).trim());
+////        bpList.add(param);
+//        bpList.add(two_param);
+//        bpList.add(three_param);
+//
+//        if (NetWorkHelper.isNetworkAvailable(context)) {
+//            Http.getInstance().getTaskToken(NetURL.SEARCH_LISTV2, GetTechListEntity.class, new OnResult() {
+//                @Override
+//                public void onResult(Object entity) {
+//                    if (entity == null) {
+//                        T.show(context, context.getString(R.string.operate_failed_agen));
+//                        return;
+//                    }
+//                    GetTechListEntity getTechListEntity = (GetTechListEntity) entity;
+//                    if (getTechListEntity.isStatus()) {
+//                        GetTechList getTechList = JSON.parseObject(String.valueOf(getTechListEntity.getMessage()), GetTechList.class);
+//                        if (total == -1) {
+//                            total = getTechList.getTotalElements(); //获取总条目数量(只在搜索时获取总条目个数,刷新时不必再次获取)
+//                        }
+//                        List<TechnicianMessage> dataList = getTechList.getContent();
+//                        if (total == 0) {
+//                            updateData(dataList, false);
+//                            refreshView.setVisibility(View.GONE);
+//                            T.show(context, context.getString(R.string.no_search_tech));
+//                            return;
+//                        }
+//                        updateData(dataList, isPullRefresh);
+//                        refreshView.setVisibility(View.VISIBLE);
+//                    }
 //                }
-                total = -1;  //初始化总条目个数
-                curPage = 1;  //初始化当前页
-                mList.clear();  //清除上次的数据
-                findContactByPage(content,1,pageSize,true);  //分页查询技师
-                break;
-        }
-    }
-
-    /**
-     * 查询技师列表
-     * @param page  当前第几页
-     * @param pageSize 一页数量
-     * @param isPullRefresh 是否上拉刷新
-     */
-    private void getTechList(final int page, final int pageSize, final boolean isPullRefresh){
-        isList = true;
-        List<BasicNameValuePair> bpList = new ArrayList<BasicNameValuePair>();
-//        BasicNameValuePair param = new BasicNameValuePair("query",content);
-        BasicNameValuePair two_param = new BasicNameValuePair("page",String.valueOf(page).trim());
-        BasicNameValuePair three_param = new BasicNameValuePair("pageSize",String.valueOf(pageSize).trim());
+//            }, (BasicNameValuePair[]) bpList.toArray(new BasicNameValuePair[bpList.size()]));
+//        } else {
+//            T.show(this, getString(R.string.no_network_tips));
+//        }
+//        refreshView.onFooterRefreshComplete();  //不管网络是否连接,刷新完后隐藏脚布局
+//    }
+//
+//    /**
+//     * 查询技师
+//     *
+//     * @param page          当前第几页
+//     * @param pageSize      一页数量
+//     * @param isPullRefresh 是否上拉刷新
+//     */
+//    private void findContactByPage(final String content, final int page, final int pageSize, final boolean isPullRefresh) {
+//        isList = false;
+//        List<BasicNameValuePair> bpList = new ArrayList<BasicNameValuePair>();
+//        BasicNameValuePair param = new BasicNameValuePair("query", content);
+//        BasicNameValuePair two_param = new BasicNameValuePair("page", String.valueOf(page).trim());
+//        BasicNameValuePair three_param = new BasicNameValuePair("pageSize", String.valueOf(pageSize).trim());
 //        bpList.add(param);
-        bpList.add(two_param);
-        bpList.add(three_param);
-
-        if(NetWorkHelper.isNetworkAvailable(context)) {
-            Http.getInstance().getTaskToken(NetURL.SEARCH_LISTV2, GetTechListEntity.class, new OnResult() {
-                @Override
-                public void onResult(Object entity) {
-                    if (entity == null) {
-                        T.show(context, context.getString(R.string.operate_failed_agen));
-                        return;
-                    }
-                    GetTechListEntity getTechListEntity = (GetTechListEntity) entity;
-                    if (getTechListEntity.isStatus()) {
-                        GetTechList getTechList = JSON.parseObject(String.valueOf(getTechListEntity.getMessage()),GetTechList.class);
-                        if (total == -1) {
-                            total = getTechList.getTotalElements(); //获取总条目数量(只在搜索时获取总条目个数,刷新时不必再次获取)
-                        }
-                        List<TechnicianMessage> dataList = getTechList.getContent();
-                        if (total == 0) {
-                            updateData(dataList,false);
-                            refreshView.setVisibility(View.GONE);
-                            T.show(context, context.getString(R.string.no_search_tech));
-                            return;
-                        }
-                        updateData(dataList, isPullRefresh);
-                        refreshView.setVisibility(View.VISIBLE);
-                    }
-                }
-            }, (BasicNameValuePair[]) bpList.toArray(new BasicNameValuePair[bpList.size()]));
-        }else{
-            T.show(this,getString(R.string.no_network_tips));
-        }
-        refreshView.onFooterRefreshComplete();  //不管网络是否连接,刷新完后隐藏脚布局
-    }
-
-    /**
-     * 查询技师
-     * @param page  当前第几页
-     * @param pageSize 一页数量
-     * @param isPullRefresh 是否上拉刷新
-     */
-    private void findContactByPage(final String content, final int page, final int pageSize, final boolean isPullRefresh){
-        isList = false;
-        List<BasicNameValuePair> bpList = new ArrayList<BasicNameValuePair>();
-        BasicNameValuePair param = new BasicNameValuePair("query",content);
-        BasicNameValuePair two_param = new BasicNameValuePair("page",String.valueOf(page).trim());
-        BasicNameValuePair three_param = new BasicNameValuePair("pageSize",String.valueOf(pageSize).trim());
-        bpList.add(param);
-        bpList.add(two_param);
-        bpList.add(three_param);
-
-        if(NetWorkHelper.isNetworkAvailable(context)) {
-            Http.getInstance().getTaskToken(NetURL.SEARCHV2, GetTechListEntity.class, new OnResult() {
-                @Override
-                public void onResult(Object entity) {
-                    if (entity == null) {
-                        T.show(context, context.getString(R.string.operate_failed_agen));
-                        return;
-                    }
-                    GetTechListEntity getTechListEntity = (GetTechListEntity) entity;
-                    if (getTechListEntity.isStatus()) {
-                        GetTechList getTechList = JSON.parseObject(getTechListEntity.getMessage().toString(),GetTechList.class);
-                        if (total == -1) {
-                            total = getTechList.getTotalElements(); //获取总条目数量(只在搜索时获取总条目个数,刷新时不必再次获取)
-                        }
-                        List<TechnicianMessage> dataList = getTechList.getContent();
-                        if (total == 0) {
-                            updateData(dataList,false);
-                            refreshView.setVisibility(View.GONE);
-                            T.show(context, context.getString(R.string.no_search_tech));
-                            return;
-                        }
-                        updateData(dataList, isPullRefresh);
-                        refreshView.setVisibility(View.VISIBLE);
-                    }
-                }
-            }, (BasicNameValuePair[]) bpList.toArray(new BasicNameValuePair[bpList.size()]));
-        }else{
-            T.show(this,getString(R.string.no_network_tips));
-        }
-        refreshView.onFooterRefreshComplete();  //不管网络是否连接,刷新完后隐藏脚布局
-    }
-
-    protected void updateData(List<TechnicianMessage> dataList,boolean isPullRefresh){
-        if(mList.size() < total){
-            mList.addAll(dataList);
-            if(isPullRefresh){  //加载数据成功后,当前页指针加一
-                curPage++;
-            }
-        }else if(mList.size()>0){  //排除条目数为0这种情况
-            T.show(context,context.getString(R.string.has_load_all_label));
-        }
-        mAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void onFooterRefresh(PullToRefreshView view) {
-        if (isList){
-            getTechList(curPage + 1,pageSize,true);
-        }else {
-            String phone = et_content.getText().toString().trim();
-            findContactByPage(phone,curPage+1,pageSize,true);
-        }
-
-    }
-
-    @Override
-    public void onHeaderRefresh(PullToRefreshView view) {
-
-    }
+//        bpList.add(two_param);
+//        bpList.add(three_param);
+//
+//        if (NetWorkHelper.isNetworkAvailable(context)) {
+//            Http.getInstance().getTaskToken(NetURL.SEARCHV2, GetTechListEntity.class, new OnResult() {
+//                @Override
+//                public void onResult(Object entity) {
+//                    if (entity == null) {
+//                        T.show(context, context.getString(R.string.operate_failed_agen));
+//                        return;
+//                    }
+//                    GetTechListEntity getTechListEntity = (GetTechListEntity) entity;
+//                    if (getTechListEntity.isStatus()) {
+//                        GetTechList getTechList = JSON.parseObject(getTechListEntity.getMessage().toString(), GetTechList.class);
+//                        if (total == -1) {
+//                            total = getTechList.getTotalElements(); //获取总条目数量(只在搜索时获取总条目个数,刷新时不必再次获取)
+//                        }
+//                        List<TechnicianMessage> dataList = getTechList.getContent();
+//                        if (total == 0) {
+//                            updateData(dataList, false);
+//                            refreshView.setVisibility(View.GONE);
+//                            T.show(context, context.getString(R.string.no_search_tech));
+//                            return;
+//                        }
+//                        updateData(dataList, isPullRefresh);
+//                        refreshView.setVisibility(View.VISIBLE);
+//                    }
+//                }
+//            }, (BasicNameValuePair[]) bpList.toArray(new BasicNameValuePair[bpList.size()]));
+//        } else {
+//            T.show(this, getString(R.string.no_network_tips));
+//        }
+//        refreshView.onFooterRefreshComplete();  //不管网络是否连接,刷新完后隐藏脚布局
+//    }
+//
+//    protected void updateData(List<TechnicianMessage> dataList, boolean isPullRefresh) {
+//        if (mList.size() < total) {
+//            mList.addAll(dataList);
+//            if (isPullRefresh) {  //加载数据成功后,当前页指针加一
+//                curPage++;
+//            }
+//        } else if (mList.size() > 0) {  //排除条目数为0这种情况
+//            T.show(context, context.getString(R.string.has_load_all_label));
+//        }
+//        mAdapter.notifyDataSetChanged();
+//    }
+//
+//    @Override
+//    public void onFooterRefresh(PullToRefreshView view) {
+//        if (isList) {
+//            getTechList(curPage + 1, pageSize, true);
+//        } else {
+//            String phone = et_content.getText().toString().trim();
+//            findContactByPage(phone, curPage + 1, pageSize, true);
+//        }
+//
+//    }
+//
+//    @Override
+//    public void onHeaderRefresh(PullToRefreshView view) {
+//
+//    }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if(null != this.getCurrentFocus()){
+        if (null != this.getCurrentFocus()) {
             //点击空白位置 隐藏软键盘
             InputMethodManager mInputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
             return mInputMethodManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);

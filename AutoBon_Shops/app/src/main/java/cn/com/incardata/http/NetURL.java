@@ -1,10 +1,15 @@
 package cn.com.incardata.http;
 
 public class NetURL {
-	/** 一期正式服务器基地址 */
-	public final static String BASE_URL = "http://121.40.219.58:8000/api/mobile/";
-	public final static String IP_PORT = "http://121.40.219.58:8000";
-	public static final String PUB = "http://121.40.219.58:8000/api/pub/";
+	/** 2017-05-04修改正式服务器基地址 */
+	public final static String BASE_URL = "http://47.93.17.218:12345/api/mobile/";
+	public final static String IP_PORT = "http://47.93.17.218:12345";
+	public static final String PUB = "http://47.93.17.218:12345/api/pub/";
+
+//	/** 一期正式服务器基地址 */
+//	public final static String BASE_URL = "http://121.40.219.58:8000/api/mobile/";
+//	public final static String IP_PORT = "http://121.40.219.58:8000";
+//	public static final String PUB = "http://121.40.219.58:8000/api/pub/";
 //
 //	/** 二期电脑地址 */
 //	public final static String BASE_URL = "http://10.0.12.148:12345/api/mobile/";
@@ -15,9 +20,9 @@ public class NetURL {
 //	public final static String IP_PORT = "http://dev.incardata.com.cn:12345";
 //	public static final String PUB = "http://dev.incardata.com.cn:12345/api/pub/";
 
-//	public final static String BASE_URL = "http://hpecar.com:8012/api/mobile/";
-//	public final static String IP_PORT = "http://hpecar.com:8012";
-//	public static final String PUB = "http://hpecar.com:8012/api/pub/";
+//	public final static String BASE_URL = "http://10.0.12.191:12345/api/mobile/";
+//	public final static String IP_PORT = "http://10.0.12.191:12345";
+//	public static final String PUB = "http://10.0.12.191:12345/api/pub/";
 
 	/** 发送验证短信 */
 	public static final String VERIFY_SMS = PUB + "verifySms";
@@ -145,5 +150,17 @@ public class NetURL {
 
 	/** 评价 */
 	public static final String COMMENTV2 = BASE_URL + "coop/merchant/order/comment";
+
+	/**
+	 * 查询已收藏的技师列表
+	 * */
+	public static final String SELECTCOLLECTIONTECHNICIAN = BASE_URL + "coop/favorite/technician";
+
+	/**
+	 * 移除已收藏的技师列表
+	 * */
+	public static final String delectCollectionTechnician(int id){
+		return BASE_URL + "coop/favorite/technician/" + id;
+	}
 
 }

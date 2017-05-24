@@ -37,6 +37,7 @@ public class PersonalActivity extends BaseForBroadcastActivity implements View.O
 
         findViewById(R.id.back).setOnClickListener(this);
         findViewById(R.id.order_layout).setOnClickListener(this);
+        findViewById(R.id.collection_layout).setOnClickListener(this);
         findViewById(R.id.cooperater_layout).setOnClickListener(this);
         findViewById(R.id.salesman_layout).setOnClickListener(this);
         findViewById(R.id.notify_layout).setOnClickListener(this);
@@ -58,6 +59,9 @@ public class PersonalActivity extends BaseForBroadcastActivity implements View.O
                 break;
             case R.id.order_layout:
                 startActivity(MyOrderActivity.class);
+                break;
+            case R.id.collection_layout:
+                startActivity(CollectionContactActivity.class);
                 break;
             case R.id.cooperater_layout:
                 startActivity(ReviewMessageActivity.class);

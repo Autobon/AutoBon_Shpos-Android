@@ -14,7 +14,8 @@ public class Http{
 	public final static int POST = 1;
 	public final static int GET = 2;
 	public final static int PUT = 3;
-	
+	public final static int DEL = 4;
+
 	private static Http instance;
 	private ExecutorService mExecutor;
 	private static OnResult onResult;
@@ -135,6 +136,19 @@ public class Http{
  		taskToken(strUrl, param, PUT, cls, onResult.hashCode());
 	}
 
+
+	/**
+	 * del方式加载数据带token（传送json）
+	 * @param strUrl
+	 * @param param
+	 * @param cls
+	 * @param onResult
+	 */
+	public void delTaskToken(String strUrl, String param, Class<?> cls, OnResult onResult){
+		msgQueue.put(onResult.hashCode(), onResult);
+		taskToken(strUrl,"?" + param, DEL, cls, onResult.hashCode());
+	}
+
 	/**
 	 * 携带token传送表单（NameValuePair）的任务
 	 * @param strUrl
@@ -181,6 +195,18 @@ public class Http{
 	public void putTaskToken(String strUrl, Class<?> cls, OnResult onResult, NameValuePair... nameValuePairs){
 		msgQueue.put(onResult.hashCode(), onResult);
 		taskToken(strUrl, PUT, cls, onResult.hashCode(), nameValuePairs);
+	}
+
+	/**
+	 * del方式加载数据带token（传送表单NameValuePair)
+	 * @param strUrl
+	 * @param cls
+	 * @param onResult
+	 * @param nameValuePairs
+	 */
+	public void delTaskToken(String strUrl, Class<?> cls, OnResult onResult, NameValuePair... nameValuePairs){
+		msgQueue.put(onResult.hashCode(), onResult);
+		taskToken(strUrl, DEL, cls, onResult.hashCode(), nameValuePairs);
 	}
 
 	/**

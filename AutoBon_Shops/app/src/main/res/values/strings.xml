@@ -144,7 +144,7 @@
     <string name="unfinished_order_tips">有%1$d个未完成订单</string>
     <string name="order_info">订单信息</string>
     <string name="sample_image">订单图片</string>
-    <string name="please_edit_remark">请填写备注(最多200字)</string>
+    <string name="please_edit_remark">请填写备注(请填写本车的提成，最多200字)</string>
     <string name="work_time">预约施工时间</string>
     <string name="work_item">施工项目</string>
     <string name="skill_item_1">隔热膜</string>
@@ -278,5 +278,7 @@
     <string name="agreeTime">预约时间： </string>
     <string name="work_skill">施工项目：</string>
     <string name="no_order">暂无订单</string>
+    <string name="my_collection">我的收藏</string>
+    <string name="collection">收藏</string>
 
 </resources>

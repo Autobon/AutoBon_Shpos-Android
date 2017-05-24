@@ -23,6 +23,7 @@ import cn.com.incardata.http.Http;
 import cn.com.incardata.http.ImageLoaderCache;
 import cn.com.incardata.http.NetURL;
 import cn.com.incardata.http.OnResult;
+import cn.com.incardata.http.response.BaseEntity;
 import cn.com.incardata.http.response.Construction;
 import cn.com.incardata.http.response.GetTechnicianEntity;
 import cn.com.incardata.http.response.OrderInfo;
@@ -61,12 +62,14 @@ public class OrderInfoActivity extends BaseForBroadcastActivity {
     //    private String[] workItems;
     private OrderInfo orderInfo;
 
+    private Button collection;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_info);
         initView();
-        updateUI();
+
     }
 
     private void initView() {
@@ -88,6 +91,8 @@ public class OrderInfoActivity extends BaseForBroadcastActivity {
         user_phone = (TextView) findViewById(R.id.user_phone);
         orderCount = (TextView) findViewById(R.id.order_num);
         ratingBar = (RatingBar) findViewById(R.id.ratingbar);
+
+        collection = (Button) findViewById(R.id.collection);
 
         findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,8 +140,43 @@ public class OrderInfoActivity extends BaseForBroadcastActivity {
             }
         });
 
+        collection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                collectTechnician();
+            }
+        });
+
         orderInfo = getIntent().getParcelableExtra(AutoCon.ORDER_INFO);
+        updateUI();
 //        getTechInfo(orderInfo.getId());
+    }
+
+    /**
+     * 收藏技师
+     *
+     */
+    private void collectTechnician() {
+        showDialog();
+        Http.getInstance().postTaskToken(NetURL.delectCollectionTechnician(orderInfo.getTechId()), "", BaseEntity.class, new OnResult() {
+            @Override
+            public void onResult(Object entity) {
+                cancelDialog();
+                if (entity == null) {
+                    T.show(getContext(), R.string.request_failed);
+                    return;
+                }
+                if (entity instanceof BaseEntity) {
+                    BaseEntity baseEntity = (BaseEntity) entity;
+                    if (baseEntity.isResult()) {
+                        T.show(getContext(), "收藏技师成功");
+                    } else {
+                        T.show(getContext(), baseEntity.getMessage());
+                    }
+                }
+
+            }
+        });
     }
 
     /**
@@ -223,8 +263,6 @@ public class OrderInfoActivity extends BaseForBroadcastActivity {
         }
         if (!TextUtils.isEmpty(orderInfo.getTechAvatar())){
             ImageLoaderCache.getInstance().loader(NetURL.IP_PORT + orderInfo.getTechAvatar(), userPhoto);
-        }else{
-            return;
         }
         if (!TextUtils.isEmpty(orderInfo.getTechName())){
             userName.setText(orderInfo.getTechName());

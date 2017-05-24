@@ -27,77 +27,20 @@
             android:text="@string/appoint_tech"
             android:textColor="@android:color/white"
             android:textSize="@dimen/sp18" />
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp60"
-        android:padding="@dimen/dp10"
-        android:background="@android:color/white">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/pop_shape"
-            android:gravity="center_vertical">
-
-            <ImageView
-                android:layout_width="@dimen/dp25"
-                android:layout_height="@dimen/dp25"
-                android:scaleType="centerInside"
-                android:src="@mipmap/search_img" />
-
-            <EditText
-                android:id="@+id/et_content"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@null"
-                android:hint="@string/hint_text_phone_name"
-                android:textColor="@color/darkgray"
-                android:textColorHint="@color/lightgray"
-                android:textSize="@dimen/sp15" />
-
-            <ImageView
-                android:id="@+id/iv_clear"
-                android:layout_width="@dimen/dp20"
-                android:layout_height="@dimen/dp20"
-                android:scaleType="centerInside"
-                android:src="@mipmap/iv_delete" />
-        </LinearLayout>
 
         <TextView
-            android:id="@+id/tv_search"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/dp15"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center_vertical"
-            android:text="@string/search_text"
-            android:textColor="@color/darkgray" />
-    </LinearLayout>
-    <View
-        android:background="@color/lightgray"
+            android:id="@+id/swicth"
+            android:textColor="@color/main_white"
+            android:textSize="@dimen/sp15"
+            android:text="@string/collection"
+            android:gravity="center"
+            android:layout_alignParentRight="true"
+            android:layout_width="@dimen/dp60"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/technician_content"
         android:layout_width="match_parent"
-        android:layout_height="1dp"/>
-    <cn.com.incardata.view.PullToRefreshView
-        android:id="@+id/pull_refresh"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical" >
-        <ListView
-            android:id="@+id/technician_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:listSelector="@android:color/transparent"
-            android:divider="@color/lightgray"
-            android:dividerHeight="1dp"
-            android:scrollbars="none"
-            android:fadingEdge="none"
-            android:cacheColorHint="@android:color/transparent"
-            android:fadeScrollbars="false">
-        </ListView>
-    </cn.com.incardata.view.PullToRefreshView>
+        android:layout_height="match_parent"/>
 </LinearLayout>

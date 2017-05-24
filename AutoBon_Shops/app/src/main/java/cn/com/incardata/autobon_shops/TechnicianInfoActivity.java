@@ -76,6 +76,7 @@ public class TechnicianInfoActivity extends BaseActivity {
 
         if (technicianMessage == null || orderId == -1 || activityId == -1) {
             T.show(this, "数据加载失败");
+            return;
         } else {
             if (activityId == 4) {
                 submit.setPadding(10,5,10,5);
@@ -151,21 +152,14 @@ public class TechnicianInfoActivity extends BaseActivity {
                 if (tech.isStatus()) {
                     Log.i("test", "指定技师成功");
                     T.show(TechnicianInfoActivity.this, R.string.appoint_technician_succeed);
+                    AddContactActivity.isFinish = true;
                     if (activityId == 1) {
-                        Intent i = new Intent(TechnicianInfoActivity.this, MainActivity.class);
-                        startActivity(i);
                         finish();
                     } else if (activityId == 2) {
-                        Intent i = new Intent(TechnicianInfoActivity.this, UnfinishOrderActivity.class);
-                        startActivity(i);
                         finish();
                     } else {
-                        Intent i = new Intent(TechnicianInfoActivity.this, UnFinishOrderInfoActivity.class);
-                        startActivity(i);
                         finish();
                     }
-
-
                 } else {
                     T.show(TechnicianInfoActivity.this, tech.getMessage());
                 }

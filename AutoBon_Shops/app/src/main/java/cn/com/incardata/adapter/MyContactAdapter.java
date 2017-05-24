@@ -1,5 +1,6 @@
 package cn.com.incardata.adapter;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,12 +32,12 @@ import cn.com.incardata.view.CircleImageView;
  * @author wanghao
  */
 public class MyContactAdapter extends BaseAdapter{
-    private BaseActivity activity;
+    private Activity activity;
     private List<TechnicianMessage> mList;
     private String technicianName;
     private int technicianId;
 
-    public MyContactAdapter(BaseActivity activity, List<TechnicianMessage> mList){
+    public MyContactAdapter(Activity activity, List<TechnicianMessage> mList){
         this.activity = activity;
         this.mList = mList;
     }
@@ -120,12 +121,12 @@ public class MyContactAdapter extends BaseAdapter{
     }
 
     public void addTechnician(){
-        activity.showDialog(null);
+//        activity.showDialog(null);
         //TODO 发送合作邀请
         Http.getInstance().postTaskToken(NetURL.APPOINTV2, AppointTechEntity.class, new OnResult() {
             @Override
             public void onResult(Object entity) {
-                activity.cancelDialog();
+//                activity.cancelDialog();
                 if(entity == null){
                     T.show(activity,activity.getString(R.string.operate_failed_agen));
                     return;

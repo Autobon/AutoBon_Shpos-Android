@@ -432,6 +432,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/v10"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <View
@@ -440,7 +441,8 @@
                     android:background="@color/main_orange" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/dp5"
                     android:layout_marginLeft="@dimen/dp10"
@@ -448,7 +450,15 @@
                     android:text="@string/tech_info"
                     android:textColor="@color/darkgray"
                     android:textSize="@dimen/sp15" />
-
+                <Button
+                    android:id="@+id/collection"
+                    android:layout_marginRight="@dimen/dp15"
+                    android:text="@string/collection"
+                    android:textSize="@dimen/sp12"
+                    android:textColor="@color/main_orange"
+                    android:background="@drawable/add_tech_submit_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
             </LinearLayout>
 
             <View
@@ -493,6 +503,7 @@
 
 
             <LinearLayout
+                android:id="@+id/ll_100"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@id/user_name"
@@ -532,6 +543,14 @@
                     android:numStars="5"
                     android:rating="0"></RatingBar>
             </LinearLayout>
+
+            <View
+                android:id="@+id/v15"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="@dimen/dp30"
+                android:layout_below="@id/ll_100"
+                android:background="#F0F0F0" />
 
         </RelativeLayout>
     </ScrollView>
