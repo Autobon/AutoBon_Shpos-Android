@@ -1,14 +1,28 @@
 package cn.com.incardata.http;
 
 public class NetURL {
-	/** 基地址 */
-	public final static String BASE_URL = "http://121.40.219.58/api/mobile/";
-	public final static String IP_PORT = "http://121.40.219.58";
-	public static final String PUB = "http://121.40.219.58/api/pub/";
+	/** 2017-05-04修改正式服务器基地址 */
+	public final static String BASE_URL = "http://47.93.17.218:12345/api/mobile/";
+	public final static String IP_PORT = "http://47.93.17.218:12345";
+	public static final String PUB = "http://47.93.17.218:12345/api/pub/";
 
-//	public final static String BASE_URL = "http://hpecar.com:8012/api/mobile/";
-//	public final static String IP_PORT = "http://hpecar.com:8012";
-//	public static final String PUB = "http://hpecar.com:8012/api/pub/";
+//	/** 一期正式服务器基地址 */
+//	public final static String BASE_URL = "http://121.40.219.58:8000/api/mobile/";
+//	public final static String IP_PORT = "http://121.40.219.58:8000";
+//	public static final String PUB = "http://121.40.219.58:8000/api/pub/";
+//
+//	/** 二期电脑地址 */
+//	public final static String BASE_URL = "http://10.0.12.148:12345/api/mobile/";
+//	public final static String IP_PORT = "http://10.0.12.148:12345";
+//	public static final String PUB = "http://10.0.12.148:12345/api/pub/";
+//	/** 二期测试服务器基地址 */
+//	public final static String BASE_URL = "http://dev.incardata.com.cn:12345/api/mobile/";
+//	public final static String IP_PORT = "http://dev.incardata.com.cn:12345";
+//	public static final String PUB = "http://dev.incardata.com.cn:12345/api/pub/";
+
+//	public final static String BASE_URL = "http://10.0.12.191:12345/api/mobile/";
+//	public final static String IP_PORT = "http://10.0.12.191:12345";
+//	public static final String PUB = "http://10.0.12.191:12345/api/pub/";
 
 	/** 发送验证短信 */
 	public static final String VERIFY_SMS = PUB + "verifySms";
@@ -70,4 +84,83 @@ public class NetURL {
 	public static String getSalemanAccount(int accountID){
 		return BASE_URL + "coop/account/" + accountID;
 	}
+
+
+	/**二期
+	 * ========================================================================================
+	 */
+	/** 上传营业执照副本照片 */
+	public static final String BUSNIESS_LICENSE_URLV2 = BASE_URL + "coop/merchant/bussinessLicensePic";
+
+	/** 商户资料提交认证 */
+	public static final String CORPORATION_CHECK_URLV2 = BASE_URL + "coop/merchant/certificate";
+
+	/** 注册 */
+	public static final String REGISTER_URLV2 = BASE_URL + "coop/merchant/register";
+
+	/** 登录 */
+	public static final String LOGIN_URLV2 = BASE_URL + "coop/merchant/login";
+
+	/** 发送验证短信 */
+	public static final String VERIFY_SMSV2 = PUB + "v2/verifySms";
+
+	/** 商户审核信息 */
+	public static final String COOP_CHECK_RESULTV2 = BASE_URL + "coop/merchant/coopCheckResult";
+
+	/** 找回密码 */
+	public static final String RESET_PASSWORDV2 = BASE_URL + "coop/resetPassword";
+
+	/** 上传订单照片 */
+	public static final String UPLOAD_PHOTOV2 = BASE_URL + "coop/merchant/order/uploadPhoto";
+
+	/** 创建订单 */
+	public static final String CREATE_ORDERV2 = BASE_URL + "coop/merchant/order";
+
+	/** 查询技师列表 */
+	public static final String SEARCH_LISTV2 = BASE_URL + "coop/merchant/technician/distance";
+
+	/** 查询技师 */
+	public static final String SEARCHV2 = BASE_URL + "coop/merchant/technician/assign";
+
+	/** 订单指定技师 */
+	public static final String APPOINTV2 = BASE_URL + "coop/merchant/order/appoint";
+
+	/** 未完成、已完成订单列表 */
+	public static final String LIST_UNFINISHEDV2 = BASE_URL + "coop/merchant/order";
+
+	/**获取订单详情 */
+	public static String getOrderInfo(int orderId){
+		return LIST_UNFINISHEDV2 + "/" + orderId;
+	}
+
+	/** 撤单 */
+	public static String getRevokeOrderV2(int orderId){
+		return BASE_URL + "coop/merchant/order/" + orderId + "/cancel";
+	}
+
+	/** 根据订单ID获取技师信息 */
+	public static String getTechMessageV2(int orderId){
+		return BASE_URL + "coop/merchant/order/" + orderId + "/technician";
+	}
+
+	/** 根据技师ID获取技师信息 */
+	public static String getTechIdMessageV2(int techId){
+		return BASE_URL + "coop/merchant/technician/" + techId;
+	}
+
+	/** 评价 */
+	public static final String COMMENTV2 = BASE_URL + "coop/merchant/order/comment";
+
+	/**
+	 * 查询已收藏的技师列表
+	 * */
+	public static final String SELECTCOLLECTIONTECHNICIAN = BASE_URL + "coop/favorite/technician";
+
+	/**
+	 * 移除已收藏的技师列表
+	 * */
+	public static final String delectCollectionTechnician(int id){
+		return BASE_URL + "coop/favorite/technician/" + id;
+	}
+
 }

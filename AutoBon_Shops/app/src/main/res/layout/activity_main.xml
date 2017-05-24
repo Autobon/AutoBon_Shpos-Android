@@ -55,246 +55,379 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:background="@color/main_orange" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:background="@android:color/white"
+                    android:paddingBottom="@dimen/dp5"
+                    android:paddingLeft="@dimen/dp10"
+                    android:paddingTop="@dimen/dp5"
+                    android:text="@string/work_item"
+                    android:textColor="@color/darkgray"
+                    android:textSize="@dimen/sp15" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#F0F0F0" />
+            <LinearLayout
+                android:background="@android:color/white"
+                android:layout_width="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/dp15"
+                android:paddingTop="@dimen/dp15"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/skill_tv1"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:text="@string/skill_item_1"
+                    android:textSize="@dimen/sp12"
+                    android:background="@drawable/skill_off"
+                    android:textColor="@color/gray_A3"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/skill_tv2"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_marginLeft="@dimen/dp5"
+                    android:text="@string/skill_item_2"
+                    android:textSize="@dimen/sp12"
+                    android:background="@drawable/skill_off"
+                    android:textColor="@color/gray_A3"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/skill_tv3"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_marginLeft="@dimen/dp5"
+                    android:text="@string/skill_item_3"
+                    android:textSize="@dimen/sp12"
+                    android:background="@drawable/skill_off"
+                    android:textColor="@color/gray_A3"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/skill_tv4"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:padding="@dimen/dp5"
+                    android:gravity="center"
+                    android:layout_marginLeft="@dimen/dp5"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:text="@string/skill_item_4"
+                    android:textSize="@dimen/sp12"
+                    android:background="@drawable/skill_off"
+                    android:textColor="@color/gray_A3"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#F0F0F0" />
+
+
+            <!--<RadioGroup-->
+            <!--android:id="@+id/skill_readio_group"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@android:color/white"-->
+            <!--android:gravity="center_horizontal"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:paddingBottom="@dimen/dp15"-->
+            <!--android:paddingTop="@dimen/dp15">-->
+
+            <!--<RadioButton-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="@dimen/dp15"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@drawable/skill_item_radiobutton_bg"-->
+            <!--android:button="@null"-->
+            <!--android:gravity="center"-->
+            <!--android:padding="@dimen/dp5"-->
+            <!--android:text="@string/skill_item_1"-->
+            <!--android:textColor="@color/skill_item_radiobutton_textcolor"-->
+            <!--android:textSize="@dimen/sp13" />-->
+
+            <!--<RadioButton-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="@dimen/dp5"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@drawable/skill_item_radiobutton_bg"-->
+            <!--android:button="@null"-->
+            <!--android:gravity="center"-->
+            <!--android:padding="@dimen/dp5"-->
+            <!--android:text="@string/skill_item_2"-->
+            <!--android:textColor="@color/skill_item_radiobutton_textcolor"-->
+            <!--android:textSize="@dimen/sp13" />-->
+
+            <!--<RadioButton-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="@dimen/dp5"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@drawable/skill_item_radiobutton_bg"-->
+            <!--android:button="@null"-->
+            <!--android:gravity="center"-->
+            <!--android:padding="@dimen/dp5"-->
+            <!--android:text="@string/skill_item_3"-->
+            <!--android:textColor="@color/skill_item_radiobutton_textcolor"-->
+            <!--android:textSize="@dimen/sp13" />-->
+
+            <!--<RadioButton-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="@dimen/dp5"-->
+            <!--android:layout_marginRight="@dimen/dp15"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@drawable/skill_item_radiobutton_bg"-->
+            <!--android:button="@null"-->
+            <!--android:gravity="center"-->
+            <!--android:padding="@dimen/dp5"-->
+            <!--android:text="@string/skill_item_4"-->
+            <!--android:textColor="@color/skill_item_radiobutton_textcolor"-->
+            <!--android:textSize="@dimen/sp13" />-->
+
+            <!--</RadioGroup>-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:orientation="horizontal">
 
                 <View
                     android:layout_width="5dp"
-                    android:layout_marginTop="@dimen/dp10"
                     android:layout_height="match_parent"
-                    android:background="@color/main_orange"/>
+                    android:layout_marginTop="@dimen/dp10"
+                    android:background="@color/main_orange" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/darkgray"
-                    android:background="@android:color/white"
-                    android:textSize="@dimen/sp15"
                     android:layout_marginTop="@dimen/dp10"
+                    android:background="@android:color/white"
+                    android:paddingBottom="@dimen/dp5"
                     android:paddingLeft="@dimen/dp10"
                     android:paddingTop="@dimen/dp5"
-                    android:paddingBottom="@dimen/dp5"
-                    android:text="@string/order_info"/>
+                    android:text="@string/order_info"
+                    android:textColor="@color/darkgray"
+                    android:textSize="@dimen/sp15" />
 
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#F0F0F0"/>
-
+                android:background="#F0F0F0" />
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp150"
-                android:background="@android:color/white">
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:padding="@dimen/dp10">
 
-                <ImageView
-                    android:id="@+id/order_image"
-                    android:layout_width="@dimen/dp200"
-                    android:layout_height="@dimen/dp120"
-                    android:scaleType="centerInside"
-                    android:contentDescription="@string/sample_image"
-                    android:background="#EEEEEE"
-                    android:layout_centerInParent="true"/>
-
-                <TextView
-                    android:id="@+id/sample_image_text"
-                    android:layout_width="@dimen/dp200"
-                    android:layout_height="@dimen/dp120"
-                    android:background="#EEEEEE"
-                    android:textSize="@dimen/sp15"
-                    android:textColor="@color/gray_A3"
-                    android:text="@string/sample_image"
+                <cn.com.incardata.view.MyGridView
+                    android:id="@+id/gv_order_pic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:layout_centerInParent="true"/>
-
-                <ImageView
-                    android:layout_width="@dimen/dp20"
-                    android:layout_height="@dimen/dp20"
-                    android:src="@mipmap/large_camera"
-                    android:scaleType="centerInside"
-                    android:layout_alignBottom="@id/order_image"
-                    android:layout_alignRight="@id/order_image"
-                    android:layout_marginBottom="-3dp"
-                    android:layout_marginRight="-12dp"/>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="@dimen/dp10"
-                    android:layout_marginRight="@dimen/dp10"
-                    android:layout_alignParentBottom="true"
-                    android:background="#F0F0F0"/>
+                    android:horizontalSpacing="@dimen/dp20"
+                    android:listSelector="@android:color/transparent"
+                    android:numColumns="3"
+                    android:stretchMode="columnWidth"
+                    android:verticalSpacing="@dimen/dp10"></cn.com.incardata.view.MyGridView>
             </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#F0F0F0"/>
+
+            <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="@dimen/dp150"-->
+            <!--android:background="@android:color/white">-->
+
+            <!--<ImageView-->
+            <!--android:id="@+id/order_image"-->
+            <!--android:layout_width="@dimen/dp200"-->
+            <!--android:layout_height="@dimen/dp120"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:background="#EEEEEE"-->
+            <!--android:contentDescription="@string/sample_image"-->
+            <!--android:scaleType="centerInside" />-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/sample_image_text"-->
+            <!--android:layout_width="@dimen/dp200"-->
+            <!--android:layout_height="@dimen/dp120"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:background="#EEEEEE"-->
+            <!--android:gravity="center"-->
+            <!--android:text="@string/sample_image"-->
+            <!--android:textColor="@color/gray_A3"-->
+            <!--android:textSize="@dimen/sp15" />-->
+
+            <!--<ImageView-->
+            <!--android:layout_width="@dimen/dp20"-->
+            <!--android:layout_height="@dimen/dp20"-->
+            <!--android:layout_alignBottom="@id/order_image"-->
+            <!--android:layout_alignRight="@id/order_image"-->
+            <!--android:layout_marginBottom="-3dp"-->
+            <!--android:layout_marginRight="-12dp"-->
+            <!--android:scaleType="centerInside"-->
+            <!--android:src="@mipmap/large_camera" />-->
+
+            <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="1dp"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_marginLeft="@dimen/dp10"-->
+            <!--android:layout_marginRight="@dimen/dp10"-->
+            <!--android:background="#F0F0F0" />-->
+            <!--</RelativeLayout>-->
 
             <EditText
                 android:id="@+id/edit_remark"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:gravity="left"
+                android:hint="@string/please_edit_remark"
+                android:maxLength="200"
+                android:minLines="5"
                 android:padding="@dimen/dp15"
                 android:textColor="@color/darkgray"
-                android:textSize="@dimen/sp15"
-                android:lines="5"
-                android:maxLength="200"
                 android:textColorHint="@color/lightgray"
-                android:hint="@string/please_edit_remark"
-                android:gravity="left"
-                android:background="@android:color/white"/>
+                android:textSize="@dimen/sp15" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/dp5"
+                android:background="#F0F0F0" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <View
-                    android:layout_width="5dp"
-                    android:layout_marginTop="@dimen/dp10"
-                    android:layout_height="match_parent"
-                    android:background="@color/main_orange"/>
+                <TextView
+                    android:layout_width="@dimen/dp110"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="@dimen/dp10"
+                    android:paddingLeft="@dimen/dp10"
+                    android:paddingTop="@dimen/dp10"
+                    android:text="@string/work_time"
+                    android:textColor="@color/darkgray"
+                    android:textSize="@dimen/sp15" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:id="@+id/work_time"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="@dimen/dp30"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:paddingTop="@dimen/dp10"
+                    android:paddingBottom="@dimen/dp10"
+                    android:paddingRight="@dimen/dp10"
                     android:textColor="@color/darkgray"
-                    android:background="@android:color/white"
-                    android:textSize="@dimen/sp15"
-                    android:layout_marginTop="@dimen/dp10"
-                    android:paddingLeft="@dimen/dp10"
-                    android:paddingTop="@dimen/dp5"
-                    android:paddingBottom="@dimen/dp5"
-                    android:text="@string/work_time"/>
+                    android:textSize="@dimen/sp15" />
 
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#F0F0F0"/>
+                android:background="#F0F0F0" />
 
-            <TextView
-                android:id="@+id/work_time"
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/white"
-                android:padding="@dimen/dp10"
-                android:textSize="@dimen/sp15"
-                android:maxLines="1"
-                android:textColor="@color/gray_A3"/>
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/dp10"
+                android:background="#F0F0F0" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <View
-                    android:layout_width="5dp"
-                    android:layout_marginTop="@dimen/dp10"
-                    android:layout_height="match_parent"
-                    android:background="@color/main_orange"/>
+                <TextView
+                    android:layout_width="@dimen/dp110"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="@dimen/dp10"
+                    android:paddingLeft="@dimen/dp10"
+                    android:paddingTop="@dimen/dp10"
+                    android:text="最迟交车时间"
+                    android:textColor="@color/darkgray"
+                    android:textSize="@dimen/sp15" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:id="@+id/agreedEndTime"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="@dimen/dp30"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:paddingTop="@dimen/dp10"
+                    android:paddingBottom="@dimen/dp10"
+                    android:paddingRight="@dimen/dp10"
                     android:textColor="@color/darkgray"
-                    android:background="@android:color/white"
-                    android:textSize="@dimen/sp15"
-                    android:layout_marginTop="@dimen/dp10"
-                    android:paddingLeft="@dimen/dp10"
-                    android:paddingTop="@dimen/dp5"
-                    android:paddingBottom="@dimen/dp5"
-                    android:text="@string/work_item"/>
+                    android:textSize="@dimen/sp15" />
 
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#F0F0F0"/>
+                android:background="#F0F0F0" />
 
-            <RadioGroup
-                android:id="@+id/skill_readio_group"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="@dimen/dp15"
-                android:paddingBottom="@dimen/dp15"
-                android:background="@android:color/white"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:padding="@dimen/dp5"
-                    android:textSize="@dimen/sp13"
-                    android:layout_marginLeft="@dimen/dp15"
-                    android:textColor="@color/skill_item_radiobutton_textcolor"
-                    android:button="@null"
-                    android:text="@string/skill_item_1"
-                    android:background="@drawable/skill_item_radiobutton_bg"/>
-
-                <RadioButton
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="@dimen/dp5"
-                    android:gravity="center"
-                    android:padding="@dimen/dp5"
-                    android:textSize="@dimen/sp13"
-                    android:textColor="@color/skill_item_radiobutton_textcolor"
-                    android:button="@null"
-                    android:text="@string/skill_item_2"
-                    android:background="@drawable/skill_item_radiobutton_bg"/>
-
-                <RadioButton
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="@dimen/dp5"
-                    android:gravity="center"
-                    android:padding="@dimen/dp5"
-                    android:textSize="@dimen/sp13"
-                    android:textColor="@color/skill_item_radiobutton_textcolor"
-                    android:button="@null"
-                    android:text="@string/skill_item_3"
-                    android:background="@drawable/skill_item_radiobutton_bg"/>
-
-                <RadioButton
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="@dimen/dp5"
-                    android:layout_marginRight="@dimen/dp15"
-                    android:gravity="center"
-                    android:padding="@dimen/dp5"
-                    android:textSize="@dimen/sp13"
-                    android:textColor="@color/skill_item_radiobutton_textcolor"
-                    android:button="@null"
-                    android:text="@string/skill_item_4"
-                    android:background="@drawable/skill_item_radiobutton_bg"/>
-
-            </RadioGroup>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#F0F0F0"/>
 
             <Button
                 android:id="@+id/release_order"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/login_btn_selector"
-                android:padding="@dimen/dp10"
+                android:layout_marginBottom="@dimen/dp5"
                 android:layout_marginLeft="@dimen/dp15"
                 android:layout_marginRight="@dimen/dp15"
-                android:layout_marginTop="@dimen/dp15"
-                android:layout_marginBottom="@dimen/dp5"
+                android:layout_marginTop="@dimen/dp25"
+                android:background="@drawable/login_btn_selector"
+                android:padding="@dimen/dp10"
+                android:text="@string/release_order"
                 android:textColor="@android:color/white"
-                android:textSize="@dimen/sp18"
-                android:text="@string/release_order"/>
+                android:textSize="@dimen/sp18" />
 
             <CheckBox
                 android:id="@+id/assign_tech"
@@ -302,13 +435,13 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="@dimen/dp15"
+                android:background="@null"
+                android:button="@drawable/assign_tech_checkbox_style"
                 android:gravity="center"
                 android:padding="@dimen/dp5"
-                android:textSize="@dimen/sp13"
-                android:textColor="@color/gray_A3"
-                android:button="@drawable/assign_tech_checkbox_style"
                 android:text="@string/appoint_tech_tips"
-                android:background="@null"/>
+                android:textColor="@color/gray_A3"
+                android:textSize="@dimen/sp13" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/main_white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <cn.com.incardata.view.PullToRefreshView
+        android:id="@+id/pull_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+        <ListView
+            android:id="@+id/technician_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:listSelector="@android:color/transparent"
+            android:divider="@color/lightgray"
+            android:dividerHeight="1dp"
+            android:scrollbars="none"
+            android:fadingEdge="none"
+            android:cacheColorHint="@android:color/transparent"
+            android:fadeScrollbars="false">
+        </ListView>
+    </cn.com.incardata.view.PullToRefreshView>
+
+</LinearLayout>

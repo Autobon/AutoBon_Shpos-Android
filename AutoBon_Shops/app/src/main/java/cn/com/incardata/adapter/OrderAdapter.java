@@ -15,6 +15,7 @@ import cn.com.incardata.autobon_shops.R;
 import cn.com.incardata.http.ImageLoaderCache;
 import cn.com.incardata.http.NetURL;
 import cn.com.incardata.http.response.OrderInfo;
+import cn.com.incardata.utils.DateCompute;
 
 /**我的订单
  * Created by wanghao on 16/3/21.
@@ -26,6 +27,7 @@ public class OrderAdapter extends BaseAdapter implements View.OnClickListener {
     public OrderAdapter(Context context, ArrayList<OrderInfo> mList){
         this.context = context;
         this.mList = mList;
+
     }
 
     @Override
@@ -54,7 +56,7 @@ public class OrderAdapter extends BaseAdapter implements View.OnClickListener {
             holder.orderNum = (TextView) convertView.findViewById(R.id.order_number);
             holder.orderType = (TextView) convertView.findViewById(R.id.order_type);
             holder.orderOperate = (TextView) convertView.findViewById(R.id.order_operate);
-            holder.orderImage = (ImageView) convertView.findViewById(R.id.order_image);
+            holder.orderWorkTime = (TextView) convertView.findViewById(R.id.order_workTime);
 
             holder.orderOperate.setOnClickListener(this);
             convertView.setTag(holder);
@@ -63,10 +65,22 @@ public class OrderAdapter extends BaseAdapter implements View.OnClickListener {
         }
 
         OrderInfo orderInfo = mList.get(position);
-        ImageLoaderCache.getInstance().loader(NetURL.IP_PORT + orderInfo.getPhoto(), holder.orderImage, 0);
+//        ImageLoaderCache.getInstance().loader(NetURL.IP_PORT + orderInfo.getPhoto(), holder.orderImage, 0);
         holder.orderNum.setText(context.getString(R.string.order_num, orderInfo.getOrderNum()));
-        holder.orderType.setText(MyApplication.getInstance().getSkill(orderInfo.getOrderType()));
-
+        if (orderInfo.getType() == null){
+            holder.orderType.setText("");
+        }else {
+            String[] types = orderInfo.getType().split(",");
+            String type = "";
+            for (int i = 0; i < types.length; i++) {
+                type = type + getProjectName(types[i]) + ",";
+            }
+            if (type != "" && type.length() > 0){
+                type = type.substring(0,type.length() - 1);
+            }
+            holder.orderType.setText(type);
+        }
+        holder.orderWorkTime.setText(context.getString(R.string.agreeTime) + DateCompute.getDate(orderInfo.getAgreedStartTime()));
         holder.orderOperate.setAlpha(1f);
         if ("EXPIRED".equals(orderInfo.getStatus())){//超时订单
             holder.orderOperate.setText(R.string.timeouted);
@@ -83,6 +97,7 @@ public class OrderAdapter extends BaseAdapter implements View.OnClickListener {
         return convertView;
     }
 
+
     @Override
     public void onClick(View v) {
         if (mListener != null){
@@ -90,11 +105,25 @@ public class OrderAdapter extends BaseAdapter implements View.OnClickListener {
         }
     }
 
+    public String getProjectName(String type) {
+        if ("1".equals(type)) {
+            return "隔热膜";
+        } else if ("2".equals(type)) {
+            return "隐形车衣";
+        } else if ("3".equals(type)) {
+            return "车身改色";
+        } else if ("4".equals(type)) {
+            return "美容清洁";
+        }
+        if (type == null) ;
+        return null;
+    }
+
     private class Holder{
         TextView orderNum;
         TextView orderType;
         TextView orderOperate;
-        ImageView orderImage;
+        TextView orderWorkTime;
     }
 
     private OnClickCommentListener mListener;

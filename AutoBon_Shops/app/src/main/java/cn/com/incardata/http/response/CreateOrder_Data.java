@@ -1,6 +1,6 @@
 package cn.com.incardata.http.response;
 
-/**
+/** 创建订单成功
  * Created by wanghao on 16/4/20.
  */
 public class CreateOrder_Data {

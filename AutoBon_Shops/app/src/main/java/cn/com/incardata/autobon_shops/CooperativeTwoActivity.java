@@ -38,7 +38,7 @@ import cn.com.incardata.http.response.CooperativeInfo_Data;
 import cn.com.incardata.utils.BaiduMapUtil;
 import cn.com.incardata.utils.T;
 
-/**
+/** 二期弃用
  * Created by zhangming on 2016/3/30.
  * 合作商加盟
  */
@@ -76,7 +76,6 @@ public class CooperativeTwoActivity extends BaseActivity implements View.OnClick
         super.onStart();
         initNetManager();
     }
-
     protected void initBaiduMapView(){
         mMapView = (MapView) findViewById(R.id.bmapView);  	// 获取地图控件引用
         baiduMap = mMapView.getMap();  //管理具体的某一个MapView对象,缩放,旋转,平移

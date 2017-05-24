@@ -28,7 +28,7 @@ public class TechnicianDialogFragment extends DialogFragment {
     private RatingBar starLevel;
     private TextView starNun;
 
-    private GetTechnicianEntity.TechData tech;
+//    private GetTechnicianEntity.TechData tech;
 
     public TechnicianDialogFragment() {
         // Required empty public constructor
@@ -68,21 +68,21 @@ public class TechnicianDialogFragment extends DialogFragment {
                 dismiss();
             }
         });
-        updateUI();
+//        updateUI();
     }
 
-    public void setData(GetTechnicianEntity.TechData tech){
-        this.tech = tech;
-        updateUI();
-    }
+//    public void setData(GetTechnicianEntity.TechData tech){
+//        this.tech = tech;
+//        updateUI();
+//    }
 
-    private void updateUI(){
-        if (tech != null && close != null){
-            ImageLoaderCache.getInstance().loader(NetURL.IP_PORT + tech.getTechnician().getAvatar(), userPhoto);
-            userName.setText(tech.getTechnician().getName());
-            orderNum.setText(String.valueOf(tech.getTotalOrders()));
-            starLevel.setRating(DecimalUtil.FloatDecimal1(tech.getStarRate()));
-            starNun.setText(String.valueOf(tech.getStarRate()));
-        }
-    }
+//    private void updateUI(){
+//        if (tech != null && close != null){
+//            ImageLoaderCache.getInstance().loader(NetURL.IP_PORT + tech.getTechnician().getAvatar(), userPhoto);
+//            userName.setText(tech.getTechnician().getName());
+//            orderNum.setText(String.valueOf(tech.getTotalOrders()));
+//            starLevel.setRating(DecimalUtil.FloatDecimal1(tech.getStarRate()));
+//            starNun.setText(String.valueOf(tech.getStarRate()));
+//        }
+//    }
 }

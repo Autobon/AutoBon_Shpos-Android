@@ -1,17 +1,17 @@
 package cn.com.incardata.http.response;
 
 /**
- * 未完成订单
+ * 未/已完成订单
  * Created by wanghao on 16/4/20.
  */
-public class ListUnfinishedEntity extends BaseEntity{
-    private ListOrder_Data data;
+public class ListUnfinishedEntity extends BaseEntityTwo{
+    private Object message;
 
-    public ListOrder_Data getData() {
-        return data;
+    public Object getMessage() {
+        return message;
     }
 
-    public void setData(ListOrder_Data data) {
-        this.data = data;
+    public void setMessage(Object message) {
+        this.message = message;
     }
 }

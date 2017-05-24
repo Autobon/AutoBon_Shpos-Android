@@ -15,3 +15,8 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+#这4句是不混淆第三方包中的指定内容，脚本中把这行注释去掉
+-keep class com.ccit.** {*; }
+-keep class ccit.** { *; }
+-keep class com.aspire.**
+-keep class mm.vending.**

@@ -3,11 +3,11 @@
 
     <item
         android:state_enabled="true"
-        android:state_checked="true"
+        android:state_selected="true"
         android:drawable="@drawable/skill_on" />
     <item
         android:state_enabled="true"
-        android:state_checked="false"
+        android:state_selected="false"
         android:drawable="@drawable/skill_off"/>
 
 </selector>

@@ -8,6 +8,8 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
@@ -20,6 +22,10 @@ import cn.com.incardata.http.NetURL;
 import cn.com.incardata.http.OnResult;
 import cn.com.incardata.http.response.CommentEntity;
 import cn.com.incardata.http.response.GetTechnicianEntity;
+import cn.com.incardata.http.response.OrderInfo;
+import cn.com.incardata.http.response.OrderInfoEntity;
+import cn.com.incardata.http.response.TechnicianMessage;
+import cn.com.incardata.utils.DecimalUtil;
 import cn.com.incardata.utils.T;
 import cn.com.incardata.view.CircleImageView;
 
@@ -39,13 +45,16 @@ public class GoCommentActivity extends BaseActivity implements View.OnClickListe
     private String userName_extra;
     private String userphotoUrl;
     private int OrderId;
+    private int OrderCount;
+    private Float evaluate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_go_comment);
         initView();
-        getTechInfo();
+//        getTechInfo();
+//        getTechMessage();
     }
 
     private void initView() {
@@ -68,34 +77,56 @@ public class GoCommentActivity extends BaseActivity implements View.OnClickListe
         userName_extra = getIntent().getStringExtra("UserName");
         userphotoUrl = getIntent().getStringExtra("UserPhotoUrl");
         OrderId = getIntent().getIntExtra("OrderId", -1);
+        OrderCount = getIntent().getIntExtra("orderCount",-1);
+        evaluate = getIntent().getFloatExtra("evaluate",0);
 
-        if (TextUtils.isEmpty(userName_extra)) return;
-        userName.setText(userName_extra);
-        ImageLoaderCache.getInstance().loader(NetURL.IP_PORT + userphotoUrl, userHead);
-    }
-
-    private void getTechInfo() {
-        Http.getInstance().getTaskToken(NetURL.GET_TECHNICIAN, "orderId=" + OrderId, GetTechnicianEntity.class, new OnResult() {
-            @Override
-            public void onResult(Object entity) {
-                if (entity == null)return;
-                if (entity instanceof GetTechnicianEntity){
-                    GetTechnicianEntity tech = (GetTechnicianEntity) entity;
-                    if (tech.isResult()){
-                        orderCount.setText(String.valueOf(tech.getData().getTotalOrders()));
-                        mRatingBar.setRating(tech.getData().getStarRate());
-
-                        if (TextUtils.isEmpty(userName_extra)){
-                            userName.setText(tech.getData().getTechnician().getName());
-                        }
-                        if (TextUtils.isEmpty(userphotoUrl)){
-                            ImageLoaderCache.getInstance().loader(NetURL.IP_PORT + userphotoUrl, userHead);
-                        }
-                    }
-                }
+        if (TextUtils.isEmpty(userName_extra) || OrderId == -1 || OrderCount == -1){
+            T.show(getContext(),R.string.loading_data_failed);
+        }else {
+            userName.setText(userName_extra);
+            ImageLoaderCache.getInstance().loader(NetURL.IP_PORT + userphotoUrl, userHead);
+            orderCount.setText(String.valueOf(OrderCount));
+            if (evaluate == null){
+                mRatingBar.setRating(0);
+            }else {
+                mRatingBar.setRating(DecimalUtil.floatToInt(evaluate));
             }
-        });
+        }
     }
+
+//    /**
+//     * 显示技师信息对话框
+//     */
+//    private void getTechMessage() {
+//        showDialog();
+//        Http.getInstance().getTaskToken(NetURL.getTechMessageV2(OrderId), "" , GetTechnicianEntity.class, new OnResult() {
+//            @Override
+//            public void onResult(Object entity) {
+//                cancelDialog();
+//                if (entity != null && entity instanceof GetTechnicianEntity){
+//                    GetTechnicianEntity tech = (GetTechnicianEntity) entity;
+//                    if (tech.isStatus()){
+//                        TechnicianMessage technicianMessage = JSON.parseObject(tech.getMessage().toString(),TechnicianMessage.class);
+//                        orderCount.setText(String.valueOf(technicianMessage.getOrderCount()));
+//                        mRatingBar.setRating(5 * technicianMessage.getEvaluate());
+////                        userName.setText(technicianMessage.getName());
+//                        if (TextUtils.isEmpty(userName_extra)){
+//                            userName.setText(technicianMessage.getName());
+//                        }
+//                        if (TextUtils.isEmpty(userphotoUrl)){
+//                            ImageLoaderCache.getInstance().loader(NetURL.IP_PORT + userphotoUrl, userHead);
+//                        }
+//                    }else {
+//                        T.show(getContext(),tech.getMessage().toString());
+//                    }
+//                }else {
+//                    T.show(getContext(), R.string.loading_data_failed);
+//                }
+//            }
+//        });
+//    }
+
+
 
     @Override
     public void onClick(View v) {
@@ -124,7 +155,7 @@ public class GoCommentActivity extends BaseActivity implements View.OnClickListe
         params.add(new BasicNameValuePair("advice", otherCom.getText().toString()));
 
         showDialog(getString(R.string.submiting_comment));
-        Http.getInstance().postTaskToken(NetURL.COMMENT, CommentEntity.class, new OnResult() {
+        Http.getInstance().postTaskToken(NetURL.COMMENTV2, CommentEntity.class, new OnResult() {
             @Override
             public void onResult(Object entity) {
                 cancelDialog();
@@ -133,7 +164,7 @@ public class GoCommentActivity extends BaseActivity implements View.OnClickListe
                     return;
                 }
                 if (entity instanceof CommentEntity){
-                    if (((CommentEntity) entity).isResult()){
+                    if (((CommentEntity) entity).isStatus()){
                         setResult(RESULT_OK);
                         //分享
                         Bundle bundle = new Bundle();
@@ -142,6 +173,7 @@ public class GoCommentActivity extends BaseActivity implements View.OnClickListe
                         bundle.putString("OrderCount", orderCount.getText().toString());
                         bundle.putFloat("techStar", mRatingBar.getRating());
                         bundle.putFloat("Star", comRatingBar.getRating());
+                        bundle.putInt("orderId",OrderId);
                         startActivity(ShareActivity.class, bundle);
                         finish();
                     }else {

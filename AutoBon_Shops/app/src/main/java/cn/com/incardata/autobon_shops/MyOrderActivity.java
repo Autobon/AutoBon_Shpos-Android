@@ -27,7 +27,7 @@ public class MyOrderActivity extends BaseForBroadcastActivity implements View.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_order);
-        mManager = getFragmentManager();
+//        mManager = getFragmentManager();
         initView();
     }
 

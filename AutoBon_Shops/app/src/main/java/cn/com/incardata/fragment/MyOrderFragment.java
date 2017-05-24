@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.alibaba.fastjson.JSON;
+
 import org.apache.http.message.BasicNameValuePair;
 
 import java.util.ArrayList;
@@ -22,6 +24,8 @@ import cn.com.incardata.http.Http;
 import cn.com.incardata.http.NetURL;
 import cn.com.incardata.http.OnResult;
 import cn.com.incardata.http.response.ListFinishedEntity;
+import cn.com.incardata.http.response.ListOrder_Data;
+import cn.com.incardata.http.response.ListUnfinishedEntity;
 import cn.com.incardata.http.response.OrderInfo;
 import cn.com.incardata.utils.AutoCon;
 import cn.com.incardata.utils.T;
@@ -73,15 +77,15 @@ public class MyOrderFragment extends BaseFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null){
+        if (getArguments() != null) {
             this.isFinished = getArguments().getBoolean("isFinished");
         }
 
-        if (isFinished){
-            url = NetURL.LIST_FINISHED;
-        }else {
-            url = NetURL.LIST_UNCOMMENT;
-        }
+//        if (isFinished){
+//            url = NetURL.LIST_FINISHED;
+//        }else {
+//            url = NetURL.LIST_UNCOMMENT;
+//        }
     }
 
     @Override
@@ -89,9 +93,9 @@ public class MyOrderFragment extends BaseFragment {
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.fragment_my_order, container, false);
             initView();
-        }else {
+        } else {
             ViewGroup parent = (ViewGroup) rootView.getParent();
-            if (parent != null){
+            if (parent != null) {
                 parent.removeView(rootView);
             }
         }
@@ -111,67 +115,112 @@ public class MyOrderFragment extends BaseFragment {
             public void onHeaderRefresh(PullToRefreshView view) {
                 page = 1;
                 isRefresh = true;
-                getpageList(1);
+                if (isFinished) {
+                    getpageList(2, page,true);
+                } else {
+                    getpageList(3, page,true);
+                }
+
             }
         });
         mPull.setOnFooterRefreshListener(new PullToRefreshView.OnFooterRefreshListener() {
             @Override
             public void onFooterRefresh(PullToRefreshView view) {
-                if (page >= totalPages){
+                if (page >= totalPages) {
                     T.show(getActivity(), R.string.has_load_all_label);
                     mPull.loadedCompleted();
                     return;
                 }
-                getpageList(++page);
+                if (isFinished) {
+                    getpageList(2, ++page,true);
+                } else {
+                    getpageList(3, ++page,true);
+                }
             }
         });
 
         mAdapter.setOnClickCommentListener(new OrderAdapter.OnClickCommentListener() {
             @Override
             public void onClickOperate(int position) {
-                if ("EXPIRED".equals(mList.get(position).getStatus())){//超时订单
+                if ("EXPIRED".equals(mList.get(position).getStatus())) {//超时订单
                     T.show(getActivity(), R.string.timeouted_order);
-                }else if ("FINISHED".equals(mList.get(position).getStatus())){//未评价
+                    return;
+                } else if ("FINISHED".equals(mList.get(position).getStatus())) {//未评价
                     Intent intent = new Intent(getActivity(), GoCommentActivity.class);
-                    intent.putExtra("UserName", mList.get(position).getMainTech().getName());
-                    intent.putExtra("UserPhotoUrl", mList.get(position).getMainTech().getAvatar());
+                    intent.putExtra("UserName", mList.get(position).getTechName());
+                    intent.putExtra("UserPhotoUrl", mList.get(position).getTechAvatar());
+                    intent.putExtra("orderCount", mList.get(position).getOrderCount());
                     intent.putExtra("OrderId", mList.get(position).getId());
+                    intent.putExtra("evaluate", mList.get(position).getEvaluate());
                     startActivityForResult(intent, RequestCode);//去评价
-                }else if ("COMMENTED".equals(mList.get(position).getStatus())){
+                } else if ("COMMENTED".equals(mList.get(position).getStatus())) {
                     T.show(getActivity(), R.string.comment_order);
-                }else if ("GIVEN_UP".equals(mList.get(position).getStatus()) || "CANCELED".equals(mList.get(position).getStatus())) {//撤单
+                    return;
+                } else if ("GIVEN_UP".equals(mList.get(position).getStatus()) || "CANCELED".equals(mList.get(position).getStatus())) {//撤单
                     T.show(getActivity(), getString(R.string.revoked_order));
+                    return;
                 }
             }
         });
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if ("EXPIRED".equals(mList.get(position).getStatus())){
-                    T.show(getActivity(), R.string.timeouted_order);
-                    return;
-                }else if ("GIVEN_UP".equals(mList.get(position).getStatus()) ||
-                        "CANCELED".equals(mList.get(position).getStatus())){//超时订单
-                    T.show(getActivity(), R.string.revoked_order);
-                    return;
-                }else{
-                    startActivity(OrderInfoActivity.class, position);
-                    return;
-                }
+//                if ("EXPIRED".equals(mList.get(position).getStatus())) {
+//                    T.show(getActivity(), R.string.timeouted_order);
+//                    return;
+//                } else if ("GIVEN_UP".equals(mList.get(position).getStatus()) ||
+//                        "CANCELED".equals(mList.get(position).getStatus())) {//超时订单
+//                    T.show(getActivity(), R.string.revoked_order);
+//                    return;
+//                } else {
+                startActivity(OrderInfoActivity.class, position);
+                return;
+//                }
             }
         });
+        if (isFinished) {
+            getpageList(2, 1,true);
+        } else {
+            getpageList(3, 1,false);
+        }
 
-        getpageList(1);
     }
 
-    private void startActivity(Class<?> cls, int position){
+    private void startActivity(Class<?> cls, int position) {
         Intent intent = new Intent(getActivity(), cls);
         intent.putExtra(AutoCon.ORDER_INFO, mList.get(position));
         startActivity(intent);
     }
 
-    private void getpageList(int page) {
-        Http.getInstance().postTaskToken(url, ListFinishedEntity.class, new OnResult() {
+    //    private void getpageList(int page) {
+//        Http.getInstance().postTaskToken(url, ListFinishedEntity.class, new OnResult() {
+//            @Override
+//            public void onResult(Object entity) {
+//                mPull.loadedCompleted();
+//                if (entity == null) {
+//                    T.show(getActivity(), R.string.loading_data_failed);
+//                    isRefresh = false;
+//                    return;
+//                }
+//                if (entity instanceof ListFinishedEntity) {
+//                    ListFinishedEntity list = (ListFinishedEntity) entity;
+//                    totalPages = list.getData().getTotalPages();
+//                    if (list.isResult()) {
+//                        if (isRefresh) {
+//                            mList.clear();
+//                        }
+////                        mList.addAll(list.getData().getList());
+//                        mAdapter.notifyDataSetChanged();
+//                    } else {
+//                        T.show(getActivity(), R.string.loading_data_failed);
+//                    }
+//                    isRefresh = false;
+//                }
+//            }
+//        }, new BasicNameValuePair("page", String.valueOf(page)), new BasicNameValuePair("pageSize", "10"));
+//    }
+    private void getpageList(int status, int page, final boolean isFrist) {
+        Http.getInstance().getTaskToken(NetURL.LIST_UNFINISHEDV2, ListUnfinishedEntity.class, new OnResult() {
             @Override
             public void onResult(Object entity) {
                 mPull.loadedCompleted();
@@ -180,14 +229,20 @@ public class MyOrderFragment extends BaseFragment {
                     isRefresh = false;
                     return;
                 }
-                if (entity instanceof ListFinishedEntity) {
-                    ListFinishedEntity list = (ListFinishedEntity) entity;
-                    totalPages = list.getData().getTotalPages();
-                    if (list.isResult()) {
+                if (entity instanceof ListUnfinishedEntity) {
+                    ListUnfinishedEntity list = (ListUnfinishedEntity) entity;
+                    if (list.isStatus()) {
+                        ListOrder_Data listOrder_data = JSON.parseObject(list.getMessage().toString(), ListOrder_Data.class);
+                        totalPages = listOrder_data.getTotalPages();
                         if (isRefresh) {
                             mList.clear();
                         }
-                        mList.addAll(list.getData().getList());
+                        if (listOrder_data.getTotalElements() == 0){
+                            if (isFrist){
+                                T.show(getActivity(),R.string.no_order);
+                            }
+                        }
+                        mList.addAll(listOrder_data.getContent());
                         mAdapter.notifyDataSetChanged();
                     } else {
                         T.show(getActivity(), R.string.loading_data_failed);
@@ -195,7 +250,7 @@ public class MyOrderFragment extends BaseFragment {
                     isRefresh = false;
                 }
             }
-        }, new BasicNameValuePair("page", String.valueOf(page)), new BasicNameValuePair("pageSize", "10"));
+        }, new BasicNameValuePair("status", String.valueOf(status)), new BasicNameValuePair("page", String.valueOf(page)), new BasicNameValuePair("pageSize", "10"));
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -227,7 +282,7 @@ public class MyOrderFragment extends BaseFragment {
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that
      * activity.
-     * <p/>
+     * <p>
      * See the Android Training lesson <a href=
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.

@@ -15,6 +15,7 @@ import org.apache.http.ParseException;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
@@ -374,6 +375,68 @@ public class HttpClientInCar extends CustomHttpClient {
 			Log.w(TAG, e.getMessage());
 			return null;
 		} catch (IOException e) {
+			throw new RuntimeException("连接失败", e);
+		}
+	}
+
+	public static String DelHttpToken(String url, String json) throws Exception {
+		L.d("getFromWebByHttpClient url = " + url);
+		// HttpGet连接对象
+		HttpDelete httpDelete = new HttpDelete(url + json);
+		// 取得HttpClient对象
+		DefaultHttpClient httpclient = getDefaultHttpClient();
+		try {
+			// 请求HttpClient，取得HttpResponse
+			HttpResponse httpResponse = httpclient.execute(httpDelete);
+			// 请求成功
+			if (httpResponse.getStatusLine().getStatusCode() != HttpStatus.SC_OK) {
+				throw new RuntimeException("连接失败");
+			}
+			return EntityUtils.toString(httpResponse.getEntity());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException("连接失败", e);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new RuntimeException("连接失败", e);
+		} finally {
+			httpDelete.abort();
+		}
+	}
+
+	public static String DelHttpToken(String url, NameValuePair... nameValuePairs) throws Exception {
+		try {
+
+			StringBuilder sb = new StringBuilder();
+			sb.append(url);
+			// HttpGet连接对象
+			HttpDelete httpDelete = new HttpDelete(sb.toString());
+			//设置header
+			if (nameValuePairs != null && nameValuePairs.length > 0) {
+				for (int i = 0; i < nameValuePairs.length; i++) {
+					httpDelete.setHeader(nameValuePairs[i].getName(), nameValuePairs[i].getValue());
+				}
+			}
+			L.d(CustomHttpClient.class, "getFromWebByHttpClient url = " + sb);
+
+
+			// 取得HttpClient对象
+			DefaultHttpClient httpclient = getDefaultHttpClient();
+			// 请求HttpClient，取得HttpResponse
+			HttpResponse httpResponse = httpclient.execute(httpDelete);
+			// 请求成功
+			if (httpResponse.getStatusLine().getStatusCode() != HttpStatus.SC_OK) {
+				throw new RuntimeException("连接失败");
+			}
+			return EntityUtils.toString(httpResponse.getEntity(), "UTF-8");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException("连接失败", e);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			L.e("IOException ");
+			e.printStackTrace();
 			throw new RuntimeException("连接失败", e);
 		}
 	}

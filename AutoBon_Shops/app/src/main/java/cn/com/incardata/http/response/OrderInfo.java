@@ -8,27 +8,70 @@ import android.os.Parcelable;
  * wanghao
  */
 public class OrderInfo implements Parcelable {
+
+
     private int id;
     private String orderNum;
-    private int orderType;
     private String photo;
-    private long orderTime;
-    private long addTime;
-    private long finishTime;
     private int creatorType;
+    private int techId;
+    private String techName;
+    private String techAvatar;
+    private String techPhone;
+    private String beforePhotos;
+    private String afterPhotos;
+    private long startTime;
+    private long endTime;
+    private long signTime;
+    private long takenTime;
+    private long createTime;
+    private String type;
+    private int coopId;
+    private String coopName;
+    private String address;
+    private String longitude;
+    private String latitude;
     private int creatorId;
     private String creatorName;
     private String contactPhone;
-    private String positionLon;
-    private String positionLat;
     private String remark;
-    private Technician mainTech;
-    private Technician secondTech;
-    private Construction mainConstruct;
-    private Construction secondConstruct;
-    private Comment comment;
-//    private Cooperator cooperator;暂无用
+    private int evaluateStatus;
+    private int orderCount;
+    private Float evaluate;
+    private int cancelCount;
+//    private Object orderConstructionShow;
+    private String techLongitude;
+    private String techLatitude;
+//    private Object workDetailShows;
+//    private Object constructionWasteShows;
+    private long agreedEndTime;
     private String status;
+    private long agreedStartTime;
+//    private int id;
+//    private String orderNum;
+//    private String photo;
+//    private int creatorType;
+//    private int techId;
+//    private String techName;
+//    private String techPhone;
+//    private String beforePhotos;
+//    private String afterPhotos;
+//    private long startTime;
+//    private long endTime;
+//    private long signTime;
+//    private long takenTime;
+//    private long createTime;
+//    private String type;
+//    private int coopId;
+//    private String coopName;
+//    private String address;
+//    private String longitude;
+//    private String latitude;
+//    private int creatorId;
+//    private String creatorName;
+//    private String contactPhone;
+//    private String remark;
+
 
     public int getId() {
         return id;
@@ -46,14 +89,6 @@ public class OrderInfo implements Parcelable {
         this.orderNum = orderNum;
     }
 
-    public int getOrderType() {
-        return orderType;
-    }
-
-    public void setOrderType(int orderType) {
-        this.orderType = orderType;
-    }
-
     public String getPhoto() {
         return photo;
     }
@@ -62,36 +97,148 @@ public class OrderInfo implements Parcelable {
         this.photo = photo;
     }
 
-    public long getOrderTime() {
-        return orderTime;
-    }
-
-    public void setOrderTime(long orderTime) {
-        this.orderTime = orderTime;
-    }
-
-    public long getAddTime() {
-        return addTime;
-    }
-
-    public void setAddTime(long addTime) {
-        this.addTime = addTime;
-    }
-
-    public long getFinishTime() {
-        return finishTime;
-    }
-
-    public void setFinishTime(long finishTime) {
-        this.finishTime = finishTime;
-    }
-
     public int getCreatorType() {
         return creatorType;
     }
 
     public void setCreatorType(int creatorType) {
         this.creatorType = creatorType;
+    }
+
+    public int getTechId() {
+        return techId;
+    }
+
+    public void setTechId(int techId) {
+        this.techId = techId;
+    }
+
+    public String getTechName() {
+        return techName;
+    }
+
+    public void setTechName(String techName) {
+        this.techName = techName;
+    }
+
+    public String getTechAvatar() {
+        return techAvatar;
+    }
+
+    public void setTechAvatar(String techAvatar) {
+        this.techAvatar = techAvatar;
+    }
+
+    public String getTechPhone() {
+        return techPhone;
+    }
+
+    public void setTechPhone(String techPhone) {
+        this.techPhone = techPhone;
+    }
+
+    public String getBeforePhotos() {
+        return beforePhotos;
+    }
+
+    public void setBeforePhotos(String beforePhotos) {
+        this.beforePhotos = beforePhotos;
+    }
+
+    public String getAfterPhotos() {
+        return afterPhotos;
+    }
+
+    public void setAfterPhotos(String afterPhotos) {
+        this.afterPhotos = afterPhotos;
+    }
+
+    public long getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(long startTime) {
+        this.startTime = startTime;
+    }
+
+    public long getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(long endTime) {
+        this.endTime = endTime;
+    }
+
+    public long getSignTime() {
+        return signTime;
+    }
+
+    public void setSignTime(long signTime) {
+        this.signTime = signTime;
+    }
+
+    public long getTakenTime() {
+        return takenTime;
+    }
+
+    public void setTakenTime(long takenTime) {
+        this.takenTime = takenTime;
+    }
+
+    public long getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(long createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public int getCoopId() {
+        return coopId;
+    }
+
+    public void setCoopId(int coopId) {
+        this.coopId = coopId;
+    }
+
+    public String getCoopName() {
+        return coopName;
+    }
+
+    public void setCoopName(String coopName) {
+        this.coopName = coopName;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
     }
 
     public int getCreatorId() {
@@ -118,22 +265,6 @@ public class OrderInfo implements Parcelable {
         this.contactPhone = contactPhone;
     }
 
-    public String getPositionLon() {
-        return positionLon;
-    }
-
-    public void setPositionLon(String positionLon) {
-        this.positionLon = positionLon;
-    }
-
-    public String getPositionLat() {
-        return positionLat;
-    }
-
-    public void setPositionLat(String positionLat) {
-        this.positionLat = positionLat;
-    }
-
     public String getRemark() {
         return remark;
     }
@@ -142,44 +273,60 @@ public class OrderInfo implements Parcelable {
         this.remark = remark;
     }
 
-    public Technician getMainTech() {
-        return mainTech;
+    public int getEvaluateStatus() {
+        return evaluateStatus;
     }
 
-    public void setMainTech(Technician mainTech) {
-        this.mainTech = mainTech;
+    public void setEvaluateStatus(int evaluateStatus) {
+        this.evaluateStatus = evaluateStatus;
     }
 
-    public Technician getSecondTech() {
-        return secondTech;
+    public int getOrderCount() {
+        return orderCount;
     }
 
-    public void setSecondTech(Technician secondTech) {
-        this.secondTech = secondTech;
+    public void setOrderCount(int orderCount) {
+        this.orderCount = orderCount;
     }
 
-    public Construction getMainConstruct() {
-        return mainConstruct;
+    public Float getEvaluate() {
+        return evaluate;
     }
 
-    public void setMainConstruct(Construction mainConstruct) {
-        this.mainConstruct = mainConstruct;
+    public void setEvaluate(Float evaluate) {
+        this.evaluate = evaluate;
     }
 
-    public Construction getSecondConstruct() {
-        return secondConstruct;
+    public int getCancelCount() {
+        return cancelCount;
     }
 
-    public void setSecondConstruct(Construction secondConstruct) {
-        this.secondConstruct = secondConstruct;
+    public void setCancelCount(int cancelCount) {
+        this.cancelCount = cancelCount;
     }
 
-    public Comment getComment() {
-        return comment;
+    public String getTechLongitude() {
+        return techLongitude;
     }
 
-    public void setComment(Comment comment) {
-        this.comment = comment;
+    public void setTechLongitude(String techLongitude) {
+        this.techLongitude = techLongitude;
+    }
+
+    public String getTechLatitude() {
+        return techLatitude;
+    }
+
+    public void setTechLatitude(String techLatitude) {
+        this.techLatitude = techLatitude;
+    }
+
+    public long getAgreedEndTime() {
+        return agreedEndTime;
+    }
+
+    public void setAgreedEndTime(long agreedEndTime) {
+        this.agreedEndTime = agreedEndTime;
     }
 
     public String getStatus() {
@@ -188,6 +335,14 @@ public class OrderInfo implements Parcelable {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public long getAgreedStartTime() {
+        return agreedStartTime;
+    }
+
+    public void setAgreedStartTime(long agreedStartTime) {
+        this.agreedStartTime = agreedStartTime;
     }
 
 
@@ -200,24 +355,38 @@ public class OrderInfo implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(this.id);
         dest.writeString(this.orderNum);
-        dest.writeInt(this.orderType);
         dest.writeString(this.photo);
-        dest.writeLong(this.orderTime);
-        dest.writeLong(this.addTime);
-        dest.writeLong(this.finishTime);
         dest.writeInt(this.creatorType);
+        dest.writeInt(this.techId);
+        dest.writeString(this.techName);
+        dest.writeString(this.techAvatar);
+        dest.writeString(this.techPhone);
+        dest.writeString(this.beforePhotos);
+        dest.writeString(this.afterPhotos);
+        dest.writeLong(this.startTime);
+        dest.writeLong(this.endTime);
+        dest.writeLong(this.signTime);
+        dest.writeLong(this.takenTime);
+        dest.writeLong(this.createTime);
+        dest.writeString(this.type);
+        dest.writeInt(this.coopId);
+        dest.writeString(this.coopName);
+        dest.writeString(this.address);
+        dest.writeString(this.longitude);
+        dest.writeString(this.latitude);
         dest.writeInt(this.creatorId);
         dest.writeString(this.creatorName);
         dest.writeString(this.contactPhone);
-        dest.writeString(this.positionLon);
-        dest.writeString(this.positionLat);
         dest.writeString(this.remark);
-        dest.writeParcelable(this.mainTech, flags);
-        dest.writeParcelable(this.secondTech, flags);
-        dest.writeParcelable(this.mainConstruct, flags);
-        dest.writeParcelable(this.secondConstruct, flags);
-        dest.writeParcelable(this.comment, flags);
+        dest.writeInt(this.evaluateStatus);
+        dest.writeInt(this.orderCount);
+        dest.writeValue(this.evaluate);
+        dest.writeInt(this.cancelCount);
+        dest.writeString(this.techLongitude);
+        dest.writeString(this.techLatitude);
+        dest.writeLong(this.agreedEndTime);
         dest.writeString(this.status);
+        dest.writeLong(this.agreedStartTime);
     }
 
     public OrderInfo() {
@@ -226,27 +395,41 @@ public class OrderInfo implements Parcelable {
     protected OrderInfo(Parcel in) {
         this.id = in.readInt();
         this.orderNum = in.readString();
-        this.orderType = in.readInt();
         this.photo = in.readString();
-        this.orderTime = in.readLong();
-        this.addTime = in.readLong();
-        this.finishTime = in.readLong();
         this.creatorType = in.readInt();
+        this.techId = in.readInt();
+        this.techName = in.readString();
+        this.techAvatar = in.readString();
+        this.techPhone = in.readString();
+        this.beforePhotos = in.readString();
+        this.afterPhotos = in.readString();
+        this.startTime = in.readLong();
+        this.endTime = in.readLong();
+        this.signTime = in.readLong();
+        this.takenTime = in.readLong();
+        this.createTime = in.readLong();
+        this.type = in.readString();
+        this.coopId = in.readInt();
+        this.coopName = in.readString();
+        this.address = in.readString();
+        this.longitude = in.readString();
+        this.latitude = in.readString();
         this.creatorId = in.readInt();
         this.creatorName = in.readString();
         this.contactPhone = in.readString();
-        this.positionLon = in.readString();
-        this.positionLat = in.readString();
         this.remark = in.readString();
-        this.mainTech = in.readParcelable(Technician.class.getClassLoader());
-        this.secondTech = in.readParcelable(Technician.class.getClassLoader());
-        this.mainConstruct = in.readParcelable(Construction.class.getClassLoader());
-        this.secondConstruct = in.readParcelable(Construction.class.getClassLoader());
-        this.comment = in.readParcelable(Comment.class.getClassLoader());
+        this.evaluateStatus = in.readInt();
+        this.orderCount = in.readInt();
+        this.evaluate = (Float) in.readValue(Float.class.getClassLoader());
+        this.cancelCount = in.readInt();
+        this.techLongitude = in.readString();
+        this.techLatitude = in.readString();
+        this.agreedEndTime = in.readLong();
         this.status = in.readString();
+        this.agreedStartTime = in.readLong();
     }
 
-    public static final Parcelable.Creator<OrderInfo> CREATOR = new Parcelable.Creator<OrderInfo>() {
+    public static final Creator<OrderInfo> CREATOR = new Creator<OrderInfo>() {
         @Override
         public OrderInfo createFromParcel(Parcel source) {
             return new OrderInfo(source);

@@ -168,7 +168,7 @@ public class FindPasswordActivity extends BaseActivity implements View.OnClickLi
     public void sendValidCode(String phone){
         if(NetWorkHelper.isNetworkAvailable(context)) {
             BasicNameValuePair bv_phone = new BasicNameValuePair("phone", phone);
-            Http.getInstance().getTaskToken(NetURL.VERIFY_SMS, VerifySmsEntity.class, new OnResult() {
+            Http.getInstance().postTaskToken(NetURL.VERIFY_SMSV2, VerifySmsEntity.class, new OnResult() {
                 @Override
                 public void onResult(Object entity) {
                     if (entity == null) {
@@ -176,7 +176,7 @@ public class FindPasswordActivity extends BaseActivity implements View.OnClickLi
                         return;
                     }
                     VerifySmsEntity verifySmsEntity = (VerifySmsEntity) entity;
-                    if(verifySmsEntity.isResult()){
+                    if(verifySmsEntity.isStatus()){
                         openTimerTask();  //验证码发送成功后,再倒计时60秒
                         T.show(context,context.getString(R.string.send_code_success));
                         return;
@@ -193,7 +193,7 @@ public class FindPasswordActivity extends BaseActivity implements View.OnClickLi
      * 提交信息
      */
     public void submitInfo(){
-        String phone = et_phone.getText().toString().trim();
+        final String phone = et_phone.getText().toString().trim();
         String code = et_code.getText().toString().trim();
         final String password = et_pwd.getText().toString().trim();
 
@@ -233,7 +233,7 @@ public class FindPasswordActivity extends BaseActivity implements View.OnClickLi
 
         if(NetWorkHelper.isNetworkAvailable(context)) {
             showDialog(getString(R.string.submiting));
-            Http.getInstance().postTaskToken(NetURL.RESET_PASSWORD, ResetPasswordEntity.class, new OnResult() {
+            Http.getInstance().postTaskToken(NetURL.RESET_PASSWORDV2, ResetPasswordEntity.class, new OnResult() {
                 @Override
                 public void onResult(Object entity) {
                     cancelDialog();
@@ -246,6 +246,9 @@ public class FindPasswordActivity extends BaseActivity implements View.OnClickLi
                         //TODO 重置密码成功后清空任务栈返回登录界面
                         T.show(context, context.getString(R.string.reset_success));
                         Intent intent = new Intent(context, LoginActivity.class);
+                        intent.putExtra("activityId",2);
+                        intent.putExtra("phone",phone);
+                        intent.putExtra("pwd",password);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
                         finish();

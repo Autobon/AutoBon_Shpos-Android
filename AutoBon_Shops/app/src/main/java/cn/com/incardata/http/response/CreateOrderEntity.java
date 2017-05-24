@@ -1,17 +1,17 @@
 package cn.com.incardata.http.response;
 
 /**
- * 创建订单
+ * 创建订单返回实体类
  * Created by wanghao on 16/4/20.
  */
-public class CreateOrderEntity extends BaseEntity{
-    private CreateOrder_Data data;
+public class CreateOrderEntity extends BaseEntityTwo{
+    private Object message;
 
-    public CreateOrder_Data getData() {
-        return data;
+    public Object getMessage() {
+        return message;
     }
 
-    public void setData(CreateOrder_Data data) {
-        this.data = data;
+    public void setMessage(Object message) {
+        this.message = message;
     }
 }

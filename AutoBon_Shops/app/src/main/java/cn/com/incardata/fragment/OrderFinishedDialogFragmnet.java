@@ -10,8 +10,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
+
 import cn.com.incardata.autobon_shops.GoCommentActivity;
 import cn.com.incardata.autobon_shops.R;
+import cn.com.incardata.http.Http;
+import cn.com.incardata.http.ImageLoaderCache;
+import cn.com.incardata.http.NetURL;
+import cn.com.incardata.http.OnResult;
+import cn.com.incardata.http.response.OrderInfo;
+import cn.com.incardata.http.response.OrderInfoEntity;
 import cn.com.incardata.utils.T;
 
 /**
@@ -23,6 +31,7 @@ public class OrderFinishedDialogFragmnet extends DialogFragment implements View.
     private TextView tips;
     private String orderNum;
     private int orderId;
+    private OrderInfo orderInfo;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,7 +71,32 @@ public class OrderFinishedDialogFragmnet extends DialogFragment implements View.
             String str = getString(R.string.order_finished_dialog_tips, this.orderNum);
             tips.setText(str);
         }
+        getTechInfo(orderId);
     }
+
+
+    /**
+     *获取订单详情
+     * @param
+     */
+
+    private void getTechInfo(int orderId) {
+        Http.getInstance().getTaskToken(NetURL.getOrderInfo(orderId),"", OrderInfoEntity.class, new OnResult() {
+            @Override
+            public void onResult(Object entity) {
+                if (entity == null)return;
+                if (entity instanceof OrderInfoEntity){
+                    OrderInfoEntity tech = (OrderInfoEntity) entity;
+                    if (tech.isStatus()){
+                        orderInfo = JSON.parseObject(tech.getMessage().toString(),OrderInfo.class);
+                    }
+                }
+            }
+        });
+    }
+
+
+
 
     @Override
     public void onClick(View v) {
@@ -77,7 +111,11 @@ public class OrderFinishedDialogFragmnet extends DialogFragment implements View.
                 }
                 Intent intent = new Intent(getActivity(), GoCommentActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.putExtra("OrderId", orderId);
+                intent.putExtra("UserName", orderInfo.getTechName());
+                intent.putExtra("UserPhotoUrl", orderInfo.getTechAvatar());
+                intent.putExtra("orderCount", orderInfo.getOrderCount());
+                intent.putExtra("OrderId", orderInfo.getId());
+                intent.putExtra("evaluate", orderInfo.getEvaluate());
                 startActivity(intent);
                 dismiss();
                 break;
