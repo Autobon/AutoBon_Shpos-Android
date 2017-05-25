@@ -143,7 +143,7 @@ public class CollectionContactActivity extends BaseActivity {
                         list.clear();
                     }
                     if (getCollectionTechnicianEntity.getTotalElements() == 0) {
-                        T.show(getContext(), getString(R.string.no_order));
+                        T.show(getContext(), "暂无收藏技师");
                     }
                     list.addAll(getCollectionTechnicianEntity.getList());
                     adapter.notifyDataSetChanged();

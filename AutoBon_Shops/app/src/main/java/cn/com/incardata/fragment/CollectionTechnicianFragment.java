@@ -192,7 +192,7 @@ public class CollectionTechnicianFragment extends BaseFragment {
                         list.clear();
                     }
                     if (getCollectionTechnicianEntity.getTotalElements() == 0) {
-                        T.show(getActivity(), getString(R.string.no_order));
+                        T.show(getActivity(), "暂无收藏技师");
                     }
                     list.addAll(getCollectionTechnicianEntity.getList());
                     adapter.notifyDataSetChanged();
