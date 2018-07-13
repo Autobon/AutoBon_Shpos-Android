@@ -344,10 +344,36 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_below="@id/work_person_tv"
-                android:layout_marginBottom="@dimen/dp5"
                 android:layout_marginLeft="@dimen/dp15"
                 android:layout_marginRight="@dimen/dp15"
                 android:layout_marginTop="@dimen/dp5"
+                android:background="#F0F0F0" />
+
+            <LinearLayout
+                android:id="@+id/ll_check_work_time"
+                android:background="@android:color/white"
+                android:gravity="center"
+                android:layout_below="@id/v7"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp35">
+
+                <TextView
+                    android:textSize="@dimen/sp15"
+                    android:textColor="@color/main_orange"
+                    android:text="查看订单施工时间详情"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/v18"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/ll_check_work_time"
+                android:layout_marginBottom="@dimen/dp5"
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_marginRight="@dimen/dp15"
                 android:background="#F0F0F0" />
 
 
@@ -355,7 +381,7 @@
                 android:id="@+id/work_before_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/v7"
+                android:layout_below="@id/v18"
                 android:layout_marginLeft="@dimen/dp15"
                 android:text="@string/work_before_photo"
                 android:textColor="@color/darkgray"

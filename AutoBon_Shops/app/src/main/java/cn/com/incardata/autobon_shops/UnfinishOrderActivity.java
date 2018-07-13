@@ -3,9 +3,11 @@ package cn.com.incardata.autobon_shops;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 
@@ -37,6 +39,7 @@ import cn.com.incardata.view.PullToRefreshView;
 public class UnfinishOrderActivity extends BaseForBroadcastActivity implements View.OnClickListener {
     private FragmentManager fragmentManager;
     private TechnicianDialogFragment mDialog;
+
 
     private PullToRefreshView pullToRefreshView;
     private ListView mListView;
@@ -76,11 +79,12 @@ public class UnfinishOrderActivity extends BaseForBroadcastActivity implements V
         pullToRefreshView = (PullToRefreshView) findViewById(R.id.order_pull);
         mListView = (ListView) findViewById(R.id.unfinished_order_list);
 
-        mList = new ArrayList<OrderInfo>();
+        mList = new ArrayList<>();
         mAdapter = new UnfinishListAdapter(this, mList);
         mListView.setAdapter(mAdapter);
 
         findViewById(R.id.iv_back).setOnClickListener(this);
+        findViewById(R.id.tv_query).setOnClickListener(this);
         pullToRefreshView.setOnHeaderRefreshListener(new PullToRefreshView.OnHeaderRefreshListener() {
             @Override
             public void onHeaderRefresh(PullToRefreshView view) {
@@ -112,18 +116,18 @@ public class UnfinishOrderActivity extends BaseForBroadcastActivity implements V
                         startActivity(intent);
                         break;
                     case 2:
-                       captureDialog = new CaptureDialog(getContext(), "确定撤销该订单！", true, new View.OnClickListener() {
-                           @Override
-                           public void onClick(View v) {
-                               captureDialog.dismiss();
-                               revokeOrder(position);
-                           }
-                       }, new View.OnClickListener() {
-                           @Override
-                           public void onClick(View v) {
-                               captureDialog.dismiss();
-                           }
-                       });
+                        captureDialog = new CaptureDialog(getContext(), "确定撤销该订单！", true, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                captureDialog.dismiss();
+                                revokeOrder(position);
+                            }
+                        }, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                captureDialog.dismiss();
+                            }
+                        });
                         captureDialog.show();
                         break;
 //                    case 3:
@@ -217,8 +221,8 @@ public class UnfinishOrderActivity extends BaseForBroadcastActivity implements V
                         if (isRefresh) {
                             mList.clear();
                         }
-                        if (listOrder_data.getTotalElements() == 0){
-                            T.show(getContext(),getString(R.string.no_order));
+                        if (listOrder_data.getTotalElements() == 0) {
+                            T.show(getContext(), getString(R.string.no_order));
                         }
                         mList.addAll(listOrder_data.getContent());
                         mAdapter.notifyDataSetChanged();
@@ -236,6 +240,8 @@ public class UnfinishOrderActivity extends BaseForBroadcastActivity implements V
         switch (v.getId()) {
             case R.id.iv_back:
                 finish();
+                break;
+            case R.id.tv_query:
                 break;
         }
     }

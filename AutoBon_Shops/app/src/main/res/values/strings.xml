@@ -2,6 +2,10 @@
     <!--<string name="app_name">AutoBon</string>-->
     <string name="app_name">车邻邦商户</string>
     <string name="app_name_alias">车邻邦</string>
+    <string name="i_known">我知道了</string>
+    <string name="authorization_success">授权成功</string>
+    <string name="authorization_fail">授权失败</string>
+    <string name="please_grant_file_location_phone_correation_authority">请授予文件读写、定位及电话等相关的权限</string>
     <string name="digits_indentify_number">0123456789X</string>
     <string name="uploading_image">上传中…</string>
     <string name="upload_image_failed">上传失败，请重试一次</string>
@@ -172,7 +176,7 @@
     <string name="remark">备注： %1$s</string>
     <string name="create_time">订单创建时间：</string>
     <string name="order_number_text">订单数</string>
-    <string name="order_time1">预约施工时间： %1$s</string>
+    <string name="order_time1">预约施工时间：%1$s</string>
 
     <!-- 合作商 -->
     <string name="cooperater">合作商</string>
@@ -186,12 +190,14 @@
     <string name="all_order">全部</string>
     <string name="order_count">订单数 %1$s</string>
     <string name="phone_4001871500">4001871500</string>
+    <string name="phone_18201306715">18201306715</string>
     <string name="call">呼叫</string>
     <string name="cancel_call">取消</string>
 
     <!-- 我的订单 -->
     <string name="commented">已评价</string>
     <string name="uncomment">去评价</string>
+    <string name="uncomment1">待评价</string>
     <string name="timeouted">已超时</string>
     <string name="timeouted_order">该订单已超时</string>
     <string name="comment_order">该订单已评价</string>
@@ -280,5 +286,12 @@
     <string name="no_order">暂无订单</string>
     <string name="my_collection">我的收藏</string>
     <string name="collection">收藏</string>
+    <string name="order_contract">下单人手机号：%1$s</string>
+    <string name="query">查询</string>
+    <string name="order_query">订单查询</string>
+    <string name="status">状态</string>
+    <string name="carframe_number">车架号</string>
+    <string name="place_order_phone">下单人手机号</string>
+    <string name="please_select_status">请选择状态</string>
 
 </resources>

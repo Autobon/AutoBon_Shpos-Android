@@ -1,5 +1,6 @@
 package cn.com.incardata.autobon_shops;
 
+import android.*;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -35,6 +36,7 @@ import com.baidu.mapapi.search.geocode.ReverseGeoCodeResult;
 
 import cn.com.incardata.http.NetWorkHelper;
 import cn.com.incardata.http.response.CooperativeInfo_Data;
+import cn.com.incardata.permission.PermissionUtil;
 import cn.com.incardata.utils.BaiduMapUtil;
 import cn.com.incardata.utils.T;
 
@@ -67,8 +69,34 @@ public class CooperativeTwoActivity extends BaseActivity implements View.OnClick
         setContentView(R.layout.cooperative_info_two_activity);
         //在使用百度地图SDK各组件之前初始化context信息,传入ApplicationContext
         SDKInitializer.initialize(getApplicationContext());
+        checkPermission();
         init();
         initBaiduMapView();
+    }
+
+    /**
+     * 申请存储权限
+     *
+     * @param commandCode 可选指令码，用以执行指定操作
+     */
+    private void checkPermission(final int... commandCode) {
+        permissionUtil = new PermissionUtil(this);
+        permissionUtil.requestPermissions(getString(R.string.please_grant_file_location_phone_correation_authority), new PermissionUtil.PermissionListener() {
+                    @Override
+                    public void doAfterGrant(String... permission) {
+                        Log.d("Maintivity",getString(R.string.authorization_success));
+                    }
+
+                    @Override
+                    public void doAfterDenied(String... permission) {
+                        Log.d("Maintivity",getString(R.string.authorization_fail));
+                    }
+                }, android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                android.Manifest.permission.READ_EXTERNAL_STORAGE,
+                android.Manifest.permission.READ_PHONE_STATE,
+                android.Manifest.permission.CAMERA,
+                android.Manifest.permission.ACCESS_COARSE_LOCATION,
+                android.Manifest.permission.ACCESS_FINE_LOCATION);
     }
 
     @Override

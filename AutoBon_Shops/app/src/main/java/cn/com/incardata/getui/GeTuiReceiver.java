@@ -86,6 +86,8 @@ public class GeTuiReceiver extends BroadcastReceiver {
                 showNotification(context, jsonObject.getString("title"), "", 2);
             }else if ("VERIFICATION_SUCCEED".equals(action)){//认证成功
                 showNotification(context, jsonObject.getString("title"), "", 2);
+            }else if ("ORDER_REMIND".equals(action)){//订单超时和订单施工提醒
+                showNotification(context,"订单提醒" , jsonObject.getString("title"), 5);
             }else if ("ORDER_COMPLETE".equals(action)) {
                 JSONObject order = jsonObject.getJSONObject("order");
                 if (order == null) return;
@@ -118,7 +120,7 @@ public class GeTuiReceiver extends BroadcastReceiver {
                 .setContentIntent(pendingIntent)
                 .setTicker(title)
                 .setWhen(System.currentTimeMillis())
-                .setDefaults(Notification.DEFAULT_SOUND);
+                .setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE);
 
         NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         Notification n = null;

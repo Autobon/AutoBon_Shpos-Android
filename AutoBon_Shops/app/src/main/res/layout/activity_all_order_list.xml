@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_white"
+    tools:context="cn.com.incardata.autobon_shops.AllOrderListActivity">
+
+    <RelativeLayout
+        android:id="@+id/r1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp45"
+        android:background="@color/main_orange">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="@dimen/dp35"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="@dimen/dp10"
+            android:scaleType="centerInside"
+            android:src="@mipmap/default_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/my_order"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp18" />
+
+        <TextView
+            android:id="@+id/tv_query"
+            android:layout_width="@dimen/dp60"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:text="@string/query"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp15" />
+    </RelativeLayout>
+
+    <cn.com.incardata.view.PullToRefreshView
+        android:id="@+id/order_pull"
+        android:layout_below="@id/r1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/main_white"
+        android:orientation="vertical">
+
+        <ListView
+            android:id="@+id/unfinished_order_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbarStyle="outsideOverlay"
+            android:scrollbars="none"
+            android:background="@color/line_light_color"
+            android:divider="@color/main_white"
+            />
+
+    </cn.com.incardata.view.PullToRefreshView>
+
+</RelativeLayout>

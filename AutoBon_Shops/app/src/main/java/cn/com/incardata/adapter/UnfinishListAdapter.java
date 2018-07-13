@@ -91,8 +91,7 @@ public class UnfinishListAdapter extends BaseAdapter {
             if ("NEWLY_CREATED".equals(orderInfo.getStatus())){
                 holder.orderStatus.setTextColor(context.getResources().getColor(R.color.gray_A3));
                 holder.orderStatus.setText("未接单");
-            }
-            else if ("TAKEN_UP".equals(orderInfo.getStatus())) {
+            } else if ("TAKEN_UP".equals(orderInfo.getStatus())) {
                 holder.orderStatus.setTextColor(context.getResources().getColor(R.color.darkgray));
                 holder.orderStatus.setText("已接单");
             } else if ("IN_PROGRESS".equals(orderInfo.getStatus())) {
@@ -210,7 +209,5 @@ public class UnfinishListAdapter extends BaseAdapter {
         }
 
     }
-
-    ;
 
 }

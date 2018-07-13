@@ -300,6 +300,23 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_check_work_time"
+                android:background="@android:color/white"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/dp10"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp40">
+
+                <TextView
+                    android:textSize="@dimen/sp15"
+                    android:textColor="@color/main_orange"
+                    android:text="查看订单施工时间详情"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp5"

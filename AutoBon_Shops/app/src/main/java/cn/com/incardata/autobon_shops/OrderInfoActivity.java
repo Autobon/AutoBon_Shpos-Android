@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,15 +20,23 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 
+import org.json.JSONArray;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import cn.com.incardata.application.MyApplication;
 import cn.com.incardata.http.Http;
 import cn.com.incardata.http.ImageLoaderCache;
 import cn.com.incardata.http.NetURL;
 import cn.com.incardata.http.OnResult;
 import cn.com.incardata.http.response.BaseEntity;
+import cn.com.incardata.http.response.BaseEntityTwo;
 import cn.com.incardata.http.response.Construction;
 import cn.com.incardata.http.response.GetTechnicianEntity;
+import cn.com.incardata.http.response.ListUnfinishedEntity;
 import cn.com.incardata.http.response.OrderInfo;
+import cn.com.incardata.http.response.OrderWorkInfo;
 import cn.com.incardata.http.response.TechnicianMessage;
 import cn.com.incardata.utils.AutoCon;
 import cn.com.incardata.utils.DateCompute;
@@ -34,6 +44,7 @@ import cn.com.incardata.utils.DecimalUtil;
 import cn.com.incardata.utils.T;
 import cn.com.incardata.view.CircleImageView;
 import cn.com.incardata.view.MyGridView;
+import cn.com.incardata.view.OrderWorkTimeInfoPopupWindow;
 
 /**
  * 订单详情
@@ -63,6 +74,9 @@ public class OrderInfoActivity extends BaseForBroadcastActivity {
     private OrderInfo orderInfo;
 
     private Button collection;
+
+
+    private List<OrderWorkInfo> orderWorkInfos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +112,13 @@ public class OrderInfoActivity extends BaseForBroadcastActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        findViewById(R.id.ll_check_work_time).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showWorkTimePopupWindow();
             }
         });
 //        orderImage.setOnClickListener(new View.OnClickListener() {
@@ -148,8 +169,51 @@ public class OrderInfoActivity extends BaseForBroadcastActivity {
         });
 
         orderInfo = getIntent().getParcelableExtra(AutoCon.ORDER_INFO);
-        updateUI();
+        if (orderInfo != null){
+            updateUI();
+            getOrderWorkInfo();
+        }else {
+            T.show(getContext(),"数据加载失败");
+        }
 //        getTechInfo(orderInfo.getId());
+    }
+
+    OrderWorkTimeInfoPopupWindow pop;
+
+    /**
+     * 施工时间详情弹框
+     */
+    public void showWorkTimePopupWindow() {
+        if (pop == null) {
+            pop = new OrderWorkTimeInfoPopupWindow(this);
+            pop.init();
+        }
+        pop.setData(orderWorkInfos);
+        pop.showAtLocation(getWindow().getDecorView(), Gravity.CENTER, 0, 0);
+    }
+
+    /**
+     * 获取订单施工详情
+     */
+    private void getOrderWorkInfo(){
+        showDialog();
+        Http.getInstance().getTaskToken(NetURL.getOrderWorkInfo(orderInfo.getId()), "", ListUnfinishedEntity.class, new OnResult() {
+            @Override
+            public void onResult(Object entity) {
+                cancelDialog();
+                if (entity != null && entity instanceof ListUnfinishedEntity) {
+                    ListUnfinishedEntity entity1 = (ListUnfinishedEntity) entity;
+                    if (entity1.isStatus()) {
+                        orderWorkInfos = JSON.parseArray(entity1.getMessage().toString(),OrderWorkInfo.class);
+                        Log.d("aaa",orderWorkInfos.size() + "");
+                    } else {
+                        T.show(getContext(), entity1.getMessage().toString());
+                    }
+                } else {
+                    T.show(getContext(), R.string.loading_data_failed);
+                }
+            }
+        });
     }
 
     /**
@@ -232,15 +296,16 @@ public class OrderInfoActivity extends BaseForBroadcastActivity {
 
         if ("FINISHED".equals(orderInfo.getStatus())) {//未评价
             commentStatus.setText(R.string.uncomment);
+            commentStatus.setEnabled(true);
         } else if ("EXPIRED".equals(orderInfo.getStatus())){
             commentStatus.setText(R.string.timeouted);
-//            commentStatus.setEnabled(false);
+            commentStatus.setEnabled(false);
         } else if ("COMMENTED".equals(orderInfo.getStatus())){
             commentStatus.setText(R.string.commented);
-//            commentStatus.setEnabled(false);
-        }else if ("GIVEN_UP".equals(orderInfo.getStatus())){
+            commentStatus.setEnabled(false);
+        }else if ("GIVEN_UP".equals(orderInfo.getStatus()) || "CANCELED".equals(orderInfo.getStatus())){
             commentStatus.setText(R.string.canceled_order);
-//            commentStatus.setEnabled(false);
+            commentStatus.setEnabled(false);
         }
 
         remark.setText(orderInfo.getRemark());
@@ -307,24 +372,26 @@ public class OrderInfoActivity extends BaseForBroadcastActivity {
     private void updateGridView() {
 
         Myadapter myadapter;
-        final String[] urlOrder;
-        String urlOrderPhotos = orderInfo.getPhoto();
-        if (urlOrderPhotos.contains(",")) {
-            urlOrder = urlOrderPhotos.split(",");
-        } else {
-            urlOrder = new String[]{urlOrderPhotos};
-        }
-        myadapter = new Myadapter(this, urlOrder);
-        order_grid.setAdapter(myadapter);
-
-        order_grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                openImage(position, urlOrder);
+        if (!TextUtils.isEmpty(orderInfo.getPhoto())){
+            final String[] urlOrder;
+            String urlOrderPhotos = orderInfo.getPhoto();
+            if (urlOrderPhotos.contains(",")) {
+                urlOrder = urlOrderPhotos.split(",");
+            } else {
+                urlOrder = new String[]{urlOrderPhotos};
             }
-        });
+            myadapter = new Myadapter(this, urlOrder);
+            order_grid.setAdapter(myadapter);
 
-        if (orderInfo.getBeforePhotos() != null){
+            order_grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    openImage(position, urlOrder);
+                }
+            });
+        }
+
+        if (!TextUtils.isEmpty(orderInfo.getBeforePhotos())){
             final String[] urlBefore;
             String urlBeforePhotos = orderInfo.getBeforePhotos();
             if (urlBeforePhotos.contains(",")) {
@@ -344,7 +411,7 @@ public class OrderInfoActivity extends BaseForBroadcastActivity {
         }
 
 
-        if (orderInfo.getAfterPhotos() != null){
+        if (!TextUtils.isEmpty(orderInfo.getAfterPhotos())){
             final String[] urlAfter;
             String urlAfterPhotos = orderInfo.getAfterPhotos();
             if (urlAfterPhotos.contains(",")) {

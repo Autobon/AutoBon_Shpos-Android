@@ -7,13 +7,19 @@ import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.inputmethod.InputMethodManager;
 
+import cn.com.incardata.permission.PermissionUtil;
 import cn.com.incardata.view.CommonDialog;
 
 /**
  * activity基类
  * Created by wanghao on 16/2/23.
  */
-public class BaseActivity extends Activity{
+public class BaseActivity extends Activity {
+
+    /**
+     * 权限控制
+     */
+    protected PermissionUtil permissionUtil;
 
     protected void startActivity(Class<?> cls){
         Intent i = new Intent(this, cls);
@@ -23,6 +29,15 @@ public class BaseActivity extends Activity{
         Intent i = new Intent(this, cls);
         i.putExtras(bundle);
         startActivity(i);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (permissionUtil != null) {
+            //权限回调处理
+            permissionUtil.handleRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
     }
 
     protected BaseActivity getContext(){

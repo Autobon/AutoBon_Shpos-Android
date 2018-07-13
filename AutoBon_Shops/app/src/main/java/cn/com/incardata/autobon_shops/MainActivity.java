@@ -1,5 +1,6 @@
 package cn.com.incardata.autobon_shops;
 
+import android.Manifest;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
@@ -9,10 +10,10 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -21,10 +22,10 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
+import com.yanzhenjie.album.Album;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -48,15 +49,12 @@ import cn.com.incardata.http.NetURL;
 import cn.com.incardata.http.NetWorkHelper;
 import cn.com.incardata.http.OnResult;
 import cn.com.incardata.http.response.CreateOrderEntity;
-import cn.com.incardata.http.response.CreateOrder_Data;
 import cn.com.incardata.http.response.IdPhotoEntity;
 import cn.com.incardata.http.response.ListOrder_Data;
 import cn.com.incardata.http.response.ListUnfinishedEntity;
-import cn.com.incardata.http.response.UploadPhotoEntity;
-import cn.com.incardata.utils.AutoCon;
+import cn.com.incardata.permission.PermissionUtil;
 import cn.com.incardata.utils.BitmapHelper;
 import cn.com.incardata.utils.DateCompute;
-import cn.com.incardata.utils.GatherImage;
 import cn.com.incardata.utils.SDCardUtils;
 import cn.com.incardata.utils.T;
 import cn.com.incardata.view.selftimeview.TimePopupWindow;
@@ -89,6 +87,7 @@ public class MainActivity extends BaseForBroadcastActivity implements View.OnCli
     private PictureGridAdapter mAdapter;
     private File tempFile;
     private String fileName = "";  //my_picture目录
+    private String fileName1 = "";  //my_picture目录
     private File tempDir;
     private Uri carPhotoUri;  //temp目录
 
@@ -101,10 +100,37 @@ public class MainActivity extends BaseForBroadcastActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         fragmentManager = getFragmentManager();
-        updateUnfinishOrderNum();
+//        updateUnfinishOrderNum();
+        checkPermission();
         initView();
         initFile();
     }
+
+    /**
+     * 申请存储权限
+     *
+     * @param commandCode 可选指令码，用以执行指定操作
+     */
+    private void checkPermission(final int... commandCode) {
+        permissionUtil = new PermissionUtil(this);
+        permissionUtil.requestPermissions(getString(R.string.please_grant_file_location_phone_correation_authority), new PermissionUtil.PermissionListener() {
+                    @Override
+                    public void doAfterGrant(String... permission) {
+                        Log.d("Maintivity",getString(R.string.authorization_success));
+                    }
+
+                    @Override
+                    public void doAfterDenied(String... permission) {
+                        Log.d("Maintivity",getString(R.string.authorization_fail));
+                    }
+                }, Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.READ_PHONE_STATE,
+                Manifest.permission.CAMERA,
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION);
+    }
+
 
     private void initView() {
         context = this;
@@ -150,7 +176,11 @@ public class MainActivity extends BaseForBroadcastActivity implements View.OnCli
                         tempDir = new File(SDCardUtils.getGatherDir());
                         carPhotoUri = Uri.fromFile(new File(tempDir, "car_photo.jpeg"));
                     }
-                    capture(1, carPhotoUri);
+                    Album.startAlbum(MainActivity.this, 0x999
+                            , 6                                                         // 指定选择数量。
+                            , ContextCompat.getColor(context, R.color.main_orange)        // 指定Toolbar的颜色。
+                            , ContextCompat.getColor(context, R.color.main_orange));  // 指定状态栏的颜色。
+//                    capture(1, carPhotoUri);
                 } else {
                     LinkedHashMap<Integer, String> temp = mAdapter.getPicMap();
                     if (temp == null || temp.isEmpty()) {
@@ -189,7 +219,7 @@ public class MainActivity extends BaseForBroadcastActivity implements View.OnCli
     @Override
     protected void onRestart() {
         super.onRestart();
-        updateUnfinishOrderNum();
+//        updateUnfinishOrderNum();
     }
 
     /**
@@ -315,10 +345,10 @@ public class MainActivity extends BaseForBroadcastActivity implements View.OnCli
         if ((boolean)textViews[3].getTag()){
             project = project + "4,";
         }
-        if (project != "" && project.length() > 0){
+        if (!TextUtils.isEmpty(project) && project.length() > 0){
             project = project.substring(0,project.length() - 1);
         }
-        if (project.length() < 1 || project == ""){
+        if (TextUtils.isEmpty(project)){
             T.show(context, "请至少选择一项工作项目");
             return;
         }
@@ -381,17 +411,9 @@ public class MainActivity extends BaseForBroadcastActivity implements View.OnCli
                 if (entity instanceof CreateOrderEntity){
                     CreateOrderEntity createOrder = (CreateOrderEntity) entity;
                     if (createOrder.isStatus()){
-                        CreateOrder_Data createOrder_data = JSON.parseObject(createOrder.getMessage().toString(),CreateOrder_Data.class);
+//                        CreateOrder_Data createOrder_data = JSON.parseObject(createOrder.getMessage().toString(),CreateOrder_Data.class);
                         if (assignTech.isChecked()){
-                            Intent intent = new Intent(getContext(),AddContactActivity.class);
-//                            Bundle bundle = new Bundle();
-//                            bundle.putInt(AutoCon.ORDER_ID,createOrder_data.getId());
-                            intent.putExtra(AutoCon.ORDER_ID, createOrder_data.getId());
-                            intent.putExtra("activityId",1);
-//                            bundle.putString("lon", createOrder_data.getPositionLon());
-//                            bundle.putString("lat", createOrder_data.getPositionLat());
-//                            intent.putExtras(bundle);
-                            startActivity(intent);
+                            startActivity(AllOrderListActivity.class);
                             revert();
                             return;
                         }
@@ -401,7 +423,7 @@ public class MainActivity extends BaseForBroadcastActivity implements View.OnCli
                                 @Override
                                 public void onDismiss() {
                                     revert();
-                                    updateUnfinishOrderNum();
+//                                    updateUnfinishOrderNum();
                                 }
                             });
                         }
@@ -520,6 +542,41 @@ public class MainActivity extends BaseForBroadcastActivity implements View.OnCli
                     e.printStackTrace();
                 }
                 break;
+            case 0x999:
+                List<String> pathList = Album.parseResult(data);
+                showDialog(getString(R.string.uploading_image));
+                countNum = pathList.size();
+                uploadNum = 0;
+
+                for (int i = 0; i < pathList.size(); i++){
+                    try {
+                        Bitmap bitmap = BitmapHelper.resizeImage(getContext(), Uri.fromFile(new File(pathList.get(i))), 0.35f);
+                        Uri uri = Uri.fromFile(new File(fileName1 + "myphoto" + (i + 1) + ".jpeg"));
+                        boolean isSuccess = BitmapHelper.saveBitmap(uri, bitmap);
+
+                        if (isSuccess) {  //成功保存后上传压缩后的图片
+                            if (NetWorkHelper.isNetworkAvailable(context)) {
+                                MyAsyncTask task = new MyAsyncTask(i,uri);
+                                //task.execute(new String[0]);
+                                task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, uri.getPath(), NetURL.UPLOAD_PHOTOV2);
+                            } else {
+                                T.show(context, context.getString(R.string.no_network_tips));
+                                uploadNum++;
+                                return;
+                            }
+                        }else {
+                            uploadNum++;
+                        }
+                        if (bitmap != null && !bitmap.isRecycled()) {
+                            bitmap.recycle();
+                            bitmap = null;
+                        }
+                    } catch (Exception e) {
+                        uploadNum++;
+                        e.printStackTrace();
+                    }
+                }
+                break;
             default:
                 break;
         }
@@ -571,6 +628,8 @@ public class MainActivity extends BaseForBroadcastActivity implements View.OnCli
                     dir.mkdirs();
                 }
                 fileName = path + File.separator + "my_photo.jpeg";
+                fileName1 = path + File.separator;
+
                 tempFile = new File(fileName);
             } else {
                 T.show(this, getString(R.string.uninstalled_sdcard));
@@ -685,4 +744,57 @@ public class MainActivity extends BaseForBroadcastActivity implements View.OnCli
 //        }
 //        return super.onKeyDown(keyCode, event);
 //    }
+
+    private int uploadNum = 0;
+    private int countNum;
+
+    private class MyAsyncTask extends AsyncTask<String,Void,String>{
+        private int index;
+        private Uri uri;
+
+
+        public MyAsyncTask(int index,Uri uri) {
+            this.index = index;
+            this.uri = uri;
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            System.out.println("task"+ (index + 1) + " is run " + DateCompute.timeStampToDate(System.currentTimeMillis()) + " thread id "+ Thread.currentThread().getId());
+            try {
+                String json = HttpClientInCar.uploadImage(params[0], params[1]);
+                return json;
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            uploadNum++;
+            if (uploadNum == countNum){
+                cancelDialog();
+            }
+            System.out.println("task"+ (index + 1) + " is finish " + DateCompute.timeStampToDate(System.currentTimeMillis()));
+            if (s == null) {
+//                T.show(context, getString(R.string.upload_image_failed) + index);
+                T.show(context, "第" + (index + 1) + "张图片上传失败，请重新选择上传");
+                return;
+            } else {
+                IdPhotoEntity idPhotoEntity = JSON.parseObject(s, IdPhotoEntity.class);
+                if (idPhotoEntity.isStatus()) {
+                    Bitmap bitmap = BitmapFactory.decodeFile(uri.getPath());
+                    mAdapter.addPic(bitmap, idPhotoEntity.getMessage());  //添加图片
+                    Log.i("test", "上传压缩后的图片成功,width===>" + bitmap.getWidth() + ",height===>" + bitmap.getHeight()
+                            + ",size===>" + (bitmap.getByteCount() / 1024) + "KB" + ",url===>" + idPhotoEntity.getMessage());
+                } else {
+//                    T.show(context, getString(R.string.upload_image_failed));
+                    T.show(context, "第" + (index + 1) + "张图片上传失败，请重新选择上传");
+                    return;
+                }
+            }
+        }
+    }
 }

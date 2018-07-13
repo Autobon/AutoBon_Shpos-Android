@@ -126,7 +126,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
-                    android:src="@mipmap/order_img"
+                    android:src="@mipmap/collection"
                     android:scaleType="centerInside"
                     android:paddingLeft="@dimen/dp10"
                     android:paddingRight="@dimen/dp10" />
@@ -348,7 +348,7 @@
                     android:layout_gravity="center_vertical"
                     android:textColor="@color/main_orange"
                     android:textSize="@dimen/sp15"
-                    android:text="@string/phone_4001871500"/>
+                    android:text="@string/phone_18201306715"/>
             </LinearLayout>
             <View
                 android:layout_width="match_parent"
