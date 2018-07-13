@@ -1,9 +1,11 @@
 package cn.com.incardata.autobon_shops;
 
+import android.*;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +22,7 @@ import cn.com.incardata.http.NetURL;
 import cn.com.incardata.http.OnResult;
 import cn.com.incardata.http.response.CooperativeInfo_Data;
 import cn.com.incardata.http.response.CooperativeSubmitEntity;
+import cn.com.incardata.permission.PermissionUtil;
 import cn.com.incardata.utils.StringUtil;
 import cn.com.incardata.utils.T;
 import cn.com.incardata.view.CheckTipsDialog;
@@ -40,7 +43,33 @@ public class CooperativeThreeActivity extends BaseActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cooperative_info_three_activity);
+        checkPermission();
         init();
+    }
+
+    /**
+     * 申请存储权限
+     *
+     * @param commandCode 可选指令码，用以执行指定操作
+     */
+    private void checkPermission(final int... commandCode) {
+        permissionUtil = new PermissionUtil(this);
+        permissionUtil.requestPermissions(getString(R.string.please_grant_file_location_phone_correation_authority), new PermissionUtil.PermissionListener() {
+                    @Override
+                    public void doAfterGrant(String... permission) {
+                        Log.d("Maintivity",getString(R.string.authorization_success));
+                    }
+
+                    @Override
+                    public void doAfterDenied(String... permission) {
+                        Log.d("Maintivity",getString(R.string.authorization_fail));
+                    }
+                }, android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                android.Manifest.permission.READ_EXTERNAL_STORAGE,
+                android.Manifest.permission.READ_PHONE_STATE,
+                android.Manifest.permission.CAMERA,
+                android.Manifest.permission.ACCESS_COARSE_LOCATION,
+                android.Manifest.permission.ACCESS_FINE_LOCATION);
     }
 
     private void init(){

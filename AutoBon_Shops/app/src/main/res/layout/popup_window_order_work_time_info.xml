@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@drawable/fillet_bg_shape"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/rl_title"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp40">
+
+
+        <TextView
+            android:text="订单施工时间详情"
+            android:textSize="@dimen/sp15"
+            android:layout_gravity="center"
+            android:layout_centerInParent="true"
+            android:textColor="@color/main_orange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/img_close"
+            android:layout_width="@dimen/dp30"
+            android:layout_height="@dimen/dp30"
+            android:layout_marginTop="@dimen/dp5"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp10"
+            android:background="@null"
+            android:src="@mipmap/iv_delete"
+            android:scaleType="centerInside"
+            android:layout_gravity="right"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_status1"
+        android:text="未接单"
+        android:layout_marginTop="@dimen/dp10"
+        android:layout_below="@id/rl_title"
+        android:layout_marginLeft="@dimen/dp30"
+        android:textColor="@color/darkgray"
+        android:textSize="@dimen/sp15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_date1"
+        android:text="adadasdas"
+        android:layout_toRightOf="@id/tv_status1"
+        android:layout_alignTop="@id/tv_status1"
+        android:layout_alignBottom="@id/tv_status1"
+        android:layout_marginLeft="@dimen/dp10"
+        android:textColor="@color/darkgray"
+        android:textSize="@dimen/sp15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:id="@+id/ll1"
+        android:orientation="horizontal"
+        android:layout_below="@id/tv_status1"
+        android:layout_alignLeft="@id/tv_status1"
+        android:layout_alignRight="@id/tv_status1"
+        android:gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <View
+            android:id="@+id/view1"
+            android:layout_width="1dp"
+            android:layout_height="@dimen/dp30"
+            android:background="@color/line_color"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_time1"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:layout_alignTop="@id/ll1"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_alignBottom="@id/ll1"
+        android:layout_toRightOf="@+id/ll1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_time1"
+            android:text="3xiaoshi"
+            android:layout_below="@id/rl_title"
+            android:textColor="@color/darkgray"
+            android:textSize="@dimen/sp15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_status2"
+        android:text="已接单"
+        android:layout_below="@id/ll1"
+        android:textColor="@color/darkgray"
+        android:layout_alignLeft="@id/tv_status1"
+        android:textSize="@dimen/sp15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_date2"
+        android:text="adadasdas"
+        android:layout_toRightOf="@id/tv_status2"
+        android:layout_alignTop="@id/tv_status2"
+        android:layout_alignBottom="@id/tv_status2"
+        android:layout_marginLeft="@dimen/dp10"
+        android:textColor="@color/darkgray"
+        android:textSize="@dimen/sp15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:id="@+id/ll2"
+        android:orientation="horizontal"
+        android:layout_below="@id/tv_status2"
+        android:layout_alignLeft="@id/tv_status2"
+        android:layout_alignRight="@id/tv_status1"
+        android:gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <View
+            android:id="@+id/view2"
+            android:layout_width="1dp"
+            android:layout_height="@dimen/dp30"
+            android:background="@color/line_color"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_time2"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:layout_alignTop="@id/ll2"
+        android:layout_alignBottom="@id/ll2"
+        android:layout_toRightOf="@+id/ll2"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_time2"
+            android:text="3xiaoshi"
+            android:layout_below="@id/rl_title"
+            android:textColor="@color/darkgray"
+            android:textSize="@dimen/sp15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_status3"
+        android:text="已出发"
+        android:layout_below="@id/ll2"
+        android:textColor="@color/darkgray"
+        android:layout_alignLeft="@id/tv_status1"
+        android:textSize="@dimen/sp15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_date3"
+        android:text="adadasdas"
+        android:layout_toRightOf="@id/tv_status3"
+        android:layout_alignTop="@id/tv_status3"
+        android:layout_alignBottom="@id/tv_status3"
+        android:layout_marginLeft="@dimen/dp10"
+        android:textColor="@color/darkgray"
+        android:textSize="@dimen/sp15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:id="@+id/ll3"
+        android:orientation="horizontal"
+        android:layout_below="@id/tv_status3"
+        android:layout_alignLeft="@id/tv_status2"
+        android:layout_alignRight="@id/tv_status1"
+        android:gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <View
+            android:id="@+id/view3"
+            android:layout_width="1dp"
+            android:layout_height="@dimen/dp30"
+            android:background="@color/line_color"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_time3"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:layout_alignTop="@id/ll3"
+        android:layout_alignBottom="@id/ll3"
+        android:layout_toRightOf="@+id/ll3"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_time3"
+            android:text="3xiaoshi"
+            android:layout_below="@id/rl_title"
+            android:textColor="@color/darkgray"
+            android:textSize="@dimen/sp15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_status4"
+        android:text="已签到"
+        android:layout_below="@id/ll3"
+        android:textColor="@color/darkgray"
+        android:layout_alignLeft="@id/tv_status1"
+        android:textSize="@dimen/sp15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_date4"
+        android:text="adadasdas"
+        android:layout_toRightOf="@id/tv_status4"
+        android:layout_alignTop="@id/tv_status4"
+        android:layout_alignBottom="@id/tv_status4"
+        android:layout_marginLeft="@dimen/dp10"
+        android:textColor="@color/darkgray"
+        android:textSize="@dimen/sp15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:id="@+id/ll4"
+        android:orientation="horizontal"
+        android:layout_below="@id/tv_status4"
+        android:layout_alignLeft="@id/tv_status1"
+        android:layout_alignRight="@id/tv_status1"
+        android:gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <View
+            android:id="@+id/view4"
+            android:layout_width="1dp"
+            android:layout_height="@dimen/dp30"
+            android:background="@color/line_color"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_time4"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:layout_alignTop="@id/ll4"
+        android:layout_alignBottom="@id/ll4"
+        android:layout_toRightOf="@+id/ll4"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_time4"
+            android:text="3xiaoshi"
+            android:layout_below="@id/rl_title"
+            android:textColor="@color/darkgray"
+            android:textSize="@dimen/sp15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_status5"
+        android:text="施工中"
+        android:layout_below="@id/ll4"
+        android:textColor="@color/darkgray"
+        android:layout_alignLeft="@id/tv_status1"
+        android:textSize="@dimen/sp15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_date5"
+        android:text="adadasdas"
+        android:layout_toRightOf="@id/tv_status5"
+        android:layout_alignTop="@id/tv_status5"
+        android:layout_alignBottom="@id/tv_status5"
+        android:layout_marginLeft="@dimen/dp10"
+        android:textColor="@color/darkgray"
+        android:textSize="@dimen/sp15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:id="@+id/ll5"
+        android:orientation="horizontal"
+        android:layout_below="@id/tv_status5"
+        android:layout_alignLeft="@id/tv_status1"
+        android:layout_alignRight="@id/tv_status1"
+        android:gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <View
+            android:id="@+id/view5"
+            android:layout_width="1dp"
+            android:layout_height="@dimen/dp30"
+            android:background="@color/line_color"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_time5"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:layout_alignTop="@id/ll5"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_alignBottom="@id/ll5"
+        android:layout_toRightOf="@+id/ll5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_time5"
+            android:text="3xiaoshi"
+            android:layout_below="@id/rl_title"
+            android:textColor="@color/darkgray"
+            android:textSize="@dimen/sp15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_status6"
+        android:text="已完成"
+        android:layout_below="@id/ll5"
+        android:layout_marginBottom="@dimen/dp20"
+        android:textColor="@color/darkgray"
+        android:layout_alignLeft="@id/tv_status1"
+        android:textSize="@dimen/sp15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_date6"
+        android:text="adadasdas"
+        android:layout_toRightOf="@id/tv_status6"
+        android:layout_alignTop="@id/tv_status6"
+        android:layout_alignBottom="@id/tv_status6"
+        android:layout_marginLeft="@dimen/dp10"
+        android:textColor="@color/darkgray"
+        android:textSize="@dimen/sp15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+</RelativeLayout>

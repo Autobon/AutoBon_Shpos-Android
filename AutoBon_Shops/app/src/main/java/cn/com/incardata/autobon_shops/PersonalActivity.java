@@ -58,7 +58,8 @@ public class PersonalActivity extends BaseForBroadcastActivity implements View.O
                 finish();
                 break;
             case R.id.order_layout:
-                startActivity(MyOrderActivity.class);
+                startActivity(AllOrderListActivity.class);
+//                startActivity(MyOrderActivity.class);
                 break;
             case R.id.collection_layout:
                 startActivity(CollectionContactActivity.class);

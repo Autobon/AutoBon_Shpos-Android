@@ -3,7 +3,9 @@ package cn.com.incardata.autobon_shops;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,14 +24,19 @@ import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.Overlay;
 import com.baidu.mapapi.model.LatLng;
 
+import java.util.List;
+
 import cn.com.incardata.fragment.TechnicianDialogFragment;
 import cn.com.incardata.http.Http;
 import cn.com.incardata.http.ImageLoaderCache;
 import cn.com.incardata.http.NetURL;
 import cn.com.incardata.http.NetWorkHelper;
 import cn.com.incardata.http.OnResult;
+import cn.com.incardata.http.response.BaseEntity;
 import cn.com.incardata.http.response.GetTechnicianEntity;
+import cn.com.incardata.http.response.ListUnfinishedEntity;
 import cn.com.incardata.http.response.OrderInfo;
+import cn.com.incardata.http.response.OrderWorkInfo;
 import cn.com.incardata.http.response.RevokeOrderEntity;
 import cn.com.incardata.http.response.TechnicianMessage;
 import cn.com.incardata.utils.AutoCon;
@@ -37,6 +44,8 @@ import cn.com.incardata.utils.BaiduMapUtil;
 import cn.com.incardata.utils.DateCompute;
 import cn.com.incardata.utils.T;
 import cn.com.incardata.view.CaptureDialog;
+import cn.com.incardata.view.OrderWorkTimeInfoPopupWindow;
+import cn.com.incardata.view.SelectPopupView;
 
 /** 未完成订单详情 二期
  * Created by yang on 2016/11/23.
@@ -56,6 +65,7 @@ public class UnFinishOrderInfoActivity extends BaseActivity implements View.OnCl
     private ImageView img_tech_message,back;
     private TechnicianMessage technicianMessage;
     private CaptureDialog captureDialog;
+    private List<OrderWorkInfo> orderWorkInfos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,15 +105,59 @@ public class UnFinishOrderInfoActivity extends BaseActivity implements View.OnCl
         img_tech_message.setOnClickListener(this);
         back.setOnClickListener(this);
         ll1.setOnClickListener(this);
+        findViewById(R.id.ll_check_work_time).setOnClickListener(this);
 
         if (orderInfo != null){
             bindData();
             initBaiduMapView();
+            getOrderWorkInfo();
         }else {
             T.show(context,"数据加载失败");
         }
 
     }
+
+    /**
+     * 获取订单施工详情
+     */
+    private void getOrderWorkInfo(){
+        showDialog();
+        Http.getInstance().getTaskToken(NetURL.getOrderWorkInfo(orderInfo.getId()), "", ListUnfinishedEntity.class, new OnResult() {
+            @Override
+            public void onResult(Object entity) {
+                cancelDialog();
+                if (entity != null && entity instanceof ListUnfinishedEntity) {
+                    ListUnfinishedEntity entity1 = (ListUnfinishedEntity) entity;
+                    if (entity1.isStatus()) {
+                        orderWorkInfos = JSON.parseArray(entity1.getMessage().toString(),OrderWorkInfo.class);
+                        Log.d("aaa",orderWorkInfos.size() + "");
+                    } else {
+                        T.show(getContext(), entity1.getMessage().toString());
+                    }
+                } else {
+                    T.show(getContext(), R.string.loading_data_failed);
+                }
+            }
+        });
+    }
+
+    OrderWorkTimeInfoPopupWindow pop;
+
+    /**
+     * 施工时间详情弹框
+     */
+    public void showWorkTimePopupWindow() {
+        if (pop == null) {
+            pop = new OrderWorkTimeInfoPopupWindow(this);
+            pop.init();
+        }
+        pop.setData(orderWorkInfos);
+        pop.showAtLocation(getWindow().getDecorView(), Gravity.CENTER, 0, 0);
+    }
+
+    /**
+     * 初始化地图信息
+     */
     public void initBaiduMapView(){
         coopLatlng = new LatLng(Double.parseDouble(orderInfo.getLatitude()),Double.parseDouble(orderInfo.getLongitude()));
         if (orderInfo.getTechLatitude() == null || orderInfo.getTechLongitude() == null){
@@ -238,25 +292,29 @@ public class UnFinishOrderInfoActivity extends BaseActivity implements View.OnCl
         orderRemark.setText(orderInfo.getRemark());
 
         Myadapter myadapter;
-        final String[] orderPhotos;
-        String urlOrderPhotos = orderInfo.getPhoto();
-        if (urlOrderPhotos.contains(",")) {
-            orderPhotos = urlOrderPhotos.split(",");
-        } else {
-            orderPhotos = new String[]{urlOrderPhotos};
+
+        if (!TextUtils.isEmpty(orderInfo.getPhoto())){
+            final String[] orderPhotos;
+            String urlOrderPhotos = orderInfo.getPhoto();
+            if (urlOrderPhotos.contains(",")) {
+                orderPhotos = urlOrderPhotos.split(",");
+            } else {
+                orderPhotos = new String[]{urlOrderPhotos};
+            }
+
+            myadapter = new Myadapter(this, orderPhotos);
+            order_grid.setAdapter(myadapter);
+
+            order_grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                    openImage(position, orderPhotos);
+                }
+            });
         }
 
-        myadapter = new Myadapter(this, orderPhotos);
-        order_grid.setAdapter(myadapter);
 
-        order_grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                openImage(position, orderPhotos);
-            }
-        });
-
-        if (orderInfo.getBeforePhotos() != null){
+        if (!TextUtils.isEmpty(orderInfo.getBeforePhotos())){
             final String[] urlBefore;
             String urlBeforePhotos = orderInfo.getBeforePhotos();
             if (urlBeforePhotos.contains(",")) {
@@ -316,6 +374,9 @@ public class UnFinishOrderInfoActivity extends BaseActivity implements View.OnCl
                 intent3.putExtra(AutoCon.ORDER_ID,orderInfo.getId());
                 intent3.putExtra("techMessage",technicianMessage);
                 startActivity(intent3);
+                break;
+            case R.id.ll_check_work_time:
+                showWorkTimePopupWindow();
                 break;
         }
     }

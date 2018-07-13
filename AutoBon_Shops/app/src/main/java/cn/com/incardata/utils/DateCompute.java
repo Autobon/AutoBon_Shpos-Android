@@ -165,6 +165,17 @@ public class DateCompute {
 	}
 
 	/**
+	 * 获取毫秒的日期及时间
+	 * @param time 毫秒
+	 * @return
+	 */
+	public static String getYearMonthDayDate(long time){
+		Date d = new Date(time);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		return sdf.format(d);
+	}
+
+	/**
 	 * 将时间戳转为日期字符串
 	 * @param timeStamp
 	 */

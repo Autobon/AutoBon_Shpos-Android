@@ -73,7 +73,7 @@
         android:paddingTop="@dimen/dp15"
         android:textColorHint="@color/lightgray"
         android:paddingLeft="@dimen/dp25"
-        android:maxLength="5"
+        android:maxLength="10"
         android:textColor="@color/darkgray"
         android:textSize="@dimen/sp15"
         android:inputType="text"/>

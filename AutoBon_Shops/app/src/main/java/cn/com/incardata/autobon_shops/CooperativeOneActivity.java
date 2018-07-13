@@ -1,5 +1,6 @@
 package cn.com.incardata.autobon_shops;
 
+import android.*;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,6 +11,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -37,6 +39,7 @@ import cn.com.incardata.http.OnResult;
 import cn.com.incardata.http.response.CooperativeInfo_Data;
 import cn.com.incardata.http.response.CooperativeSubmitEntity;
 import cn.com.incardata.http.response.UploadPicEntity;
+import cn.com.incardata.permission.PermissionUtil;
 import cn.com.incardata.utils.GatherImage;
 import cn.com.incardata.utils.SDCardUtils;
 import cn.com.incardata.utils.StringUtil;
@@ -78,8 +81,34 @@ public class CooperativeOneActivity extends BaseActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cooperative_info_one_activity);
+        checkPermission();
         init();
         initData();
+    }
+
+    /**
+     * 申请存储权限
+     *
+     * @param commandCode 可选指令码，用以执行指定操作
+     */
+    private void checkPermission(final int... commandCode) {
+        permissionUtil = new PermissionUtil(this);
+        permissionUtil.requestPermissions(getString(R.string.please_grant_file_location_phone_correation_authority), new PermissionUtil.PermissionListener() {
+                    @Override
+                    public void doAfterGrant(String... permission) {
+                        Log.d("Maintivity",getString(R.string.authorization_success));
+                    }
+
+                    @Override
+                    public void doAfterDenied(String... permission) {
+                        Log.d("Maintivity",getString(R.string.authorization_fail));
+                    }
+                }, android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                android.Manifest.permission.READ_EXTERNAL_STORAGE,
+                android.Manifest.permission.READ_PHONE_STATE,
+                android.Manifest.permission.CAMERA,
+                android.Manifest.permission.ACCESS_COARSE_LOCATION,
+                android.Manifest.permission.ACCESS_FINE_LOCATION);
     }
 
     private void init() {
