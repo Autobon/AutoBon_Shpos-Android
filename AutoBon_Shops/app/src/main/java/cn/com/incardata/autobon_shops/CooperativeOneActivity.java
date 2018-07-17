@@ -35,11 +35,13 @@ import cn.com.incardata.http.Http;
 import cn.com.incardata.http.HttpClientInCar;
 import cn.com.incardata.http.ImageLoaderCache;
 import cn.com.incardata.http.NetURL;
+import cn.com.incardata.http.NetWorkHelper;
 import cn.com.incardata.http.OnResult;
 import cn.com.incardata.http.response.CooperativeInfo_Data;
 import cn.com.incardata.http.response.CooperativeSubmitEntity;
 import cn.com.incardata.http.response.UploadPicEntity;
 import cn.com.incardata.permission.PermissionUtil;
+import cn.com.incardata.utils.BitmapHelper;
 import cn.com.incardata.utils.GatherImage;
 import cn.com.incardata.utils.SDCardUtils;
 import cn.com.incardata.utils.StringUtil;
@@ -245,18 +247,33 @@ public class CooperativeOneActivity extends BaseActivity implements View.OnClick
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode != RESULT_OK) return;
-        if (requestCode == CAPTURE_BUSSINESS_LICENSE_PIC_REQUEST || requestCode == CAPTURE_CORPORATION_PIC_REQUEST) {
-            crop(requestCode);
+//        if (requestCode == CAPTURE_BUSSINESS_LICENSE_PIC_REQUEST || requestCode == CAPTURE_CORPORATION_PIC_REQUEST) {
+//            crop(requestCode);
+//            return;
+//        }
+        if (requestCode == CAPTURE_BUSSINESS_LICENSE_PIC_REQUEST ) {
+            Bitmap bitmap = BitmapHelper.resizeImage(getContext(), imageUri, 0.35f);
+            boolean isSuccess = BitmapHelper.saveBitmap(imageCropUri, bitmap);
+            if (isSuccess) {  //成功保存后上传压缩后的图片
+                uploadPic(NetURL.BUSNIESS_LICENSE_URLV2, UploadPicEntity.class);
+                return;
+            }
             return;
         }
-        if (requestCode == CROP_BUSSINESS_LICENSE_PIC_REQUEST) {
-            uploadPic(NetURL.BUSNIESS_LICENSE_URLV2, UploadPicEntity.class);
-            return;
-        }
+//        if (requestCode == CROP_BUSSINESS_LICENSE_PIC_REQUEST) {
+//            uploadPic(NetURL.BUSNIESS_LICENSE_URLV2, UploadPicEntity.class);
+//            return;
+//        }
         if (requestCode == GatherImage.GALLERY_REQUEST){
                 if (data != null) {
                     imageUri = data.getData();
-                    crop(requestCode);
+                    Bitmap bitmap = BitmapHelper.resizeImage(getContext(), imageUri, 0.35f);
+                    boolean isSuccess = BitmapHelper.saveBitmap(imageCropUri, bitmap);
+                    if (isSuccess) {  //成功保存后上传压缩后的图片
+                        uploadPic(NetURL.BUSNIESS_LICENSE_URLV2, UploadPicEntity.class);
+                        return;
+                    }
+                    return;
                 } else {
                     T.show(getContext(), R.string.operate_failed_agen);
                    return;
