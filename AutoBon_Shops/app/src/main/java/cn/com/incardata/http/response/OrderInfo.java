@@ -8,8 +8,6 @@ import android.os.Parcelable;
  * wanghao
  */
 public class OrderInfo implements Parcelable {
-
-
     private int id;
     private String orderNum;
     private String photo;

@@ -10,8 +10,8 @@ android {
         applicationId "cn.com.incardata.autobon_shops"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 8
-        versionName "2.3.1"
+        versionCode 10
+        versionName "2.3.3"
     }
     buildTypes {
         release {
