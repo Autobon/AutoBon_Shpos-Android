@@ -1,5 +1,6 @@
 package cn.com.incardata.fragment;
 
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.com.incardata.adapter.MyContactAdapter;
-import cn.com.incardata.autobon_shops.BaseActivity;
 import cn.com.incardata.autobon_shops.R;
 import cn.com.incardata.autobon_shops.TechnicianInfoActivity;
 import cn.com.incardata.http.Http;
@@ -29,14 +29,13 @@ import cn.com.incardata.http.OnResult;
 import cn.com.incardata.http.response.GetTechList;
 import cn.com.incardata.http.response.GetTechListEntity;
 import cn.com.incardata.http.response.TechnicianMessage;
-import cn.com.incardata.utils.AutoCon;
 import cn.com.incardata.utils.T;
 import cn.com.incardata.view.PullToRefreshView;
 
 /**指派技师- 距离界面
  * Created by yang on 2017/5/24.
  */
-public class DistanceTechnicianFragment extends BaseFragment implements View.OnClickListener,
+public class DistanceTechnicianFragment extends Fragment implements View.OnClickListener,
         PullToRefreshView.OnHeaderRefreshListener,PullToRefreshView.OnFooterRefreshListener {
     private View rootView;
     private ImageView iv_clear;

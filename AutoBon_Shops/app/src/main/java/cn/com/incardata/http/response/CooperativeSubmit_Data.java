@@ -27,6 +27,7 @@ public class CooperativeSubmit_Data {
     private long createTime;
     private int statusCode;
     private int orderNum;
+    private int orderByPhoto;
 
     public int getId() {
         return id;
@@ -202,5 +203,14 @@ public class CooperativeSubmit_Data {
 
     public void setOrderNum(int orderNum) {
         this.orderNum = orderNum;
+    }
+
+
+    public int getOrderByPhoto() {
+        return orderByPhoto;
+    }
+
+    public void setOrderByPhoto(int orderByPhoto) {
+        this.orderByPhoto = orderByPhoto;
     }
 }

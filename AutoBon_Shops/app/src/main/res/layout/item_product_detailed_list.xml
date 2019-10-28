@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_white"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical">
+    <View
+        android:id="@+id/view"
+        android:background="@color/lightgray"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp5"/>
+
+    <TextView
+        android:id="@+id/tv_number"
+        android:layout_marginTop="@dimen/dp15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp10"
+        android:text="@string/code_1_s"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/sp12" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/dp10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_model"
+            android:layout_width="0dp"
+            android:layout_weight="0.45"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/dp10"
+            android:text="@string/model_1_s"
+            android:singleLine="true"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/sp12" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="0.05"
+            android:layout_height="@dimen/dp5"/>
+
+        <TextView
+            android:id="@+id/tv_brand"
+            android:layout_width="0dp"
+            android:layout_weight="0.45"
+            android:paddingRight="@dimen/dp15"
+            android:layout_height="wrap_content"
+            android:text="@string/brand_1_s"
+            android:singleLine="true"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/sp12" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_visable"
+        android:visibility="gone"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_project"
+                android:layout_width="0dp"
+                android:layout_weight="0.45"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/dp10"
+                android:text="@string/project_1_s"
+                android:singleLine="true"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/sp12" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_weight="0.05"
+                android:layout_height="@dimen/dp5"/>
+
+            <TextView
+                android:id="@+id/tv_position"
+                android:layout_width="0dp"
+                android:layout_weight="0.45"
+                android:paddingRight="@dimen/dp15"
+                android:layout_height="wrap_content"
+                android:text="@string/position_1_s"
+                android:singleLine="true"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/sp12" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_working_hours"
+                android:layout_width="0dp"
+                android:layout_weight="0.45"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/dp10"
+                android:text="@string/working_hours_1_s"
+                android:singleLine="true"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/sp12" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_weight="0.05"
+                android:layout_height="@dimen/dp5"/>
+
+            <TextView
+                android:id="@+id/tv_quality_time"
+                android:layout_width="0dp"
+                android:layout_weight="0.45"
+                android:paddingRight="@dimen/dp15"
+                android:layout_height="wrap_content"
+                android:text="@string/quality_time_1_s"
+                android:singleLine="true"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/sp12" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@color/line_light_color"
+        android:layout_marginTop="@dimen/dp10"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp45">
+        <LinearLayout
+            android:id="@+id/ll_visable_click"
+            android:layout_width="0dp"
+            android:layout_weight="0.45"
+            android:gravity="center"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/tv_visable"
+                android:layout_width="wrap_content"
+                android:paddingRight="@dimen/dp10"
+                android:layout_height="wrap_content"
+                android:text="@string/check_info"
+                android:singleLine="true"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/sp12" />
+            <ImageView
+                android:id="@+id/img_visable"
+                android:scaleType="centerInside"
+                android:src="@mipmap/sjxd_list_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="1px"
+            android:background="@color/lightgray"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:id="@+id/tv_add_set_meal"
+            android:layout_width="0dp"
+            android:layout_weight="0.55"
+            android:gravity="center"
+            android:layout_height="match_parent"
+            android:text="@string/add_to_my_set_meal"
+            android:singleLine="true"
+            android:textColor="@color/main_orange"
+            android:textSize="@dimen/sp12" />
+    </LinearLayout>
+
+</LinearLayout>

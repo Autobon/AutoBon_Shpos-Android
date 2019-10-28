@@ -104,6 +104,90 @@
                     android:layout_gravity="center_vertical"
                     android:scaleType="centerInside" />
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line_light_color"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/dp5"
+                android:background="@color/line_light_color"/>
+            <LinearLayout
+                android:id="@+id/product_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp45"
+                android:paddingLeft="@dimen/dp5"
+                android:paddingRight="@dimen/dp5"
+                android:background="@android:color/white"
+                android:clickable="true">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:src="@mipmap/list_icon_cpmx"
+                    android:scaleType="centerInside"
+                    android:paddingLeft="@dimen/dp10"
+                    android:paddingRight="@dimen/dp10" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="产品明细"
+                    android:textSize="@dimen/sp15"
+                    android:textColor="@color/darkgray"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"/>
+                <ImageView
+                    android:layout_width="@dimen/dp25"
+                    android:layout_height="@dimen/dp25"
+                    android:src="@mipmap/iv_row"
+                    android:layout_gravity="center_vertical"
+                    android:scaleType="centerInside" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line_light_color"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/dp5"
+                android:background="@color/line_light_color"/>
+            <LinearLayout
+                android:id="@+id/report_form_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp45"
+                android:paddingLeft="@dimen/dp5"
+                android:paddingRight="@dimen/dp5"
+                android:background="@android:color/white"
+                android:clickable="true">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:src="@mipmap/list_icon_swbb"
+                    android:scaleType="centerInside"
+                    android:paddingLeft="@dimen/dp10"
+                    android:paddingRight="@dimen/dp10" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="商户报表"
+                    android:textSize="@dimen/sp15"
+                    android:textColor="@color/darkgray"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"/>
+                <ImageView
+                    android:layout_width="@dimen/dp25"
+                    android:layout_height="@dimen/dp25"
+                    android:src="@mipmap/iv_row"
+                    android:layout_gravity="center_vertical"
+                    android:scaleType="centerInside" />
+            </LinearLayout>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"

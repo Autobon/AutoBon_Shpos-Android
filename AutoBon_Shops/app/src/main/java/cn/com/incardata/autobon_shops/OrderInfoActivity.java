@@ -59,6 +59,8 @@ public class OrderInfoActivity extends BaseForBroadcastActivity {
     private TextView endTime;
     private TextView agreeEndTime;
     //    private ImageView orderImage;
+    private TextView license;
+    private TextView vin;
     private TextView remark;
     private TextView createTime;
     //    private TextView workItem;
@@ -94,6 +96,8 @@ public class OrderInfoActivity extends BaseForBroadcastActivity {
         startTime = (TextView) findViewById(R.id.work_startTime);
         endTime = (TextView) findViewById(R.id.work_endTime);
         agreeEndTime = (TextView) findViewById(R.id.agree_work_endTime);
+        license = (TextView) findViewById(R.id.license);
+        vin = (TextView) findViewById(R.id.vin);
         remark = (TextView) findViewById(R.id.remark);
         createTime = (TextView) findViewById(R.id.create_time);
         workPerson = (TextView) findViewById(R.id.work_person);
@@ -306,6 +310,18 @@ public class OrderInfoActivity extends BaseForBroadcastActivity {
         }else if ("GIVEN_UP".equals(orderInfo.getStatus()) || "CANCELED".equals(orderInfo.getStatus())){
             commentStatus.setText(R.string.canceled_order);
             commentStatus.setEnabled(false);
+        }
+
+        if (!TextUtils.isEmpty(orderInfo.getLicense())){
+            license.setText(orderInfo.getLicense());
+        }else{
+            license.setText("");
+        }
+
+        if (!TextUtils.isEmpty(orderInfo.getVin())){
+            vin.setText(orderInfo.getVin());
+        }else{
+            vin.setText("");
         }
 
         remark.setText(orderInfo.getRemark());

@@ -21,4 +21,7 @@ public class AutoCon {
     public static final String ORDER_INFO = "orderInfo";
     /**  订单ID */
     public final static String ORDER_ID = "orderId";
+
+    /**  是否有拍照下单权限 */
+    public final static String ORDER_BY_PHOTO = "orderByPhoto";
 }

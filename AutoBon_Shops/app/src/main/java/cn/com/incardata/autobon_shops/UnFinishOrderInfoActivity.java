@@ -54,6 +54,8 @@ public class UnFinishOrderInfoActivity extends BaseActivity implements View.OnCl
     private Context context;
     private TextView order_num,orderStatus,orderType,agreeStartTime,agreeEndTime,createOrderTime,orderRemark;
     private Button appoint_tech,revoke_order;
+    private TextView license_num;
+    private TextView vin_num;
     private GridView order_grid,before_photo;
     protected BaiduMap baiduMap;
     private MapView mMapView;
@@ -89,6 +91,8 @@ public class UnFinishOrderInfoActivity extends BaseActivity implements View.OnCl
         agreeEndTime = (TextView) findViewById(R.id.agreeEndTime);
         createOrderTime = (TextView) findViewById(R.id.createOrderTime);
         orderRemark = (TextView) findViewById(R.id.orderRemark);
+        license_num = (TextView) findViewById(R.id.license_num);
+        vin_num = (TextView) findViewById(R.id.vin_num);
         order_grid = (GridView) findViewById(R.id.order_grid);
         before_photo = (GridView) findViewById(R.id.before_photo);
         appoint_tech = (Button) findViewById(R.id.appoint_tech);
@@ -285,6 +289,16 @@ public class UnFinishOrderInfoActivity extends BaseActivity implements View.OnCl
                 type = type.substring(0,type.length() - 1);
             }
             orderType.setText(type);
+        }
+        if (!TextUtils.isEmpty(orderInfo.getLicense())){
+            license_num.setText(orderInfo.getLicense());
+        }else {
+            license_num.setText("");
+        }
+        if (!TextUtils.isEmpty(orderInfo.getVin())){
+            vin_num.setText(orderInfo.getVin());
+        }else {
+            vin_num.setText("");
         }
         agreeStartTime.setText(DateCompute.getDate(orderInfo.getAgreedStartTime()));
         agreeEndTime.setText(DateCompute.getDate(orderInfo.getAgreedEndTime()));

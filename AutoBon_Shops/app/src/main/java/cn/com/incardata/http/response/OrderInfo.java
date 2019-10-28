@@ -69,6 +69,8 @@ public class OrderInfo implements Parcelable {
 //    private String creatorName;
 //    private String contactPhone;
 //    private String remark;
+    private String license;
+    private String vin;
 
 
     public int getId() {
@@ -343,6 +345,22 @@ public class OrderInfo implements Parcelable {
         this.agreedStartTime = agreedStartTime;
     }
 
+    public String getLicense() {
+        return license;
+    }
+
+    public void setLicense(String license) {
+        this.license = license;
+    }
+
+    public String getVin() {
+        return vin;
+    }
+
+    public void setVin(String vin) {
+        this.vin = vin;
+    }
+
 
     @Override
     public int describeContents() {
@@ -385,6 +403,8 @@ public class OrderInfo implements Parcelable {
         dest.writeLong(this.agreedEndTime);
         dest.writeString(this.status);
         dest.writeLong(this.agreedStartTime);
+        dest.writeString(this.license);
+        dest.writeString(this.vin);
     }
 
     public OrderInfo() {
@@ -425,6 +445,8 @@ public class OrderInfo implements Parcelable {
         this.agreedEndTime = in.readLong();
         this.status = in.readString();
         this.agreedStartTime = in.readLong();
+        this.license = in.readString();
+        this.vin = in.readString();
     }
 
     public static final Creator<OrderInfo> CREATOR = new Creator<OrderInfo>() {

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:background="@color/main_white"
+    android:paddingBottom="@dimen/dp5"
+    android:paddingTop="@dimen/dp5"
+    android:paddingLeft="@dimen/dp20"
+    android:paddingRight="@dimen/dp20"
+    android:gravity="center_vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_set_meal_name"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/sp13"
+        android:layout_marginRight="@dimen/dp15"
+        android:singleLine="true"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btn_add"
+        android:textSize="@dimen/sp13"
+        android:textColor="@color/tv_white"
+        android:gravity="center"
+        android:text="@string/add"
+        android:background="@drawable/add_btn_style"
+        android:layout_width="@dimen/dp80"
+        android:layout_height="@dimen/dp30" />
+
+
+
+</LinearLayout>

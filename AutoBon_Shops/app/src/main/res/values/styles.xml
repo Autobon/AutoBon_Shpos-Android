@@ -85,6 +85,7 @@
         <item name="android:windowExitAnimation">@anim/pophidden_anim</item>
     </style>
 
+
     <!-- 时间选择器popwidnow 显示消失动画 -->
     <style name="timepopwindow_anim_style" parent="@android:style/Animation.Dialog">
         <item name="android:windowEnterAnimation">@anim/timepicker_anim_enter_bottom</item> <!-- 指定显示的动画xml -->

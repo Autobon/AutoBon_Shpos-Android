@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/main_white"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical">
+    <View
+        android:id="@+id/view"
+        android:background="@color/lightgray"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp5"/>
+
+    <LinearLayout
+        android:paddingLeft="@dimen/dp15"
+        android:paddingRight="@dimen/dp15"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp40">
+
+        <TextView
+            android:id="@+id/tv_set_meal_name"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:layout_marginRight="@dimen/dp10"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/sp15" />
+
+        <ImageView
+            android:id="@+id/img_delete"
+            android:scaleType="centerInside"
+            android:src="@mipmap/clb_tc_del"
+            android:layout_width="@dimen/dp40"
+            android:layout_height="match_parent" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

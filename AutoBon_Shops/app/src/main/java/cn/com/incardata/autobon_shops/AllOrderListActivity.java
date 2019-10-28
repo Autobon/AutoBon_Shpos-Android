@@ -229,7 +229,7 @@ public class AllOrderListActivity extends BaseForBroadcastActivity implements Vi
         for (Map.Entry parama : param.entrySet()) {
             paramList.add(new BasicNameValuePair(parama.getKey().toString(),parama.getValue().toString()));
         }
-        if (isRefresh) showDialog();
+        showDialog();
         Http.getInstance().getTaskToken(NetURL.LIST_UNFINISHEDV2, ListUnfinishedEntity.class, new OnResult() {
             @Override
             public void onResult(Object entity) {

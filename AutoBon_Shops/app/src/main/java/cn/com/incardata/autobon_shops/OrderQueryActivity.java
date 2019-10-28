@@ -32,6 +32,7 @@ import cn.com.incardata.view.selftimeview.TimePopupWindow;
 public class OrderQueryActivity extends BaseActivity implements View.OnClickListener {
     private TextView tv_status;                             //状态
     private TextView tv_work_time;                          //施工日期
+    private EditText ed_license_number;                     //车牌号
     private EditText ed_carframe_number;                    //车架号
     private EditText ed_order_phone;                        //下单人手机号
 
@@ -49,6 +50,7 @@ public class OrderQueryActivity extends BaseActivity implements View.OnClickList
     private void initView() {
         tv_status = (TextView) findViewById(R.id.tv_status);
         tv_work_time = (TextView) findViewById(R.id.tv_work_time);
+        ed_license_number = (EditText) findViewById(R.id.ed_license_number);
         ed_carframe_number = (EditText) findViewById(R.id.ed_carframe_number);
         ed_order_phone = (EditText) findViewById(R.id.ed_order_phone);
 
@@ -149,9 +151,13 @@ public class OrderQueryActivity extends BaseActivity implements View.OnClickList
         if (!TextUtils.isEmpty(workTime)){
             param.put("workDate",workTime);
         }
+        String licenseStr = ed_license_number.getText().toString().trim();
+        if (!TextUtils.isEmpty(licenseStr)){
+            param.put("license",licenseStr);
+        }
         String VinStr = ed_carframe_number.getText().toString().trim();
         if (!TextUtils.isEmpty(VinStr)){
-            param.put("vin",workTime);
+            param.put("vin",VinStr);
         }
         String phoneStr = ed_order_phone.getText().toString().trim();
         if (!TextUtils.isEmpty(phoneStr)){

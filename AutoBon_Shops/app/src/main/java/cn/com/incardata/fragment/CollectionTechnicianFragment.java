@@ -1,5 +1,6 @@
 package cn.com.incardata.fragment;
 
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
 
 import org.apache.http.message.BasicNameValuePair;
@@ -16,17 +16,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.com.incardata.adapter.AssignCollectionAdapter;
-import cn.com.incardata.adapter.CollectionTechnicianAdapter;
-import cn.com.incardata.adapter.MyContactAdapter;
-import cn.com.incardata.autobon_shops.BaseActivity;
 import cn.com.incardata.autobon_shops.CollectionTechnicianInfoActivity;
 import cn.com.incardata.autobon_shops.R;
-import cn.com.incardata.autobon_shops.TechnicianInfoActivity;
 import cn.com.incardata.http.Http;
 import cn.com.incardata.http.NetURL;
 import cn.com.incardata.http.OnResult;
 import cn.com.incardata.http.response.AppointTechEntity;
-import cn.com.incardata.http.response.BaseEntity;
 import cn.com.incardata.http.response.CollectionTechnician_Data;
 import cn.com.incardata.http.response.GetCollectionTechnicianEntity;
 import cn.com.incardata.utils.T;
@@ -36,7 +31,7 @@ import cn.com.incardata.view.PullToRefreshView;
  * 指派技师-收藏界面
  * Created by yang on 2017/5/24.
  */
-public class CollectionTechnicianFragment extends BaseFragment {
+public class CollectionTechnicianFragment extends Fragment {
 
     private View rootView;
     private ListView technician_list;

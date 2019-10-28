@@ -30,6 +30,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:visibility="gone"
                 android:paddingBottom="@dimen/dp10"
                 android:paddingLeft="@dimen/dp10"
                 android:paddingTop="@dimen/dp10"
@@ -37,6 +38,17 @@
                 android:textColor="@color/darkgray"
                 android:textSize="@dimen/sp12"
                 android:textStyle="bold" />
+            <TextView
+                android:id="@+id/tv_license"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingBottom="@dimen/dp10"
+                android:paddingLeft="@dimen/dp10"
+                android:paddingTop="@dimen/dp10"
+                android:text="@string/license_num"
+                android:textColor="@color/darkgray"
+                android:textSize="@dimen/sp12" />
 
             <Button
                 android:id="@+id/appoint_tech"
@@ -79,11 +91,23 @@
                 android:visibility="gone" />
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/tv_vin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp5"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/vin_num"
+            android:textColor="@color/darkgray"
+            android:textSize="@dimen/sp12" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp5"
+            android:layout_marginTop="@dimen/dp10"
             android:orientation="horizontal"
             android:paddingLeft="@dimen/dp10"
             android:paddingRight="@dimen/dp10">

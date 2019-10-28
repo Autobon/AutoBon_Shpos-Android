@@ -150,6 +150,7 @@
     <string name="sample_image">订单图片</string>
     <string name="please_edit_remark">请填写备注(请填写本车的提成，最多200字)</string>
     <string name="work_time">预约施工时间</string>
+    <string name="select_work_item">选择施工项目</string>
     <string name="work_item">施工项目</string>
     <string name="skill_item_1">隔热膜</string>
     <string name="skill_item_2">隐形车衣</string>
@@ -170,6 +171,8 @@
     <!-- 未完成订单 -->
     <string name="unfinish_order">未完成订单</string>
     <string name="order_num">订单编号：%1$s</string>
+    <string name="license_num">车牌号：%1$s</string>
+    <string name="vin_num">车架号：%1$s</string>
     <string name="no_receive">未接单</string>
     <string name="received">已接单</string>
     <string name="order_time">预约开始时间 %1$s</string>
@@ -203,6 +206,8 @@
     <string name="comment_order">该订单已评价</string>
     <string name="order_infomation">订单详情</string>
     <string name="order_remark">下单备注： </string>
+    <string name="license_num1">车牌号： </string>
+    <string name="vin_num1">车架号： </string>
     <string name="order_create_time">下单时间： </string>
     <string name="tech_info">技师信息</string>
     <!-- 评价 -->
@@ -293,5 +298,36 @@
     <string name="carframe_number">车架号</string>
     <string name="place_order_phone">下单人手机号</string>
     <string name="please_select_status">请选择状态</string>
+    <string name="license">车牌号</string>
+    <string name="my_set_meal">我的套餐</string>
+    <string name="add">添加</string>
+    <string name="select">选择</string>
+    <string name="yet_select">已选择</string>
+    <string name="add_set_meal">新建套餐</string>
+    <string name="data_place_order">数据下单</string>
+    <string name="photograph_place_order">拍照下单</string>
+    <string name="car_type">车型</string>
+
+    <string name="select_project">选择项目</string>
+    <string name="select_set_meal">选择套餐</string>
+    <string name="selected_project">已选项目</string>
+    <string name="selected_set_meal">已选套餐</string>
+    <string name="set_meal_name">套餐名称</string>
+    <string name="add_set_meal_success">新建套餐成功</string>
+    <string name="code_1_s">编码：%1$s</string>
+    <string name="model_1_s">型号：%1$s</string>
+    <string name="brand_1_s">品牌：%1$s</string>
+    <string name="project_1_s">施工项目：%1$s</string>
+    <string name="position_1_s">施工部位：%1$s</string>
+    <string name="working_hours_1_s">工时：%1$s</string>
+    <string name="quality_time_1_s">质保期间：%1$s</string>
+    <string name="check_info">查看详情</string>
+    <string name="add_to_my_set_meal">添加至我的套餐</string>
+    <string name="dekete_set_meal_success">删除套餐成功</string>
+    <string name="add_product_to_set_meal_success">添加产品到套餐成功</string>
+    <string name="delete_product_form_set_meal_success">从套餐中移除报价产品成功</string>
+    <string name="please_input_vin">请填写车架号</string>
+    <string name="please_input_license">请填写车牌号</string>
+    <string name="please_input_car_type">请填写车型</string>
 
 </resources>

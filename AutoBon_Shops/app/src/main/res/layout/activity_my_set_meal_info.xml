@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_white"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:id="@+id/r1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp45"
+        android:background="@color/main_orange">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="@dimen/dp35"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="@dimen/dp10"
+            android:scaleType="centerInside"
+            android:src="@mipmap/default_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="套餐详情"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp18" />
+
+        <TextView
+            android:id="@+id/tv_update"
+            android:layout_width="@dimen/dp60"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:text="编辑"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp15" />
+    </RelativeLayout>
+
+    <!--<cn.com.incardata.view.PullToRefreshView-->
+    <!--android:id="@+id/product_detailed_pull"-->
+    <!--android:layout_below="@id/r1"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:background="@color/main_white"-->
+    <!--android:orientation="vertical">-->
+
+    <ListView
+        android:layout_below="@id/r1"
+        android:id="@+id/product_detailed_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/lightgray"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:scrollbarStyle="outsideOverlay"
+        android:scrollbars="none" />
+
+    <!--</cn.com.incardata.view.PullToRefreshView>-->
+
+
+</RelativeLayout>

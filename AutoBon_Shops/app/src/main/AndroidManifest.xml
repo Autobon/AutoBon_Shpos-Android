@@ -7,7 +7,7 @@
     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <!-- 这个权限用于进行网络定位 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -82,8 +82,8 @@
 
         <activity
             android:name="com.yanzhenjie.album.AlbumActivity"
-            android:label="图库"
             android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="图库"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden|stateHidden" />
 
@@ -245,11 +245,11 @@
             android:windowSoftInputMode="stateHidden|adjustResize" />
 
         <activity
-        android:name=".EnlargementActivity"
-        android:configChanges="keyboardHidden|orientation|screenSize"
-        android:screenOrientation="portrait"
-        android:theme="@android:style/Theme.NoTitleBar"
-        android:windowSoftInputMode="stateHidden|adjustResize" />
+            android:name=".EnlargementActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name=".TechnicianInfoActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -268,6 +268,29 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="stateHidden|adjustResize" />
+
+
+        <activity
+            android:name=".ProductDetailedActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <activity
+            android:name=".MySetMealActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+
+        <activity
+            android:name=".AddSetMealActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+
+        <activity
+            android:name=".MySetMealInfoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
 
         <!-- 个推SDK配置开始 -->
         <!-- 配置的第三方参数属性 -->
@@ -366,7 +389,7 @@
             android:process=":pushservice" />
         <!-- 个推SDK配置结束 -->
 
-        <service android:name="cn.com.incardata.service.AService"/>
+        <service android:name="cn.com.incardata.service.AService" />
 
         <!-- 接收个推消息 -->
         <receiver
@@ -377,6 +400,20 @@
                 <action android:name="com.igexin.sdk.action.IED5iJnuVu8dklsGy35E54" />
             </intent-filter>
         </receiver>
+
+
+        <!-- 全面屏配置 -->
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.4" />
+
+        <meta-data
+            android:name="android.notch_support"
+            android:value="true" />
+        <!--适配小米（xiaomi）刘海屏-->
+        <meta-data
+            android:name="notch.config"
+            android:value="portrait|landscape" />
     </application>
 
 </manifest>

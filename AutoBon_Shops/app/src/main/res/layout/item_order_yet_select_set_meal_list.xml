@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/main_white"
+    android:gravity="center_vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:paddingBottom="@dimen/dp10"
+        android:paddingTop="@dimen/dp10"
+        android:paddingLeft="@dimen/dp15"
+        android:paddingRight="@dimen/dp15"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_set_meal_name"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/sp13"
+            android:layout_marginRight="@dimen/dp15"
+            android:singleLine="true"
+            android:layout_height="wrap_content" />
+
+
+        <Button
+            android:id="@+id/btn_delete"
+            android:textSize="@dimen/sp13"
+            android:textColor="@color/tv_white"
+            android:gravity="center"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="移除"
+            android:visibility="gone"
+            android:background="@drawable/add_btn_style"
+            android:layout_width="@dimen/dp70"
+            android:layout_height="@dimen/dp30" />
+    </LinearLayout>
+
+    <View
+        android:background="@color/lightgray"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_marginRight="@dimen/dp10"
+        android:layout_width="match_parent"
+        android:layout_height="1px"/>
+
+
+
+
+</LinearLayout>

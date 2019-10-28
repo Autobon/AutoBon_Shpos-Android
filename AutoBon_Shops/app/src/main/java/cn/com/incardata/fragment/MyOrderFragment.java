@@ -23,7 +23,6 @@ import cn.com.incardata.autobon_shops.R;
 import cn.com.incardata.http.Http;
 import cn.com.incardata.http.NetURL;
 import cn.com.incardata.http.OnResult;
-import cn.com.incardata.http.response.ListFinishedEntity;
 import cn.com.incardata.http.response.ListOrder_Data;
 import cn.com.incardata.http.response.ListUnfinishedEntity;
 import cn.com.incardata.http.response.OrderInfo;
@@ -40,7 +39,7 @@ import cn.com.incardata.view.PullToRefreshView;
  * Use the {@link MyOrderFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MyOrderFragment extends BaseFragment {
+public class MyOrderFragment extends android.app.Fragment {
     private static final int RequestCode = 0x11;
     private OnMyOrderFragmentListener mListener;
     private View rootView;

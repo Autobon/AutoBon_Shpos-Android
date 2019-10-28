@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -164,6 +165,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
             BasicNameValuePair bv_password = new BasicNameValuePair("password",params[1]);
             try{
                 String result = HttpClientInCar.postLoginHttpToken(context, NetURL.LOGIN_URLV2,bv_phone,bv_password);
+                Log.e("loginresult",result);
                 return result;
             }catch (Exception e){
                 return null;
@@ -193,6 +195,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                     startActivity(CooperativeOneActivity.class);//未提交资料
                 }else if(login_data.getCooperator().getStatusCode() == StatusCode.COOPERATIVE_REVIEW_SUCCESSFUL){
                     MyApplication.getInstance().setUser(login_data.getCooperator());
+                    SharedPre.setSharedPreferences(context,AutoCon.ORDER_BY_PHOTO,login_data.getCooperator().getOrderByPhoto());
                     startActivity(MainActivity.class);//审核通过
 //                    startActivity(CooperativeOneActivity.class);
 //                    startActivity(MyOrderActivity.class);

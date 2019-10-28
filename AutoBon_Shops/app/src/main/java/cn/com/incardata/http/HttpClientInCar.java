@@ -37,6 +37,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import cn.com.incardata.application.MyApplication;
 import cn.com.incardata.utils.AutoCon;
@@ -296,6 +297,7 @@ public class HttpClientInCar extends CustomHttpClient {
 			HttpResponse httpResponse = httpclient.execute(httpRequest);
 			// 请求成功
 			if (httpResponse.getStatusLine().getStatusCode() != HttpStatus.SC_OK) {
+				Log.i("httpResponse", httpResponse.getStatusLine().getStatusCode() + httpResponse.getStatusLine().getReasonPhrase());
 				throw new RuntimeException("连接失败");
 			}
 			return EntityUtils.toString(httpResponse.getEntity(),"UTF-8");
@@ -487,6 +489,7 @@ public class HttpClientInCar extends CustomHttpClient {
 			@Override
 			public void process(HttpRequest httpRequest, HttpContext httpContext) throws HttpException, IOException {
 				httpRequest.setHeader("Cookie", MyApplication.getInstance().getCookie());
+				Log.i("Cookie",MyApplication.getInstance().getCookie());
 			}
 		});
 

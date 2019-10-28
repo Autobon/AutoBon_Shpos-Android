@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/tv_white"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dp15"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp50">
+        <TextView
+            android:id="@+id/set_meal_name"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:layout_height="wrap_content"
+            android:text="汽车隔热膜"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/sp18" />
+
+        <ImageView
+            android:id="@+id/img_delete"
+            android:scaleType="centerInside"
+            android:src="@mipmap/clb_xq_btn_close"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_width="@dimen/dp50"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <View
+        android:background="@color/order_gray"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp10"/>
+
+
+    <ListView
+        android:id="@+id/product_detailed_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbarStyle="outsideOverlay"
+        android:scrollbars="none"
+        android:backgroundTint="@color/order_gray"
+        android:background="@color/lightgray"
+        android:divider="@null"
+        android:dividerHeight="0dp" />
+
+
+</LinearLayout>

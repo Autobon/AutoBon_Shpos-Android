@@ -1,6 +1,7 @@
 package cn.com.incardata.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,6 +60,8 @@ public class AllOrderListAdapter extends BaseAdapter {
             holder = new Holder();
 
             holder.orderNum = (TextView) convertView.findViewById(R.id.order_num);
+            holder.tv_license = (TextView) convertView.findViewById(R.id.tv_license);
+            holder.tv_vin = (TextView) convertView.findViewById(R.id.tv_vin);
             holder.appointTech = (Button) convertView.findViewById(R.id.appoint_tech);
             holder.revokeOrder = (Button) convertView.findViewById(R.id.revoke_order);
             holder.orderOperate = (Button) convertView.findViewById(R.id.orderOperate);
@@ -80,6 +83,16 @@ public class AllOrderListAdapter extends BaseAdapter {
 
         OrderInfo orderInfo = mList.get(position);
         holder.orderNum.setText(context.getString(R.string.order_num, orderInfo.getOrderNum()));
+        if (!TextUtils.isEmpty(orderInfo.getLicense())){
+            holder.tv_license.setText(context.getString(R.string.license_num, orderInfo.getLicense()));
+        }else {
+            holder.tv_license.setText(context.getString(R.string.license_num, context.getString(R.string.not)));
+        }
+        if (!TextUtils.isEmpty(orderInfo.getVin())){
+            holder.tv_vin.setText(context.getString(R.string.vin_num, orderInfo.getVin()));
+        }else {
+            holder.tv_vin.setText(context.getString(R.string.vin_num, context.getString(R.string.not)));
+        }
         if ("CREATED_TO_APPOINT".equals(orderInfo.getStatus())) {//新建订单，待指定技师
             holder.appointTech.setVisibility(View.VISIBLE);
             holder.revokeOrder.setVisibility(View.VISIBLE);
@@ -164,6 +177,8 @@ public class AllOrderListAdapter extends BaseAdapter {
 
     private class Holder {
         TextView orderNum;
+        TextView tv_license;
+        TextView tv_vin;
         Button appointTech;
         Button revokeOrder;
         Button orderOperate;

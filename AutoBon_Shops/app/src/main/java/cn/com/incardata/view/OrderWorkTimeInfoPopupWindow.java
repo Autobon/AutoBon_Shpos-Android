@@ -83,6 +83,7 @@ public class OrderWorkTimeInfoPopupWindow extends PopupWindow {
         this.setWidth((int) (context.getWindowManager().getDefaultDisplay().getWidth() * 0.8));
         //设置SelectPicPopupWindow弹出窗体的高
         this.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
+
         //设置SelectPicPopupWindow弹出窗体可点击
         this.setFocusable(true);
         //设置SelectPicPopupWindow弹出窗体动画效果
